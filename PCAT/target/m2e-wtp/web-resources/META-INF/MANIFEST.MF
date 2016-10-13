@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: pcatinventory
+Implementation-Version: 1
+Built-By: venkat
+Implementation-Vendor-Id: org.pcat.inventorymanagement
+Build-Jdk: 1.8.0_60
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
