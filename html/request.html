@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
-    <script src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/b-1.2.2/datatables.min.css"/>
+ 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/b-1.2.2/datatables.min.js"></script>
+
     <script src="request.js"></script>
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
     <title>PCAT inventory | Request items</title>
@@ -39,13 +41,14 @@
             <h1>
                 Request items from our inventory
             </h1>
-            <table id="dataTable" class="dummy-inventory">
+            <table id="dataTable">
                    <thead>
                         <tr>
-                            <th style="padding-left: 2.5rem;">Product Name</th>
-                            <th style="padding-left: 2.5rem;">Description</th>
-                            <th style="padding-left: 14rem;">Location</th>
-                            <th style="padding-left: 8rem;">Avail Qty</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Location</th>
+                            <th>Avail Qty</th>
+                            <th>Request</th>
                       </tr>
                    </thead>
                 </table>
