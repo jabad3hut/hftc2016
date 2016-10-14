@@ -1,7 +1,8 @@
+var url = "listAllInventories"
 $(document).ready(function(){
     $('#dataTable').DataTable( {
         "ajax": {
-            "url": "mockproduct.json",
+            "url": url,
             "dataSrc": ""
         },
         "columnDefs": [
@@ -36,10 +37,10 @@ function submitRequest(id)  {
     var payload = {
         "userId": userId,
         "familyId": familyId,
-        "qty": qty,
-        "itemid": id
+        "quantity": qty,
+        "inventoryId": id
     };
-    var $form = $('<form method="POST" action="/inventorymanagement/submitForRequestApproval"></form>');
+    var $form = $('<form method="POST" action="submitForRequestApproval"></form>');
     for (var key in payload) {
         $('<input>').attr('type','hidden').attr('name',key).attr('value',payload[key]).appendTo($form);
     }

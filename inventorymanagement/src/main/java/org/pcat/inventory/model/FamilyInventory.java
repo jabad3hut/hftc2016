@@ -15,31 +15,10 @@ public class FamilyInventory implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Inventory inventory;
 	private String familyId;
+	private String status;
 	private Integer quantity;
 	private Timestamp requestedDate;
-
-	// Constructors
-
-	/** default constructor */
-	public FamilyInventory() {
-	}
-
-	/** minimal constructor */
-	public FamilyInventory(String familyId, Integer quantity, Timestamp requestedDate) {
-		this.familyId = familyId;
-		this.quantity = quantity;
-		this.requestedDate = requestedDate;
-	}
-
-	/** full constructor */
-	public FamilyInventory(Inventory inventory, String familyId, Integer quantity, Timestamp requestedDate) {
-		this.inventory = inventory;
-		this.familyId = familyId;
-		this.quantity = quantity;
-		this.requestedDate = requestedDate;
-	}
 
 	// Property accessors
 
@@ -49,14 +28,6 @@ public class FamilyInventory implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
 	}
 
 	public String getFamilyId() {
@@ -81,6 +52,21 @@ public class FamilyInventory implements java.io.Serializable {
 
 	public void setRequestedDate(Timestamp requestedDate) {
 		this.requestedDate = requestedDate;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
