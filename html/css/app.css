@@ -82,8 +82,13 @@ nav {
 }
 
 .nav-list li a {
-    padding: 0 .5rem;
-    /*text-decoration: none;*/
+    padding-right: 2rem;
+    color: #217ace;                 /* lighter than pcat dark blue */
+    text-decoration: none;
+}
+
+.nav-list li a:hover {
+    color: #005dab;                 /* pcat dark blue */
 }
 
 .pcat-logo {
@@ -292,14 +297,15 @@ footer {
     /*flex-direction: column;*/
     /*align-items: center;*/
     justify-content: center;
-    margin: -2rem 0 4rem 0;
+    margin: -3rem 0 4rem 0;
 }
 
 .inline-directive h2 {
-    margin: 0 1.5rem 0 0;
+    margin: 0 .75rem 0 0;
 }
 
 .inline-directive input {
+    padding-left: 1rem;
     height: 2rem;
     margin: .25rem 0 0 0;
 }
@@ -350,6 +356,16 @@ tr a {
     padding: .375rem 1.5rem;
 }
 
-/*tr {*/
-    /*padding: */
+/*thead {*/
+    /*color: red;*/
+    /*padding-left: -2rem;*/
 /*}*/
+
+th {
+    /*color: red;*/
+    padding-left: 1rem;
+}
+
+form h2 {
+    font-size: 2rem;
+}
