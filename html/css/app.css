@@ -8,7 +8,7 @@ h1 {
     color: #8595a2;                 /* pcat medium gray */
     text-align: center;
     padding: 0;
-    margin: 5rem 2rem;
+    margin: 2rem 2rem 5rem 2rem;
 }
 
 h2 {
@@ -153,11 +153,19 @@ footer {
 }
 
 .affirmative {
+    background-color: #006bc4;                  /* lighter than pcat dark blue */
+}
+
+.button.affirmative:hover {
     background-color: #005dab;                  /* pcat dark blue */
 }
 
 .neutral {
     background-color: #8595a2;                  /* pcat medium gray */
+}
+
+.button.neutral:hover {
+    background-color: gray;
 }
 
 .big-button {
@@ -239,13 +247,17 @@ footer {
 }
 
 tr a {
-    background-color: #005dab;                  /* pcat dark blue */
+    background-color: #006bc4;                  /* lighter than pcat dark blue */
     font-size: 1rem;
     color: white;
     border: none;
     border-radius: .25rem;
     text-decoration: none;
     padding: .375rem 1.5rem;
+}
+
+tr a:hover {
+    background-color: #005dab;                  /* pcat dark blue */
 }
 
 th {
