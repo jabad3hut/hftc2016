@@ -8,7 +8,8 @@ $(document).ready(function(){
             { "data": "productName" },
             { "data": "productDesc" },
             { "data": "location" },
-            { "render": function(data, type, row, meta) {
+            { "render":
+              function(data, type, row, meta) {
                 return row.totalInventory - row.reservedInventory;
               }
             },
@@ -17,7 +18,6 @@ $(document).ready(function(){
                   return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Request</a>';
               }
             }
-
         ]
     } );
 });
