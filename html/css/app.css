@@ -282,25 +282,26 @@ footer {
     margin: .175rem .5rem .175rem 0;
 }
 
-.medium-checkbox {
-    width: 2rem;
-    height: 2rem;
-}
+/*.medium-checkbox {*/
+    /*width: 2rem;*/
+    /*height: 2rem;*/
+/*}*/
 
 .inline-directive {
     display: flex;
     /*flex-direction: column;*/
     /*align-items: center;*/
-    /*/!*justify-content: center;*!/*/
+    justify-content: center;
     margin: -2rem 0 4rem 0;
 }
 
 .inline-directive h2 {
-    margin: 0 1.5rem 1rem 0;
+    margin: 0 1.5rem 0 0;
 }
 
 .inline-directive input {
     height: 2rem;
+    margin: .25rem 0 0 0;
 }
 
 .family-number-input {
@@ -339,3 +340,16 @@ footer {
     width: 3rem;
 }
 
+tr a {
+    background-color: #005dab;                  /* pcat dark blue */
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: .25rem;
+    text-decoration: none;
+    padding: .375rem 1.5rem;
+}
+
+/*tr {*/
+    /*padding: */
+/*}*/

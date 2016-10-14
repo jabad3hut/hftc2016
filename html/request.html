@@ -42,21 +42,25 @@
                 Request items from our inventory
             </h1>
 
-            <div class="inline-directive">
-                <h2>
-                    Enter the family number:
+            <form action="foo" id="request-items" style="padding: 0 5rem;">
+
+                <input type="hidden" name="userId" value="1">
+
+                <div class="inline-directive">
+                    <h2>
+                        Enter the family number:
+                    </h2>
+
+                    <label><input type="text" class="family-number-input"></label>
+                </div>
+
+                <h2 style="margin: -2rem 5rem 3rem 5rem">
+                    Request an item by entering a quantity <br>and clicking the Request button for an item:
                 </h2>
 
-                <label><input type="text" class="family-number-input"></label>
-            </div>
-
-            <h2 style="margin: -2rem 5rem 3rem 5rem">
-                Request an item by entering a quantity <br>and clicking the Request button for an item:
-            </h2>
-
-            <form action="foo" style="padding: 0 5rem;">
-                <table id="dataTable">
-                    <thead>
+                <div style="padding: 0 5rem;">
+                    <table id="dataTable">
+                        <thead>
                         <tr>
                             <th>Product Name</th>
                             <th>Description</th>
@@ -65,8 +69,10 @@
                             <th>Qty</th>
                             <th>Action</th>
                         </tr>
-                    </thead>
-                </table>
+                        </thead>
+                    </table>
+                </div>
+
             </form>
 
         </div>
