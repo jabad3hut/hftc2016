@@ -74,10 +74,11 @@
 
         </div>
     </section>
-
+<!--
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
+-->
 </form>
 </body>
 </html>
