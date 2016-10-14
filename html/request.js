@@ -14,7 +14,7 @@ $(document).ready(function(){
             },
             { "render": function(data, type, row, meta) {
                 
-                  return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Reserve</a>';
+                  return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Request</a>';
               }
             }
 
