@@ -4,7 +4,7 @@ $(document).ready(function(){
             "url": "mockproduct.json",
             "dataSrc": ""
         },
-        "columns": [            
+        "columns": [
             { "data": "productName" },
             { "data": "productDesc" },
             { "data": "location" },
@@ -14,7 +14,12 @@ $(document).ready(function(){
               }
             },
             { "render": function(data, type, row, meta) {
-                
+
+                  return '<input name="itemid" class="quantity-input" id="' + row.id + '">';
+              }
+            },
+            { "render": function(data, type, row, meta) {
+
                   return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Request</a>';
               }
             }
