@@ -224,8 +224,15 @@ footer {
     /*margin: 3rem 0 0 0;*/
 /*}*/
 
+.inventory-table {
+    display: flex;
+    /*flex: 1 1 auto;*/
+    flex-direction: column;
+}
+
 .dummy-inventory {
     display: flex;
+    /*flex: 1 1 auto;*/
     flex-direction: column;
 }
 
