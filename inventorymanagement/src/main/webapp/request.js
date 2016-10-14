@@ -38,7 +38,7 @@ function submitRequest(id)  {
         "userId": userId,
         "familyId": familyId,
         "quantity": qty,
-        "inventoryId": id
+        "id": id
     };
     var $form = $('<form method="POST" action="submitForRequestApproval"></form>');
     for (var key in payload) {
