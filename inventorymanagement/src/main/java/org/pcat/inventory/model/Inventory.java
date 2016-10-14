@@ -13,7 +13,7 @@ public class Inventory implements java.io.Serializable {
 	private String productDesc;
 	private Integer totalInventory;
 	private Integer reservedInventory;
-	private FamilyInventory familyInventory;
+	// private FamilyInventory familyInventory;
 	private String location;
 
 	public Integer getId() {
@@ -40,6 +40,7 @@ public class Inventory implements java.io.Serializable {
 		this.reservedInventory = reservedInventory;
 	}
 
+	/*
 	public FamilyInventory getFamilyInventory() {
 		return this.familyInventory;
 	}
@@ -47,7 +48,7 @@ public class Inventory implements java.io.Serializable {
 	public void setFamilyInventory(FamilyInventory familyInventory) {
 		this.familyInventory = familyInventory;
 	}
-
+    */
 	/**
 	 * @return the productName
 	 */

@@ -59,7 +59,7 @@ public class RequestApprovalDAO {
 	 * This method approves the request and updates FamilyInventory and
 	 * Inventory repositories and also sends the notification to homevisitor who
 	 * requested this order.
-	 * 
+	 *
 	 * @param userId
 	 *            : homevisitor id
 	 * @param familyId
@@ -89,7 +89,7 @@ public class RequestApprovalDAO {
 	/**
 	 * This method sends notification to homevisitor who made the request for
 	 * the inventory.
-	 * 
+	 *
 	 * @param userId
 	 * @param familyInventory
 	 * @return
@@ -119,7 +119,7 @@ public class RequestApprovalDAO {
 
 	/**
 	 * This method updates FamilyInventory with the "approved" status.
-	 * 
+	 *
 	 * @param familyInventory
 	 * @return
 	 */
@@ -144,7 +144,7 @@ public class RequestApprovalDAO {
 
 	/**
 	 * This method allows homevisitor to submit the requests.
-	 * 
+	 *
 	 * @param userId
 	 * @param familyId
 	 * @param inventoryId
@@ -163,6 +163,7 @@ public class RequestApprovalDAO {
 			familyInventory.setFamilyId(familyId);
 			familyInventory.setQuantity(quantity);
 			familyInventory.setStatus("pending");
+			familyInventory.setInventoryId(inventoryId);
 			Timestamp requestedDate = new Timestamp(System.currentTimeMillis());
 			familyInventory.setRequestedDate(requestedDate);
 			saveFamilyInventory(familyInventory);
@@ -185,7 +186,7 @@ public class RequestApprovalDAO {
 
 	/**
 	 * This method adds a new FamilyInventory.
-	 * 
+	 *
 	 * @param familyInventory
 	 * @return
 	 */

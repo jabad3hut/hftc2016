@@ -11,7 +11,7 @@ public class FamilyInventory implements java.io.Serializable {
 	// Fields
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
@@ -19,6 +19,7 @@ public class FamilyInventory implements java.io.Serializable {
 	private String status;
 	private Integer quantity;
 	private Timestamp requestedDate;
+	private Integer inventoryId;
 
 	// Property accessors
 
@@ -52,6 +53,14 @@ public class FamilyInventory implements java.io.Serializable {
 
 	public void setRequestedDate(Timestamp requestedDate) {
 		this.requestedDate = requestedDate;
+	}
+
+	public void setInventoryId(Integer inventoryId) {
+	    this.inventoryId = inventoryId;
+	}
+
+	public Integer getInventoryId(Integer inventoryId) {
+	    return this.inventoryId;
 	}
 
 	/**
