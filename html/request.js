@@ -13,9 +13,9 @@ $(document).ready(function(){
                 return row.totalInventory - row.reservedInventory;
               }
             },
-            { "render":
-              function(data, type, row, meta) {
-                return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Reserve</a>';
+            { "render": function(data, type, row, meta) {
+                
+                  return '<input type="hidden" name="itemid"><a href="/whatever?id=' + row.id + '">Request</a>';
               }
             }
         ]
