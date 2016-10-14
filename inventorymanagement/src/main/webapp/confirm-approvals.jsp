@@ -32,10 +32,10 @@
             </button>
         </div>
     </section>
-
+<!--
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
-
+-->
 </body>
 </html>
