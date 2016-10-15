@@ -31,7 +31,7 @@ public class FamilyInventory implements java.io.Serializable {
 	    this.inventoryId = inventoryId;
 	}
 
-    public Integer getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
