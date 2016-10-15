@@ -40,15 +40,15 @@ public class Inventory implements java.io.Serializable {
 		this.reservedInventory = reservedInventory;
 	}
 
-	/*
-	public FamilyInventory getFamilyInventory() {
-		return this.familyInventory;
-	}
 
-	public void setFamilyInventory(FamilyInventory familyInventory) {
-		this.familyInventory = familyInventory;
-	}
-    */
+//	public FamilyInventory getFamilyInventory() {
+//		return this.familyInventory;
+//	}
+//
+//	public void setFamilyInventory(FamilyInventory familyInventory) {
+//		this.familyInventory = familyInventory;
+//	}
+
 	/**
 	 * @return the productName
 	 */

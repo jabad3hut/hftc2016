@@ -23,7 +23,15 @@ public class FamilyInventory implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getId() {
+	public Integer getInventoryId() {
+	    return inventoryId;
+	}
+
+	public void setInventoryId(Integer inventoryId) {
+	    this.inventoryId = inventoryId;
+	}
+
+    public Integer getId() {
 		return this.id;
 	}
 
@@ -55,13 +63,7 @@ public class FamilyInventory implements java.io.Serializable {
 		this.requestedDate = requestedDate;
 	}
 
-	public void setInventoryId(Integer inventoryId) {
-	    this.inventoryId = inventoryId;
-	}
 
-	public Integer getInventoryId(Integer inventoryId) {
-	    return this.inventoryId;
-	}
 
 	/**
 	 * @return the status
