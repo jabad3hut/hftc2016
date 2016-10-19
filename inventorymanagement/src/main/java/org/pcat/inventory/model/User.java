@@ -1,13 +1,20 @@
 package org.pcat.inventory.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
 
-public class User implements java.io.Serializable {
+@Entity
+public class User  {
 
 	// Fields
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String firstname;
 	private String supervisor;
@@ -105,5 +112,8 @@ public class User implements java.io.Serializable {
 	public void setSupervisoremail(String supervisoremail) {
 		this.supervisoremail = supervisoremail;
 	}
-
+	@Override
+	public String toString() {
+		return String.format("User[id=%d, firstname='%s', lastname='%s', email='%s', supervisor='%s']", this.id, this.firstname, this.lastname, this.email, this.supervisor);
+	}
 }
