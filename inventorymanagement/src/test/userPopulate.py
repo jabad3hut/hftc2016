@@ -8,7 +8,7 @@ cnx.autocommit = True
 
 cursor.execute('delete from user')
 
-user_insert_template = "insert into user (firstname, lastname, supervisor, email, role, supervisor_email, isactive) values(\"{0}\", \"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\", {6})"
+user_insert_template = "insert into user (firstname, lastname, supervisor, email, role, supervisoremail, isactive) values(\"{0}\", \"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\", {6})"
 cursor.execute(user_insert_template.format("Mary Beth", "Price", "Bonnie Fernandez", "mbprice.pcat@mailinator.com", "Home Visitor", "bfernandez.pcat@mailinator.com", 1))
 cursor.execute(user_insert_template.format("Mary", "Bird", "Bonnie Fernandez", "mbird.pcat@mailinator.com", "Home Visitor", "bfernandez.pcat@mailinator.com", 0))
 cursor.execute(user_insert_template.format("Beth", "Prices", "Cindy Lou Hoo", "bpricess.pcat@mailinator.com", "Home Visitor", "clouhoo.pcat@mailinator.com", 1))
