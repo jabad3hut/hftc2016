@@ -1,4 +1,4 @@
-package org.pcat.inventory.dao;
+package org.pcat.inventory;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
