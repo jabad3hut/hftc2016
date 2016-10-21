@@ -4,10 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.pcat.inventory.model.User;
 import org.pcat.inventory.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,7 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	/**
 	 * @return the LoginService
@@ -43,9 +45,9 @@ public class LoginController {
 	@RequestMapping(value = "/loginPage")
 	public ModelAndView isUserLoggedIn(HttpServletRequest request, Model model) {
 		String email = request.getParameter("email");
-		System.out.println("I am in login controller... " + email);
+		logger.info("I am in login controller... {}", email);
 		User user = loginService.validateUserLogin(email);
-		System.out.println("User is ... " + user);
+		logger.info("User is... {}", user);
 		String forward = null;
 		if (user != null) {
 			if (user.getRole().contains("admin")) {

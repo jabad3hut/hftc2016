@@ -1,0 +1,2 @@
+use pcat;
+show tables;
