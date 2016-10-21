@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
  */
 
 @Entity
-public class User  {
+public class User {
 
 	// Fields
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String firstname;
 	private String supervisor;
@@ -117,8 +117,10 @@ public class User  {
 	public void setSupervisoremail(String supervisoremail) {
 		this.supervisoremail = supervisoremail;
 	}
+
 	@Override
 	public String toString() {
-		return String.format("User[id=%d, firstname='%s', lastname='%s', email='%s', supervisor='%s']", this.id, this.firstname, this.lastname, this.email, this.supervisor);
+		return String.format("User[id=%d, firstname='%s', lastname='%s', email='%s', supervisor='%s']", this.id,
+				this.firstname, this.lastname, this.email, this.supervisor);
 	}
 }
