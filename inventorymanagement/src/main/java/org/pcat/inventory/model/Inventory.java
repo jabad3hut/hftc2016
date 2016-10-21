@@ -1,13 +1,24 @@
 package org.pcat.inventory.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Inventory entity. @author MyEclipse Persistence Tools
  */
-
+@Entity
 public class Inventory implements java.io.Serializable {
 
 	// Fields
+	private static final Logger logger = LoggerFactory.getLogger(Inventory.class);
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String productName;
 	private String productDesc;
@@ -15,6 +26,20 @@ public class Inventory implements java.io.Serializable {
 	private Integer reservedInventory;
 	// private FamilyInventory familyInventory;
 	private String location;
+
+	public Inventory() {
+		super();
+	}
+
+	public Inventory(String productName, String productDesc, Integer totalInventory,
+			Integer reservedInventory, String location) {
+		super();
+		this.productName = productName;
+		this.productDesc = productDesc;
+		this.totalInventory = totalInventory;
+		this.reservedInventory = reservedInventory;
+		this.location = location;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -40,14 +65,13 @@ public class Inventory implements java.io.Serializable {
 		this.reservedInventory = reservedInventory;
 	}
 
-
-//	public FamilyInventory getFamilyInventory() {
-//		return this.familyInventory;
-//	}
-//
-//	public void setFamilyInventory(FamilyInventory familyInventory) {
-//		this.familyInventory = familyInventory;
-//	}
+	// public FamilyInventory getFamilyInventory() {
+	// return this.familyInventory;
+	// }
+	//
+	// public void setFamilyInventory(FamilyInventory familyInventory) {
+	// this.familyInventory = familyInventory;
+	// }
 
 	/**
 	 * @return the productName

@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
@@ -23,6 +26,7 @@ public class User  {
 	private String role;
 	private String lastname;
 	private String isactive;
+	private static final Logger logger = LoggerFactory.getLogger(User.class);
 
 	// Constructors
 
@@ -32,6 +36,7 @@ public class User  {
 
 	/** full constructor */
 	public User(String firstname, String supervisor, String email, String role, String lastname, String isactive) {
+		logger.debug("creating new user from full constructor");
 		this.firstname = firstname;
 		this.supervisor = supervisor;
 		this.email = email;
