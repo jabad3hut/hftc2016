@@ -1,19 +1,18 @@
 package org.pcat.inventory.dao;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.type.descriptor.sql.JdbcTypeFamilyInformation.Family;
 import org.pcat.inventory.model.FamilyInventory;
-import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -79,7 +78,7 @@ public class RequestApprovalDAO {
 			familyInventory.setStatus("Approved");
 			session.update(familyInventory);
 			tx.commit();
-			//sendNotification(userId, familyInventory);
+			// sendNotification(userId, familyInventory);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -103,12 +102,8 @@ public class RequestApprovalDAO {
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("id", userId));
 			User user = (User) criteria.list().get(0);
+
 			String email = user.getEmail();
-			SimpleMailMessage mailMessage = new SimpleMailMessage();
-			mailMessage.setFrom("admin@pcat.org");
-			mailMessage.setTo(email);
-			mailMessage.setSubject("User Request Approved");
-			mailSender.send(mailMessage);
 			completedApproval = true;
 			tx.commit();
 		} catch (Exception e) {
@@ -164,18 +159,17 @@ public class RequestApprovalDAO {
 			familyInventory.setQuantity(quantity);
 			familyInventory.setStatus("pending");
 			familyInventory.setInventoryId(inventoryId);
-			Timestamp requestedDate = new Timestamp(System.currentTimeMillis());
-			familyInventory.setRequestedDate(requestedDate);
+			familyInventory.setRequestedDate(new Timestamp(Instant.now().getEpochSecond()));
 			saveFamilyInventory(familyInventory);
 
 			tx.commit();
 
-//			// send notification to the supervisor
-//			Criteria criteria = session.createCriteria(User.class);
-//			criteria.add(Restrictions.eq("id", userId));
-//			User user = (User) criteria.list().get(0);
-//			String supervisorIdStr = user.getSupervisoremail();
-//			sendNotification(supervisorId, familyInventory);
+			// // send notification to the supervisor
+			// Criteria criteria = session.createCriteria(User.class);
+			// criteria.add(Restrictions.eq("id", userId));
+			// User user = (User) criteria.list().get(0);
+			// String supervisorIdStr = user.getSupervisoremail();
+			// sendNotification(supervisorId, familyInventory);
 
 			isSubmited = true;
 		} catch (Exception e) {
