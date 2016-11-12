@@ -12,12 +12,7 @@
     	http://www.springframework.org/schema/data/jpa
     	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/" />
-		<property name="suffix" value="" />
-	</bean>
-
+	
 	<context:component-scan base-package="org.pcat.inventory" />
 
 
@@ -28,7 +23,6 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 		<!-- <property name="initialSize" value="3" /> -->
-		<property name="defaultAutoCommit" value="false" /> 
 	</bean>
 
 	<bean id="sessionFactory"
