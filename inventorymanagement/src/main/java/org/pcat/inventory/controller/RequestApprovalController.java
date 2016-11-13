@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.pcat.inventory.model.HomeVisitor;
-import org.pcat.inventory.service.RequestApprovalService;
 import org.pcat.inventory.service.RequestFamilyItemsService;
 import org.pcat.inventory.service.UserService;
 import org.pcat.inventory.model.RequestItem;
@@ -21,26 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class RequestApprovalController {
 
 	@Autowired
-	private RequestApprovalService requestApprovalService;
-	@Autowired
 	private RequestFamilyItemsService requestFamilyItemsService;
 	@Autowired
 	private UserService userService;
 
-	/**
-	 * @return the RequestApprovalService
-	 */
-	public RequestApprovalService getRequestApprovalService() {
-		return requestApprovalService;
-	}
 
-	/**
-	 * @param requestApprovalService
-	 *            the RequestApprovalService to set
-	 */
-	public void setRequestApprovalService(RequestApprovalService requestApprovalService) {
-		this.requestApprovalService = requestApprovalService;
-	}
 
 	/**
 	 * This method approves requests and updates the database for approved
@@ -54,7 +38,6 @@ public class RequestApprovalController {
 	public ModelAndView approveRequests(HttpServletRequest request, Model model) {
 		int userId = Integer.valueOf(request.getParameter("userId"));
 		int familyInventoryId = Integer.valueOf(request.getParameter("familyInventoryId"));
-		requestApprovalService.approveRequests(userId, familyInventoryId);
 		return new ModelAndView("confirm-approvals.jsp");
 	}
 
