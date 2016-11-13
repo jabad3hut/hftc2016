@@ -54,7 +54,7 @@ public abstract class BaseDao {
 	public List<?> findAll(Class<?> clazz) {
 		Session session = null;
 		Transaction tx = null;
-		List result = null;
+		List<?> result = null;
 		try {
 			session = getSession();
 			tx = getTransaction(session);

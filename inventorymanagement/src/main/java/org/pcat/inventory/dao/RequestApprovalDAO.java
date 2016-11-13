@@ -2,7 +2,6 @@ package org.pcat.inventory.dao;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

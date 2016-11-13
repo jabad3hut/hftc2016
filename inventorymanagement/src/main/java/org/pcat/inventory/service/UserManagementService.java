@@ -2,8 +2,6 @@ package org.pcat.inventory.service;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.pcat.inventory.dao.UserManagementDAO;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
