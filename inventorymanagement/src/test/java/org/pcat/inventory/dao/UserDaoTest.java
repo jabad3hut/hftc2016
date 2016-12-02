@@ -46,7 +46,8 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 				"testFirstNameGetUserByEmailTest@mailinator.com", "Supervisor", "testSupervisor",
 				"testSupervisor@mailinator.com", true);
 		userDao.saveOrUpdate(user);
-		assertThat(userDao.getByEmailId("testFirstNameGetUserByEmailTest@mailinator.com").getFirstname(),
+		logger.debug(user.toString());
+		assertThat(userDao.getByEmailId("testFirstNameGetUserByEmailTest@mailinator.com").getFirstName(),
 				equalTo("testFirstNameGetUserByEmailTest"));
 		assertThat(userDao.delete(user), equalTo(true));
 	}

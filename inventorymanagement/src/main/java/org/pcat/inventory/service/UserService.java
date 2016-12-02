@@ -2,7 +2,8 @@ package org.pcat.inventory.service;
 
 import org.pcat.inventory.dao.UserDao;
 import org.pcat.inventory.model.HomeVisitor;
-import org.pcat.inventory.model.User;
+import org.pcat.inventory.model.PcatPerson;
+import org.pcat.inventory.model.Supervisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,23 +12,21 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	private HomeVisitor buildHomeVisitor(User user) {
-		return new HomeVisitor(user.getFirstname(), user.getLastname(), user.getEmail(), user.getSupervisoremail());
+	private HomeVisitor buildHomeVisitor(PcatPerson user) {
+		return new HomeVisitor(user.getFirstName(), user.getLastName(), user.getEmail(), null, user.getSupervisorEmail());
 	}
 
 	public HomeVisitor getHomeVisitor(int userId) {
-		User user = userDao.getById(userId);
+		PcatPerson user = userDao.getById(userId);
 		return buildHomeVisitor(user);
 	}
 
 	public HomeVisitor getHomeVisitorByEmailAddress(String emailAddress) {
-		User user = userDao.getByEmailId(emailAddress);
+		PcatPerson user = userDao.getByEmailId(emailAddress);
 		return buildHomeVisitor(user);
 	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-
-
 }

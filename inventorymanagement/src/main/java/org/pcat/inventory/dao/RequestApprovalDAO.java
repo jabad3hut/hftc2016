@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -100,7 +101,7 @@ public class RequestApprovalDAO {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("id", userId));
-			User user = (User) criteria.list().get(0);
+			PcatPerson user = (PcatPerson) criteria.list().get(0);
 
 			String email = user.getEmail();
 			completedApproval = true;

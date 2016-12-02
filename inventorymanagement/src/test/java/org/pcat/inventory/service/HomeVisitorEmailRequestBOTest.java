@@ -19,7 +19,7 @@ public class HomeVisitorEmailRequestBOTest {
 	public void messageBodyBuilderTest() {
 		String newline = System.getProperty("line.separator");
 		HomeVisitor homeVisitor = new HomeVisitor("testFirst", "testLast", "testEmail@mailinator.com",
-				"testSupervisorEmail@mailinator.com");
+				null, "testSupervisorEmail@mailinator.com");
 		String testBody = "These items have been requested by testFirst testLast: " + newline + "Item 1" + newline
 				+ "Item 2" + newline + "Item 3" + newline + "Item 4" + newline + "Item 5" + newline + "Item 6";
 		List<String> items = new ArrayList<String>();
@@ -29,7 +29,7 @@ public class HomeVisitorEmailRequestBOTest {
 		items.add("Item 4");
 		items.add("Item 5");
 		items.add("Item 6");
-		String renderedString = emailUtility.getMessageBody(homeVisitor.getFirstname(), homeVisitor.getLastname(),
+		String renderedString = emailUtility.getMessageBody(homeVisitor.getFirstName(), homeVisitor.getLastName(),
 				items);
 		logger.info(renderedString);
 		assertThat(renderedString, equalTo(testBody));

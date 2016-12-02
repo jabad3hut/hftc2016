@@ -87,6 +87,7 @@ public abstract class BaseDao {
 	}
 
 	public void saveOrUpdate(Object obj) {
+//		getSession().saveOrUpdate(obj);
 		Session session = null;
 		Transaction tx = null;
 

@@ -15,28 +15,31 @@ public class FamilyInventory implements java.io.Serializable {
 	private Integer id;
 
 	private String familyId;
+	private Integer requestorId;
+
 	private String status;
+
 	private Integer quantity;
+
 	private Timestamp requestedDate;
 	private Integer inventoryId;
 
 	public FamilyInventory() {
 		super();
 	}
-	// Fields
 
-	public FamilyInventory(Integer id, String familyId, String status, Integer quantity, Timestamp localDateTime,
-			Integer inventoryId) {
+	// Fields
+	public FamilyInventory(Integer id, String familyId, Integer requestorId, String status, Integer quantity,
+			Timestamp localDateTime, Integer inventoryId) {
 		super();
 		this.id = id;
 		this.familyId = familyId;
+		this.requestorId = requestorId;
 		this.status = status;
 		this.quantity = quantity;
 		this.requestedDate = localDateTime;
 		this.inventoryId = inventoryId;
 	}
-
-	// Property accessors
 
 	@Override
 	public boolean equals(Object obj) {
@@ -64,6 +67,8 @@ public class FamilyInventory implements java.io.Serializable {
 		return this.familyId;
 	}
 
+	// Property accessors
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -78,6 +83,10 @@ public class FamilyInventory implements java.io.Serializable {
 
 	public Timestamp getRequestedDate() {
 		return this.requestedDate;
+	}
+
+	public Integer getRequestorId() {
+		return requestorId;
 	}
 
 	/**
@@ -113,6 +122,10 @@ public class FamilyInventory implements java.io.Serializable {
 
 	public void setRequestedDate(Timestamp requestedDate) {
 		this.requestedDate = requestedDate;
+	}
+
+	public void setRequestorId(Integer requestorId) {
+		this.requestorId = requestorId;
 	}
 
 	/**

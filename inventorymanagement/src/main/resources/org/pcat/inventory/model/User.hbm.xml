@@ -10,10 +10,10 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <property name="firstname" type="java.lang.String">
+        <property name="firstName" type="java.lang.String">
             <column name="firstname" />
         </property>
-        <property name="lastname" type="java.lang.String">
+        <property name="lastName" type="java.lang.String">
             <column name="lastname" length="45" />
         </property>
         <property name="email" type="java.lang.String">
@@ -22,7 +22,7 @@
         <property name="supervisor" type="java.lang.String">
             <column name="supervisor" />
         </property>
-         <property name="supervisoremail" type="java.lang.String">
+         <property name="supervisorEmail" type="java.lang.String">
             <column name="supervisor_email" />
         </property>
         <property name="role" type="java.lang.String">

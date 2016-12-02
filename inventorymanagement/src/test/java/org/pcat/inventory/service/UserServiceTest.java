@@ -43,8 +43,8 @@ public class UserServiceTest {
 				.thenReturn(new User(1, "testFirstName", "testLastName", "testUser@mailinator.com", "Home Visitor",
 						"test Supervisor", "supervisorEmail@mailinator.com", true));
 		HomeVisitor hv = userService.getHomeVisitorByEmailAddress("testUser@mailinator.com");
-		assertThat(hv.getFirstname(), equalTo("testFirstName"));
-		assertThat(hv.getLastname(), equalTo("testLastName"));
+		assertThat(hv.getFirstName(), equalTo("testFirstName"));
+		assertThat(hv.getLastName(), equalTo("testLastName"));
 		assertThat(hv.getSupervisorEmail(), equalTo("supervisorEmail@mailinator.com"));
 		verify(mockUserDao).getByEmailId("testUser@mailinator.com");
 	}

@@ -3,6 +3,7 @@ package org.pcat.inventory.service;
 import java.util.List;
 
 import org.pcat.inventory.dao.UserManagementDAO;
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,7 +55,7 @@ public class UserManagementService {
 	 * @param user
 	 * @return
 	 */
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(PcatPerson user) {
 		return userManagementDAO.deleteUser(user);
 	}
 	
