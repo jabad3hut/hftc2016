@@ -52,19 +52,14 @@ public abstract class BaseDao {
 	}
 
 	public  List<?> findAll(Class<?> clazz) {
-		Session session = null;
-		Transaction tx = null;
 		List<?> result = null;
 		try {
-			session = getSession();
-			tx = getTransaction(session);
-			Criteria criteria = session.createCriteria(clazz);
+			Criteria criteria = getSession().createCriteria(clazz);
 			result = criteria.list();
-			tx.commit();
 		} catch (Exception e) {
 			handleException(e, null);
 		} finally {
-			session.close();
+			getSession().close();
 		}
 
 		return result;
@@ -87,7 +82,6 @@ public abstract class BaseDao {
 	}
 
 	public void saveOrUpdate(Object obj) {
-//		getSession().saveOrUpdate(obj);
 		Session session = null;
 		Transaction tx = null;
 

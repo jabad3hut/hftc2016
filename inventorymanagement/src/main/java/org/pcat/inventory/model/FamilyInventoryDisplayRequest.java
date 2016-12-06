@@ -4,6 +4,11 @@ import java.sql.Timestamp;
 
 public class FamilyInventoryDisplayRequest implements FamilyInventory {
 
+	public FamilyInventoryDisplayRequest() {
+		super();
+		this.familyInventory = new FamilyInventoryImpl();
+	}
+
 	private String requestor;
 
 	private FamilyInventory familyInventory;
