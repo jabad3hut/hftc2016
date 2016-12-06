@@ -2,8 +2,12 @@ package org.pcat.inventory.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.pcat.inventory.model.FamilyInventoryDisplayRequest;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class FamilyInventoryDisplayRequestDao extends BaseDao {
 
 	@Override
@@ -17,4 +21,20 @@ public class FamilyInventoryDisplayRequestDao extends BaseDao {
 		return (List<FamilyInventoryDisplayRequest>) super.findAll(FamilyInventoryDisplayRequest.class);
 	}
 
+	public List<FamilyInventoryDisplayRequest> findAllForIds(List<Integer> homeVisitorIds) {
+		List<FamilyInventoryDisplayRequest> result = null;
+		try {
+			Criteria criteria = getSession().createCriteria(FamilyInventoryDisplayRequest.class);
+			criteria.add(Restrictions.in("requestorId", homeVisitorIds));
+			result = (List<FamilyInventoryDisplayRequest>) criteria.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			if (getSession() != null && getSession().isOpen()) {
+				getSession().close();
+			}
+		}
+		return result;
+	}
 }

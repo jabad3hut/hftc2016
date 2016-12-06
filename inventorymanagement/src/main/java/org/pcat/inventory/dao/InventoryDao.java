@@ -5,16 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.pcat.inventory.model.FamilyInventory;
 import org.pcat.inventory.model.Inventory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -48,42 +44,9 @@ public class InventoryDao extends BaseDao {
 		super.handleException(e, tx);
 	}
 
-	/**
-	 * Method to List All Inventories information.
-	 * 
-	 * @param user
-	 * @return
-	 */
-	public List<Inventory> listAllInventories() {
-		List<Inventory> inventories = null;
-		try {
-			Criteria criteria = getSession().createCriteria(Inventory.class);
-			inventories = (List<Inventory>) criteria.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		} finally {
-			if (getSession() != null && getSession().isOpen()) {
-				getSession().close();
-			}
-		}
-		return inventories;
-	}
 
-	public List<Inventory> listAllInventory() {
-		List<Inventory> inventoryList = null;
-		try {
-			Criteria criteria = getSession().createCriteria(Inventory.class);
-			inventoryList = criteria.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		} finally {
-			if (getSession() != null && getSession().isOpen()) {
-				getSession().close();
-			}
-		}
-		return inventoryList;
+	public List<Inventory> listAll() {
+		return (List<Inventory>) super.findAll(Inventory.class);
 
 	}
 
