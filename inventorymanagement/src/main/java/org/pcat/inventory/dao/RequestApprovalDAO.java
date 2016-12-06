@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.FamilyInventoryImpl;
 import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,7 +155,7 @@ public class RequestApprovalDAO {
 			tx = session.beginTransaction();
 
 			// Add new FamilyInventory
-			FamilyInventory familyInventory = new FamilyInventory();
+			FamilyInventory familyInventory = new FamilyInventoryImpl();
 			familyInventory.setFamilyId(familyId);
 			familyInventory.setQuantity(quantity);
 			familyInventory.setStatus("pending");

@@ -7,11 +7,11 @@ import java.util.List;
 import org.pcat.inventory.dao.FamilyInventoryDao;
 import org.pcat.inventory.dao.InventoryDao;
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.FamilyInventoryImpl;
 import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.model.RequestItem;
 import org.pcat.inventory.model.RequestState;
-import org.pcat.inventory.model.Supervisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RequestFamilyItemsService {
 
+	private static final String APPROVED_MESSAGE = "%d %s has been approved to deliver to family %s";
 	@Autowired
 	private MailService mailService;
 	@Autowired
@@ -32,8 +33,38 @@ public class RequestFamilyItemsService {
 	@Autowired
 	private UserService userService;
 
+	private FamilyInventory approveFamilyInventory(Integer requestId) {
+		FamilyInventory familyInventory = familyInventoryDao.getById(requestId);
+		if (familyInventory == null || familyInventory.getStatus() != "Pending") {
+			throw new RuntimeException("Requested item is unavailable");
+		}
+		familyInventory.setStatus("Approved");
+		familyInventoryDao.saveOrUpdate(familyInventory);
+		return familyInventory;
+	}
+
+	@Transactional
+	public void approveFamilyItems(Integer requestId) {
+		FamilyInventory familyInventory = approveFamilyInventory(requestId);
+		Inventory inventory = approveInventory(familyInventory);
+		sendApprovalEmail(familyInventory, inventory);
+
+	}
+
+	private Inventory approveInventory(FamilyInventory familyInventory) {
+		Integer inventoryId = familyInventory.getInventoryId();
+		Inventory inventory = inventoryDao.getById(inventoryId);
+		if (inventory == null || inventory.getTotalInventory() - inventory.getReservedInventory() < 0) {
+			throw new RuntimeException("Inventory amounts are invalid");
+		}
+		inventory.setReservedInventory(inventory.getReservedInventory() - familyInventory.getQuantity());
+		inventory.setTotalInventory(inventory.getTotalInventory() - familyInventory.getQuantity());
+		inventoryDao.saveOrUpdate(inventory);
+		return inventory;
+	}
+
 	private void createFamilyInventory(final RequestItem requestItem, String familyNumber, HomeVisitor homeVisitor) {
-		FamilyInventory item = new FamilyInventory(null, familyNumber, homeVisitor.getId(), "Pending",
+		FamilyInventory item = new FamilyInventoryImpl(null, familyNumber, homeVisitor.getId(), "Pending",
 				requestItem.getQuantity(), new Timestamp(Instant.now().getEpochSecond()),
 				requestItem.getRequestInventory().getId());
 		familyInventoryDao.saveOrUpdate(item);
@@ -41,6 +72,10 @@ public class RequestFamilyItemsService {
 
 	public FamilyInventoryDao getFamilyInventoryDao() {
 		return familyInventoryDao;
+	}
+
+	private void processRequestAndInventories(final List<RequestItem> requestItems) {
+		requestItems.forEach(requestItem -> updateInventoryWithRequest(requestItem));
 	}
 
 	@Transactional
@@ -54,6 +89,18 @@ public class RequestFamilyItemsService {
 		/* send the email to the supervisor */
 		sendRequestEmail(familyNumber, requestItems, homeVisitor);
 		return RequestState.PENDING;
+	}
+
+	private void sendApprovalEmail(FamilyInventory familyInventory, Inventory inventory) {
+		HomeVisitor homeVisitor = userService.getHomeVisitor(familyInventory.getRequestorId());
+
+		final String messageBody = String.format(APPROVED_MESSAGE, familyInventory.getQuantity(),
+				inventory.getProductDesc(), familyInventory.getFamilyId());
+		final String toEmail = homeVisitor.getEmail();
+		final String fromEmail = homeVisitor.getSupervisorEmail();
+		final String ccEmail = fromEmail;
+		final String subject = messageBody;
+		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
 	}
 
 	private void sendRequestEmail(final String familyNumber, final List<RequestItem> requestItems,
@@ -89,14 +136,14 @@ public class RequestFamilyItemsService {
 		this.requestBO = requestBO;
 	}
 
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	private void updateFamilyInventory(final Iterable<RequestItem> requestItems, String familyNumber,
 			HomeVisitor homeVisitor) {
 		requestItems.forEach(requestItem -> createFamilyInventory(requestItem, familyNumber, homeVisitor));
 
-	}
-
-	private void processRequestAndInventories(final List<RequestItem> requestItems) {
-		requestItems.forEach(requestItem -> updateInventoryWithRequest(requestItem));
 	}
 
 	private void updateInventoryWithRequest(RequestItem requestItem) {
@@ -113,52 +160,6 @@ public class RequestFamilyItemsService {
 					reservedInventory, requestQuantity, totalInventory));
 		}
 		requestItem.setRequestInventory(inventory);
-	}
-
-	@Transactional
-	public void approveFamilyItems(Integer requestId) {
-		FamilyInventory familyInventory = approveFamilyInventory(requestId);
-		Inventory inventory = approveInventory(familyInventory);
-		sendApprovalEmail(familyInventory, inventory);
-
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	private Inventory approveInventory(FamilyInventory familyInventory) {
-		Integer inventoryId = familyInventory.getInventoryId();
-		Inventory inventory = inventoryDao.getById(inventoryId);
-		if (inventory == null || inventory.getTotalInventory() - inventory.getReservedInventory() < 0) {
-			throw new RuntimeException("Inventory amounts are invalid");
-		}
-		inventory.setReservedInventory(inventory.getReservedInventory() - familyInventory.getQuantity());
-		inventory.setTotalInventory(inventory.getTotalInventory() - familyInventory.getQuantity());
-		inventoryDao.saveOrUpdate(inventory);
-		return inventory;
-	}
-
-	private FamilyInventory approveFamilyInventory(Integer requestId) {
-		FamilyInventory familyInventory = familyInventoryDao.getById(requestId);
-		if (familyInventory == null || familyInventory.getStatus() != "Pending") {
-			throw new RuntimeException("Requested item is unavailable");
-		}
-		familyInventory.setStatus("Approved");
-		familyInventoryDao.saveOrUpdate(familyInventory);
-		return familyInventory;
-	}
-
-	private void sendApprovalEmail(FamilyInventory familyInventory, Inventory inventory) {
-		HomeVisitor homeVisitor = userService.getHomeVisitor(familyInventory.getRequestorId());
-
-		final String messageBody = String.format("Item %s has been approved to deliver to family %s",
-				inventory.getProductDesc(), familyInventory.getFamilyId());
-		final String toEmail = homeVisitor.getEmail();
-		final String fromEmail = homeVisitor.getSupervisorEmail();
-		final String ccEmail = fromEmail;
-		final String subject = messageBody;
-		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
 	}
 
 }

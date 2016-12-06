@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 public class HomeVisitorEmailRequestBO {
 	public static final String HOME_VISITOR_SUBJECT = "Requesting supplies for family %s";
 	public static final String HOME_VISITOR_MESSAGE = "These items have been requested by %s %s: %s";
+	private final String newline = System.getProperty("line.separator");
 
 	public String getMessageBody(String firstName, String lastname, List<String> itemList) {
-		String newline = System.getProperty("line.separator");
 		StringBuffer items = new StringBuffer();
 		itemList.forEach(item -> items.append(newline + item));
 

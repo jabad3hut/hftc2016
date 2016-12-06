@@ -24,10 +24,11 @@ var url = "listAllInventoriesPending"
 	        "columnDefs": [
 	            { "targets": "_all", "className": "table-cell" },
 	            { "targets": 0, "data": "id" },
-	            { "targets": 1, "data": "familyId" },
-	            { "targets": 2, "data": "quantity" },
-	            { "targets": 3, "data": "status" },
-	            { "targets": 4, "render":
+	            { "targets": 1, "data": "requestorId"},
+	            { "targets": 2, "data": "familyId" },
+	            { "targets": 3, "data": "quantity" },
+	            { "targets": 4, "data": "status" },
+	            { "targets": 5, "render":
 	              function(data, type, row, meta) {
 	                  return '<a onclick="approveRequest('+row.id+');">Approve</a>';
 	              }
@@ -83,6 +84,7 @@ var url = "listAllInventoriesPending"
                         <thead>
                         <tr>
                             <th>Inventory Id</th>
+                            <th>Requestor Id</th>
                             <th>Family Name</th>
                             <th>Quantity</th>
                             <th>Status</th>

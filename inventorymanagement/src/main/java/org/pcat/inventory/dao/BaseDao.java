@@ -51,14 +51,14 @@ public abstract class BaseDao {
 		return result;
 	}
 
-	public List<?> findAll(Class<?> clazz) {
+	public  List<?> findAll(Class<?> clazz) {
 		Session session = null;
 		Transaction tx = null;
 		List<?> result = null;
 		try {
 			session = getSession();
 			tx = getTransaction(session);
-			Criteria criteria = session.createCriteria(User.class);
+			Criteria criteria = session.createCriteria(clazz);
 			result = criteria.list();
 			tx.commit();
 		} catch (Exception e) {

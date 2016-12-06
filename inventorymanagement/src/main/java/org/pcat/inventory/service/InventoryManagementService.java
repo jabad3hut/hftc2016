@@ -2,6 +2,7 @@ package org.pcat.inventory.service;
 
 import java.util.List;
 
+import org.pcat.inventory.dao.FamilyInventoryDao;
 import org.pcat.inventory.dao.InventoryDao;
 import org.pcat.inventory.model.FamilyInventory;
 import org.pcat.inventory.model.Inventory;
@@ -13,6 +14,8 @@ public class InventoryManagementService {
 
 	@Autowired
 	private InventoryDao inventoryDao;
+	@Autowired
+	private FamilyInventoryDao familyInventoryDao;
 
 	/**
 	 * @return the inventoryManagementDAO
@@ -58,14 +61,14 @@ public class InventoryManagementService {
 	public boolean deleteInventory(Inventory inventory) {
 		return inventoryDao.delete(inventory);
 	}
-	
-	public List<Inventory> listAllInventory(){
+
+	public List<Inventory> listAllInventory() {
 		return inventoryDao.listAllInventory();
-		
+
 	}
-	
-	public List<FamilyInventory> listAllFamilyInventory(){
-		return inventoryDao.listAllFamilyInventory();
-		
+
+	public List<FamilyInventory> listAllFamilyInventory() {
+		return familyInventoryDao.listAllFamilyInventory();
+
 	}
 }

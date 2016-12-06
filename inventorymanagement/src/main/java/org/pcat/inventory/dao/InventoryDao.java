@@ -27,9 +27,6 @@ import org.springframework.stereotype.Repository;
 public class InventoryDao extends BaseDao {
 	private static final Logger logger = LoggerFactory.getLogger(InventoryDao.class);
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	public List<Inventory> findAll() {
 		return (List<Inventory>) super.findAll(Inventory.class);
 	}
@@ -43,33 +40,12 @@ public class InventoryDao extends BaseDao {
 		return super.getSession();
 	}
 
-	/**
-	 * @return the sessionFactory
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
 	public Transaction getTransaction(Session session) {
 		return super.getTransaction(session);
 	}
 
 	public void handleException(Exception e, Transaction tx) {
 		super.handleException(e, tx);
-	}
-
-	public List<FamilyInventory> listAllFamilyInventory() {
-		List<FamilyInventory> inventoryList = null;
-		try {
-			Session session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(FamilyInventory.class);
-			criteria.add(Restrictions.eq("status", "pending"));
-			inventoryList = criteria.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return inventoryList;
-
 	}
 
 	/**
@@ -80,17 +56,15 @@ public class InventoryDao extends BaseDao {
 	 */
 	public List<Inventory> listAllInventories() {
 		List<Inventory> inventories = null;
-		Session session = null;
 		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Inventory.class);
+			Criteria criteria = getSession().createCriteria(Inventory.class);
 			inventories = (List<Inventory>) criteria.list();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
+			if (getSession() != null && getSession().isOpen()) {
+				getSession().close();
 			}
 		}
 		return inventories;
@@ -99,11 +73,15 @@ public class InventoryDao extends BaseDao {
 	public List<Inventory> listAllInventory() {
 		List<Inventory> inventoryList = null;
 		try {
-			Session session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Inventory.class);
+			Criteria criteria = getSession().createCriteria(Inventory.class);
 			inventoryList = criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			if (getSession() != null && getSession().isOpen()) {
+				getSession().close();
+			}
 		}
 		return inventoryList;
 
@@ -119,13 +97,17 @@ public class InventoryDao extends BaseDao {
 		boolean isSaved = false;
 		Transaction tx = null;
 		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			session.save(inventory);
+			tx = getSession().beginTransaction();
+			getSession().save(inventory);
 			tx.commit();
 			isSaved = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			if (getSession() != null && getSession().isOpen()) {
+				getSession().close();
+			}
 		}
 		return isSaved;
 	}
@@ -133,14 +115,6 @@ public class InventoryDao extends BaseDao {
 	public void saveOrUpdate(Object obj) {
 
 		super.saveOrUpdate(obj);
-	}
-
-	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
 	}
 
 	/**
@@ -153,24 +127,28 @@ public class InventoryDao extends BaseDao {
 		boolean isUpdated = false;
 		Transaction tx = null;
 		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Inventory.class);
+			tx = getSession().beginTransaction();
+			Criteria criteria = getSession().createCriteria(Inventory.class);
 			criteria.add(Restrictions.eq("id", inventory.getId()));
 			Inventory updateInventory = (Inventory) criteria.list().get(0);
 			updateInventory.setProductName(inventory.getProductName());
 			updateInventory.setProductDesc(inventory.getProductDesc());
 			updateInventory.setTotalInventory(inventory.getTotalInventory());
-			session.update(updateInventory);
+			getSession().update(updateInventory);
 			isUpdated = true;
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			if (getSession() != null && getSession().isOpen()) {
+				getSession().close();
+			}
 		}
 		return isUpdated;
 	}
 
-	public Collection<Inventory> getCollectionById(final Collection<Integer> ids) {
+	public Collection<Inventory> getCollectionByIds(final Collection<Integer> ids) {
 		// TODO: Add test to the integration
 		List<Inventory> returnList = new ArrayList<Inventory>();
 		ids.forEach(id -> returnList.add(this.getById(id)));

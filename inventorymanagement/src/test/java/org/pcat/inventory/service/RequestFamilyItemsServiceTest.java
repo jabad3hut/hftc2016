@@ -19,6 +19,7 @@ import org.pcat.inventory.TestHelper;
 import org.pcat.inventory.dao.FamilyInventoryDao;
 import org.pcat.inventory.dao.InventoryDao;
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.FamilyInventoryImpl;
 import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.model.RequestItem;
@@ -31,7 +32,6 @@ public class RequestFamilyItemsServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsServiceTest.class);
 	private static TestHelper helper = new TestHelper();
-	private static final String newline = System.getProperty("line.separator");
 
 	@BeforeClass
 	public static void setup() {
@@ -50,7 +50,7 @@ public class RequestFamilyItemsServiceTest {
 	public void requestItemsTest() {
 		final String familyNumber = "TEST-0001";
 		final HomeVisitor homeVisitor = new HomeVisitor("testFirstName", "testLastName", "testEmail",
-				null, "testSupervisorEmail");
+				"supervisorFirst supervisorLast", "testSupervisorEmail");
 		homeVisitor.setId(12);
 
 		InventoryDao mockInventoryDao = mock(InventoryDao.class);
@@ -79,7 +79,8 @@ public class RequestFamilyItemsServiceTest {
 		for (int x = 1; x < 7; x++) {
 			String nameAndDesc = String.format("Item %d", x);
 			mockedInventoryList.add(new Inventory(x, nameAndDesc, nameAndDesc, 12, 3, "Nashville"));
-			mockedFamilyInventories.add(new FamilyInventory(null, familyNumber, homeVisitor.getId(), "Pending", 1, ts, x));
+			mockedFamilyInventories
+					.add(new FamilyInventoryImpl(null, familyNumber, homeVisitor.getId(), "Pending", 1, ts, x));
 		}
 		for (int x = 0; x < 6; x++) {
 			when(mockInventoryDao.getById(x + 1)).thenReturn(mockedInventoryList.get(x));
@@ -98,7 +99,7 @@ public class RequestFamilyItemsServiceTest {
 
 		StringBuffer testMessage = new StringBuffer("These items have been requested by testFirstName testLastName: ");
 		for (int x = 1; x < 7; x++) {
-			testMessage.append(String.format("%sItem %d", newline, x));
+			testMessage.append(String.format("%nItem %d", x));
 		}
 		when(emailUtility.getMessageBody("testFirstName", "testLastName", items)).thenReturn(testMessage.toString());
 		logger.debug(String.format("body:  %s", testMessage));
@@ -129,19 +130,20 @@ public class RequestFamilyItemsServiceTest {
 		return true;
 	}
 
-/*	@Test
-	public void approveFamilyItemRequest(){
-		final String testSubjectFmt = "Approved Request:  %1s %2s items for family $3s have been approved";
-		final String testMessageFmt = "%1s %2s has approved %3s's items which are:" + newline + "%4s";
-		Supervisor supervisor;
-		HomeVisitor homeVisitor;
-		MailService ms;
-		String approvedPrintList;
-		RequestItemsForFamily requestItemsForFamily;
-		 Test that the email for the approval was sent properly 
-		String testSubject = String.format(testSubjectFmt, homeVisitor.getFirstName(), homeVisitor.getLastName(), requestItemsForFamily.getFamilyId());
-		String testMessage = String.format(testMessageFmt, supervisor.getFirstName(), supervisor.getLastName(), requestItemsForFamily.getFamilyId(), approvedPrintList);
-		verify(ms).sendMail(supervisor.getEmail(), homeVisitor.getEmail(), supervisor.getEmail(),
-				testSubject, testMessage );
-	}*/
+	/*
+	 * @Test public void approveFamilyItemRequest(){ final String testSubjectFmt
+	 * = "Approved Request:  %1s %2s items for family $3s have been approved";
+	 * final String testMessageFmt =
+	 * "%1s %2s has approved %3s's items which are:" + newline + "%4s";
+	 * Supervisor supervisor; HomeVisitor homeVisitor; MailService ms; String
+	 * approvedPrintList; RequestItemsForFamily requestItemsForFamily; Test that
+	 * the email for the approval was sent properly String testSubject =
+	 * String.format(testSubjectFmt, homeVisitor.getFirstName(),
+	 * homeVisitor.getLastName(), requestItemsForFamily.getFamilyId()); String
+	 * testMessage = String.format(testMessageFmt, supervisor.getFirstName(),
+	 * supervisor.getLastName(), requestItemsForFamily.getFamilyId(),
+	 * approvedPrintList); verify(ms).sendMail(supervisor.getEmail(),
+	 * homeVisitor.getEmail(), supervisor.getEmail(), testSubject, testMessage
+	 * ); }
+	 */
 }

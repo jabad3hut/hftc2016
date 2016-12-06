@@ -2,138 +2,41 @@ package org.pcat.inventory.model;
 
 import java.sql.Timestamp;
 
-/**
- * FamilyInventory entity. @author MyEclipse Persistence Tools
- */
+public interface FamilyInventory {
 
-public class FamilyInventory implements java.io.Serializable {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
+	String getFamilyId();
 
-	private Integer id;
+	Integer getId();
 
-	private String familyId;
-	private Integer requestorId;
+	Integer getInventoryId();
 
-	private String status;
+	Integer getQuantity();
 
-	private Integer quantity;
+	Timestamp getRequestedDate();
 
-	private Timestamp requestedDate;
-	private Integer inventoryId;
-
-	public FamilyInventory() {
-		super();
-	}
-
-	// Fields
-	public FamilyInventory(Integer id, String familyId, Integer requestorId, String status, Integer quantity,
-			Timestamp localDateTime, Integer inventoryId) {
-		super();
-		this.id = id;
-		this.familyId = familyId;
-		this.requestorId = requestorId;
-		this.status = status;
-		this.quantity = quantity;
-		this.requestedDate = localDateTime;
-		this.inventoryId = inventoryId;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof FamilyInventory)) {
-			return false;
-		}
-		FamilyInventory other = (FamilyInventory) obj;
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
-		return true;
-	}
-
-	public String getFamilyId() {
-		return this.familyId;
-	}
-
-	// Property accessors
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public Integer getInventoryId() {
-		return inventoryId;
-	}
-
-	public Integer getQuantity() {
-		return this.quantity;
-	}
-
-	public Timestamp getRequestedDate() {
-		return this.requestedDate;
-	}
-
-	public Integer getRequestorId() {
-		return requestorId;
-	}
+	Integer getRequestorId();
 
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
-		return status;
-	}
+	String getStatus();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+	void setFamilyId(String familyId);
 
-	public void setFamilyId(String familyId) {
-		this.familyId = familyId;
-	}
+	void setId(Integer id);
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	void setInventoryId(Integer inventoryId);
 
-	public void setInventoryId(Integer inventoryId) {
-		this.inventoryId = inventoryId;
-	}
+	void setQuantity(Integer quantity);
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
+	void setRequestedDate(Timestamp requestedDate);
 
-	public void setRequestedDate(Timestamp requestedDate) {
-		this.requestedDate = requestedDate;
-	}
-
-	public void setRequestorId(Integer requestorId) {
-		this.requestorId = requestorId;
-	}
+	void setRequestorId(Integer requestorId);
 
 	/**
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	void setStatus(String status);
 
 }
