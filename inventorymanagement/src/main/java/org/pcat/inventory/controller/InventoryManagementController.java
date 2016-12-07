@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.FamilyInventoryDisplayRequest;
 import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.service.InventoryManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,8 +129,8 @@ public class InventoryManagementController {
 	 */
 	@RequestMapping(value = "/listAllInventoriesPending")
 	@ResponseBody
-	public List<FamilyInventory> listAllInventoryPending(HttpServletRequest request, Model model) {
-		List<FamilyInventory> inventoryList = inventoryManagementService.listAllFamilyInventory();
+	public List<FamilyInventoryDisplayRequest> listAllInventoryPending(HttpServletRequest request, Model model) {
+		List<FamilyInventoryDisplayRequest> inventoryList = inventoryManagementService.listAllFamilyInventoryDataRequest();
 		return inventoryList;
 	}
 }
