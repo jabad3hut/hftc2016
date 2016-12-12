@@ -14,7 +14,7 @@
 
 <script src="request.js"></script>
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>PCAT inventory | Request items</title>
+<title>Request items | PCAT inventory</title>
 </head>
 <body>
 

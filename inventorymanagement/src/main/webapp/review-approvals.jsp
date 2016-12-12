@@ -10,7 +10,7 @@
     <script type="text/javascript" src="vendor/datatables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>PCAT inventory | Review Approvals</title>
+    <title>Review approvals | PCAT inventory</title>
 
 <script type="text/javascript"> 
 
@@ -67,7 +67,7 @@ var url = "listAllInventoriesPending"
      <section>
         <div class="section-body">
             <h1>
-                Review Pending Approvals
+                Review pending approvals
             </h1>
 
             <form action="foo" id="request-items" style="padding: 0 5rem;">
@@ -75,7 +75,7 @@ var url = "listAllInventoriesPending"
                 <input type="hidden" name="userId" value="1">
 
                   <h2 style="margin: -2rem 5rem 3rem 5rem">
-                    Approve an Inventory by clicking on Approve button for an item:
+                    Approve a request by clicking the Approve button for an item:
                 </h2>
 
                 <div style="padding: 0 5rem;">

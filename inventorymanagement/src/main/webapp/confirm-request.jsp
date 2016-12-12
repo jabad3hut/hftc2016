@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>PCAT inventory | Request received</title>
+    <title>Confirm a request | PCAT inventory</title>
 </head>
 <body>
 
