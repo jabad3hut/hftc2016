@@ -4,17 +4,19 @@ import java.sql.Timestamp;
 
 public class FamilyInventoryDisplayRequest implements FamilyInventory {
 
+	private String requestor;
+
+	private String productName;
+	private FamilyInventory familyInventory;
+	private String location;
+
 	public FamilyInventoryDisplayRequest() {
 		super();
 		this.familyInventory = new FamilyInventoryImpl();
 	}
 
-	private String requestor;
-
-	private FamilyInventory familyInventory;
-
 	public FamilyInventoryDisplayRequest(Integer id, String familyId, Integer requestorId, String status,
-			Integer quantity, Timestamp requestedDate, Integer inventoryId, final String requestor) {
+			Integer quantity, Timestamp requestedDate, Integer inventoryId, final String requestor, final String location) {
 		super();
 		FamilyInventory familyInventory = new FamilyInventoryImpl();
 		this.setFamilyInventory(familyInventory);
@@ -26,6 +28,7 @@ public class FamilyInventoryDisplayRequest implements FamilyInventory {
 		this.setInventoryId(inventoryId);
 		this.setStatus(status);
 		this.requestor = requestor;
+		this.location = location;
 	}
 
 	public String getFamilyId() {
@@ -42,6 +45,14 @@ public class FamilyInventoryDisplayRequest implements FamilyInventory {
 
 	public Integer getInventoryId() {
 		return familyInventory.getInventoryId();
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public String getProductName() {
+		return productName;
 	}
 
 	public Integer getQuantity() {
@@ -78,6 +89,14 @@ public class FamilyInventoryDisplayRequest implements FamilyInventory {
 
 	public void setInventoryId(Integer inventoryId) {
 		familyInventory.setInventoryId(inventoryId);
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public void setQuantity(Integer quantity) {

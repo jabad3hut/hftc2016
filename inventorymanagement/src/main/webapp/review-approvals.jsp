@@ -23,8 +23,8 @@ var url = "listAllInventoriesPending"
 	        },
 	        "columnDefs": [
 	            { "targets": "_all", "className": "table-cell" },
-	            { "targets": 0, "data": "id" },
-	            { "targets": 1, "data": "requestor"},
+	            { "targets": 0, "data": "requestor"},
+	            { "targets": 1, "data": "id" },
 	            { "targets": 2, "data": "familyId" },
 	            { "targets": 3, "data": "quantity" },
 	            { "targets": 4, "data": "status" },
@@ -83,8 +83,8 @@ var url = "listAllInventoriesPending"
                     <table id="dataTable">
                         <thead>
                         <tr>
-                            <th>Inventory Id</th>
                             <th>Requester</th>
+                            <th>Inventory Id</th>
                             <th>Family Name</th>
                             <th>Quantity</th>
                             <th>Status</th>
