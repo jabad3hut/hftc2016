@@ -44,13 +44,13 @@ INSERT INTO `inventory` VALUES (34,12,0,'High Chair','High Chair','Chattanooga')
 UNLOCK TABLES;
 
 --
--- Table structure for table `User`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `User` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) DEFAULT NULL,
   `supervisor` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
@@ -68,13 +68,13 @@ CREATE TABLE `User` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `User`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (38,'Mary Beth','Bonnie Fernandez','mbprice.pcat@mailinator.com','Home Visitor','Price','MaryBeth.Price.pcat@mailinator.com',1,NULL),(39,'Mary','Bonnie Fernandez','mbird.pcat@mailinator.com','Home Visitor','Bird','Mary.Bird.pcat@mailinator.com',1,NULL),(40,'Beth','Cindy Lou Hoo','bpricess.pcat@mailinator.com','Home Visitor','Prices','Beth.Prices.pcat@mailinator.com',1,NULL),(41,'Bonnie','Jennifer Caudle','bfernandez.pcat@mailinator.com','Supervisor','Fernandez','Bonnie.Fernandez.pcat@mailinator.com',1,NULL),(42,'Bobby','Jennifer Caudle','bbrown.pcat@mailinator.com','Supervisor','Brown','Bobby.Brown.pcat@mailinator.com',1,NULL),(43,'Angie','','ataylor.pcat@mailinator.com','User Admin','Taylor','Angie.Taylor.pcat@mailinator.com',1,NULL);
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (38,'Mary Beth','Bonnie Fernandez','mbprice.pcat@mailinator.com','Home Visitor','Price','MaryBeth.Price.pcat@mailinator.com',1,NULL),(39,'Mary','Bonnie Fernandez','mbird.pcat@mailinator.com','Home Visitor','Bird','Mary.Bird.pcat@mailinator.com',1,NULL),(40,'Beth','Cindy Lou Hoo','bpricess.pcat@mailinator.com','Home Visitor','Prices','Beth.Prices.pcat@mailinator.com',1,NULL),(41,'Bonnie','Jennifer Caudle','bfernandez.pcat@mailinator.com','Supervisor','Fernandez','Bonnie.Fernandez.pcat@mailinator.com',1,NULL),(42,'Bobby','Jennifer Caudle','bbrown.pcat@mailinator.com','Supervisor','Brown','Bobby.Brown.pcat@mailinator.com',1,NULL),(43,'Angie','','ataylor.pcat@mailinator.com','user Admin','Taylor','Angie.Taylor.pcat@mailinator.com',1,NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -190,8 +190,8 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = latin1 */;
 /*!50001 SET collation_connection      = latin1_swedish_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=CURRENT_USER SQL SECURITY DEFINER */
-/*!50001 VIEW `family_inventory_requestor_view` AS select `fi`.`id` AS `id`,`fi`.`family_id` AS `family_id`,`fi`.`inventory_id` AS `inventory_id`,`fi`.`quantity` AS `quantity`,`fi`.`requested_date` AS `requested_date`,`fi`.`status` AS `status`,`fi`.`requestor_id` AS `requestor_id`,concat(`us`.`firstname`,' ',`us`.`lastname`) AS `requestor`,`inv`.`product_name` AS `product_name`, inv.location as location from ((`family_inventory` `fi` join `User` `us` on((`fi`.`requestor_id` = `us`.`id`))) join `inventory` `inv` on((`fi`.`inventory_id` = `inv`.`id`))) where (lower(`fi`.`status`) = 'pending') */;
+/*!50013 DEFINER=CURRENT_user SQL SECURITY DEFINER */
+/*!50001 VIEW `family_inventory_requestor_view` AS select `fi`.`id` AS `id`,`fi`.`family_id` AS `family_id`,`fi`.`inventory_id` AS `inventory_id`,`fi`.`quantity` AS `quantity`,`fi`.`requested_date` AS `requested_date`,`fi`.`status` AS `status`,`fi`.`requestor_id` AS `requestor_id`,concat(`us`.`firstname`,' ',`us`.`lastname`) AS `requestor`,`inv`.`product_name` AS `product_name`, inv.location as location from ((`family_inventory` `fi` join `user` `us` on((`fi`.`requestor_id` = `us`.`id`))) join `inventory` `inv` on((`fi`.`inventory_id` = `inv`.`id`))) where (lower(`fi`.`status`) = 'pending') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
