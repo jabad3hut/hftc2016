@@ -18,6 +18,7 @@ import org.pcat.inventory.model.FamilyInventory;
 import org.pcat.inventory.model.FamilyInventoryImpl;
 import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.model.Inventory;
+import org.pcat.inventory.model.Supervisor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +58,11 @@ public class ApproveFamilyRequestServiceTest {
 				"testEmail.pcat@mailinator.com", "supervisorFirst supervisorLast",
 				"testSupervisorEmail.pcat@mailinator.com");
 		homeVisitor.setId(homeVisitorId);
+		final Integer supervisorId = 124;
+		final Supervisor supervisor = new Supervisor("testFirstNameSupervisor", "testLastNameSupervisor",
+				"testSupervisorEmail.pcat@mailinator.com", "supervisorSupervisorFirst supervisorSupervisorLast",
+				"testSupervisorSupervisorEmail.pcat@mailinator.com");
+		supervisor.setId(supervisorId);
 
 		UserService mockUserService = mock(UserService.class);
 		requestFamilyItemsService.setUserService(mockUserService);
@@ -86,7 +92,7 @@ public class ApproveFamilyRequestServiceTest {
 		when(mockUserService.getHomeVisitor(homeVisitorId)).thenReturn(homeVisitor);
 
 		// get request
-		requestFamilyItemsService.approveFamilyItems(familyInventoryId);
+		requestFamilyItemsService.approveFamilyItems(supervisor, familyInventoryId);
 		assertThat(mockFamilyInventory.getStatus(), equalTo("Approved"));
 		assertThat(mockInventory.getReservedInventory(), equalTo(reservedInventory - 1));
 		assertThat(mockInventory.getTotalInventory(), equalTo(totalInventory - 1));

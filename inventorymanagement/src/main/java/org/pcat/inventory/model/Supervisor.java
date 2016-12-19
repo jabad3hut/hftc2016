@@ -1,8 +1,28 @@
 package org.pcat.inventory.model;
 
-public class Supervisor implements PcatPerson{
-	
+import java.io.Serializable;
+
+public class Supervisor implements PcatPerson, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4929537872579241867L;
 	private PcatPerson pcatPerson;
+
+	public Supervisor() {
+		super();
+		pcatPerson = new User();
+	}
+	public Supervisor(String firstName, String lastName, String email, String supervisor, String supervisorEmail) {
+		super();
+		this.pcatPerson = new User(null, firstName, lastName, email, "Supervisor", supervisor, supervisorEmail, true);
+	}
+
+	public Supervisor(PcatPerson pcatPerson) {
+		super();
+		this.pcatPerson = pcatPerson;
+	}
 
 	public String getEmail() {
 		return pcatPerson.getEmail();

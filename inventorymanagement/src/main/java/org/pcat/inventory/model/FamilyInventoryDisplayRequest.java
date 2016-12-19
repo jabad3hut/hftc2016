@@ -2,6 +2,8 @@ package org.pcat.inventory.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.core.style.ToStringCreator;
+
 public class FamilyInventoryDisplayRequest implements FamilyInventory {
 
 	private String requestor;
@@ -16,7 +18,8 @@ public class FamilyInventoryDisplayRequest implements FamilyInventory {
 	}
 
 	public FamilyInventoryDisplayRequest(Integer id, String familyId, Integer requestorId, String status,
-			Integer quantity, Timestamp requestedDate, Integer inventoryId, final String requestor, final String location) {
+			Integer quantity, Timestamp requestedDate, Integer inventoryId, final String requestor,
+			final String location) {
 		super();
 		FamilyInventory familyInventory = new FamilyInventoryImpl();
 		this.setFamilyInventory(familyInventory);
@@ -119,4 +122,13 @@ public class FamilyInventoryDisplayRequest implements FamilyInventory {
 		familyInventory.setStatus(status);
 	}
 
+	@Override
+	public String toString() {
+		ToStringCreator creator = new ToStringCreator(this);
+		return creator.append("id", this.getId()).append("family id", this.getFamilyId())
+				.append("inventory id", this.getInventoryId()).append("location", this.getLocation())
+				.append("product name", this.getProductName()).append("quantity", this.getQuantity())
+				.append("requested date", this.getRequestedDate()).append("requestor", this.getRequestor())
+				.append("requestor id", this.getRequestorId()).toString();
+	}
 }

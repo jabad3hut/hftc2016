@@ -6,6 +6,7 @@ import java.util.List;
 import org.pcat.inventory.dao.UserDao;
 import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.model.PcatPerson;
+import org.pcat.inventory.model.Supervisor;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class UserService {
 				user.getSupervisorEmail());
 	}
 
+	private Supervisor buildSupervisor(PcatPerson user) {
+		return new Supervisor(user);
+	}
+
 	public HomeVisitor getHomeVisitor(int userId) {
 		PcatPerson user = userDao.getById(userId);
 		return buildHomeVisitor(user);
@@ -30,14 +35,19 @@ public class UserService {
 		return buildHomeVisitor(user);
 	}
 
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
-
 	public List<HomeVisitor> getHomeVisitorsFromSupervisorEmail(String supervisorEmail) {
 		List<User> pcatPersons = userDao.getBySupervisorEmail(supervisorEmail);
 		List<HomeVisitor> homeVisitors = new ArrayList<HomeVisitor>();
 		pcatPersons.forEach(pc -> homeVisitors.add(buildHomeVisitor(pc)));
 		return homeVisitors;
+	}
+
+	public Supervisor getSupervisor(int userId) {
+		PcatPerson user = userDao.getById(userId);
+		return buildSupervisor(user);
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 }

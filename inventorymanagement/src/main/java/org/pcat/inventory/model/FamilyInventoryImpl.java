@@ -2,6 +2,8 @@ package org.pcat.inventory.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.core.style.ToStringCreator;
+
 /**
  * FamilyInventory entity. @author MyEclipse Persistence Tools
  */
@@ -63,7 +65,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getFamilyId()
 	 */
 	@Override
@@ -73,7 +77,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 
 	// Property accessors
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getId()
 	 */
 	@Override
@@ -81,7 +87,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return this.id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getInventoryId()
 	 */
 	@Override
@@ -89,7 +97,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return inventoryId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getQuantity()
 	 */
 	@Override
@@ -97,7 +107,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return this.quantity;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getRequestedDate()
 	 */
 	@Override
@@ -105,7 +117,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return this.requestedDate;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getRequestorId()
 	 */
 	@Override
@@ -113,7 +127,9 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return requestorId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#getStatus()
 	 */
 	@Override
@@ -129,15 +145,20 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.pcat.inventory.model.FamilyInventory#setFamilyId(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.pcat.inventory.model.FamilyInventory#setFamilyId(java.lang.String)
 	 */
 	@Override
 	public void setFamilyId(String familyId) {
 		this.familyId = familyId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#setId(java.lang.Integer)
 	 */
 	@Override
@@ -145,39 +166,53 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		this.id = id;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.pcat.inventory.model.FamilyInventory#setInventoryId(java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.pcat.inventory.model.FamilyInventory#setInventoryId(java.lang.
+	 * Integer)
 	 */
 	@Override
 	public void setInventoryId(Integer inventoryId) {
 		this.inventoryId = inventoryId;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.pcat.inventory.model.FamilyInventory#setQuantity(java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.pcat.inventory.model.FamilyInventory#setQuantity(java.lang.Integer)
 	 */
 	@Override
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.pcat.inventory.model.FamilyInventory#setRequestedDate(java.sql.Timestamp)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.pcat.inventory.model.FamilyInventory#setRequestedDate(java.sql.
+	 * Timestamp)
 	 */
 	@Override
 	public void setRequestedDate(Timestamp requestedDate) {
 		this.requestedDate = requestedDate;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.pcat.inventory.model.FamilyInventory#setRequestorId(java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.pcat.inventory.model.FamilyInventory#setRequestorId(java.lang.
+	 * Integer)
 	 */
 	@Override
 	public void setRequestorId(Integer requestorId) {
 		this.requestorId = requestorId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.pcat.inventory.model.FamilyInventory#setStatus(java.lang.String)
 	 */
 	@Override
@@ -185,4 +220,12 @@ public class FamilyInventoryImpl implements java.io.Serializable, FamilyInventor
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		ToStringCreator creator = new ToStringCreator(this);
+		return creator.append("id", this.getId()).append("family id", this.getFamilyId())
+				.append("inventory id", this.getInventoryId()).append("quantity", this.getQuantity())
+				.append("requested date", this.getRequestedDate()).append("requestor id", this.getRequestorId())
+				.toString();
+	}
 }

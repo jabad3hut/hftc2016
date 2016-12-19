@@ -1,8 +1,9 @@
 package org.pcat.inventory.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public interface FamilyInventory {
+public interface FamilyInventory extends Serializable{
 
 	String getFamilyId();
 

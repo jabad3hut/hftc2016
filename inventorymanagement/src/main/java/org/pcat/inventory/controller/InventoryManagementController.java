@@ -8,6 +8,8 @@ import org.pcat.inventory.model.FamilyInventory;
 import org.pcat.inventory.model.FamilyInventoryDisplayRequest;
 import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.service.InventoryManagementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class InventoryManagementController {
+
+	
+	private static final Logger logger = LoggerFactory.getLogger(InventoryManagementController.class);
 
 	@Autowired
 	private InventoryManagementService inventoryManagementService;
@@ -131,6 +136,9 @@ public class InventoryManagementController {
 	@ResponseBody
 	public List<FamilyInventoryDisplayRequest> listAllInventoryPending(HttpServletRequest request, Model model) {
 		List<FamilyInventoryDisplayRequest> inventoryList = inventoryManagementService.listAllFamilyInventoryDataRequest();
+		if(logger.isDebugEnabled()) {
+			inventoryList.forEach(famInv -> logger.debug(String.format("item sent to requestor %s", famInv.toString())));
+		}
 		return inventoryList;
 	}
 }

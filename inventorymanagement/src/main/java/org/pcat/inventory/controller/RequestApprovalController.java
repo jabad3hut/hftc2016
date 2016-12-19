@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.service.RequestFamilyItemsService;
 import org.pcat.inventory.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.pcat.inventory.model.RequestItem;
+import org.pcat.inventory.model.Supervisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class RequestApprovalController {
-
+	private static final Logger logger = LoggerFactory.getLogger(RequestApprovalController.class);
 	@Autowired
 	private RequestFamilyItemsService requestFamilyItemsService;
 	@Autowired
@@ -37,7 +40,11 @@ public class RequestApprovalController {
 	@RequestMapping(value = "/requestApproval", method = RequestMethod.POST)
 	public ModelAndView approveRequests(HttpServletRequest request, Model model) {
 		int userId = Integer.valueOf(request.getParameter("userId"));
-		int familyInventoryId = Integer.valueOf(request.getParameter("familyInventoryId"));
+		int familyInventoryRequestId = Integer.valueOf(request.getParameter("familyInventoryId"));
+		logger.debug(String.format("userId %d is approving request id %d", userId, familyInventoryRequestId));
+		Supervisor supervisor = userService.getSupervisor(userId);
+		logger.debug(String.format("supervisor is %s", supervisor));
+		requestFamilyItemsService.approveFamilyItems(supervisor, familyInventoryRequestId);
 		return new ModelAndView("confirm-approvals.jsp");
 	}
 

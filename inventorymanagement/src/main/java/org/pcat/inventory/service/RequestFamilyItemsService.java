@@ -12,6 +12,9 @@ import org.pcat.inventory.model.HomeVisitor;
 import org.pcat.inventory.model.Inventory;
 import org.pcat.inventory.model.RequestItem;
 import org.pcat.inventory.model.RequestState;
+import org.pcat.inventory.model.Supervisor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RequestFamilyItemsService {
 
-	private static final String APPROVED_MESSAGE = "%d %s has been approved to deliver to family %s";
+	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsService.class);
+	private static final String APPROVED_MESSAGE = "%s %s approved %d %s to deliver to family %s";
 	@Autowired
 	private MailService mailService;
 	@Autowired
@@ -33,9 +37,10 @@ public class RequestFamilyItemsService {
 	@Autowired
 	private UserService userService;
 
-	private FamilyInventory approveFamilyInventory(Integer requestId) {
+	private FamilyInventory approveFamilyInventory(final Integer requestId) {
 		FamilyInventory familyInventory = familyInventoryDao.getById(requestId);
-		if (familyInventory == null || familyInventory.getStatus() != "Pending") {
+
+		if (familyInventory == null || !("Pending".equalsIgnoreCase(familyInventory.getStatus()))) {
 			throw new RuntimeException("Requested item is unavailable");
 		}
 		familyInventory.setStatus("Approved");
@@ -44,10 +49,11 @@ public class RequestFamilyItemsService {
 	}
 
 	@Transactional
-	public void approveFamilyItems(Integer requestId) {
+	public void approveFamilyItems(final Supervisor supervisor, final Integer requestId) {
+		logger.debug(String.format("Supervisor %s is approving requestId %d", supervisor, requestId));
 		FamilyInventory familyInventory = approveFamilyInventory(requestId);
 		Inventory inventory = approveInventory(familyInventory);
-		sendApprovalEmail(familyInventory, inventory);
+		sendApprovalEmail(supervisor, familyInventory, inventory);
 
 	}
 
@@ -91,13 +97,15 @@ public class RequestFamilyItemsService {
 		return RequestState.PENDING;
 	}
 
-	private void sendApprovalEmail(FamilyInventory familyInventory, Inventory inventory) {
+	private void sendApprovalEmail(final Supervisor approvingSupervisor, final FamilyInventory familyInventory,
+			final Inventory inventory) {
 		HomeVisitor homeVisitor = userService.getHomeVisitor(familyInventory.getRequestorId());
 
-		final String messageBody = String.format(APPROVED_MESSAGE, familyInventory.getQuantity(),
-				inventory.getProductDesc(), familyInventory.getFamilyId());
+		final String messageBody = String.format(APPROVED_MESSAGE, approvingSupervisor.getFirstName(),
+				approvingSupervisor.getLastName(), familyInventory.getQuantity(), inventory.getProductDesc(),
+				familyInventory.getFamilyId());
 		final String toEmail = homeVisitor.getEmail();
-		final String fromEmail = homeVisitor.getSupervisorEmail();
+		final String fromEmail = approvingSupervisor.getEmail();
 		final String ccEmail = fromEmail;
 		final String subject = messageBody;
 		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
