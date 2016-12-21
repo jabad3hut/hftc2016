@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class InventoryManagementController {
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(InventoryManagementController.class);
 
 	@Autowired
@@ -51,6 +50,7 @@ public class InventoryManagementController {
 	 */
 	@RequestMapping(value = "/addInventory", method = RequestMethod.POST)
 	public ModelAndView addInventory(HttpServletRequest request, Model model) {
+		logger.info("/addInventory public ModelAndView addInventory(HttpServletRequest request, Model model)");
 		Inventory inventory = new Inventory();
 		inventory.setProductName(request.getParameter("productName"));
 		inventory.setProductDesc(request.getParameter("productDesc"));
@@ -69,6 +69,8 @@ public class InventoryManagementController {
 	 */
 	@RequestMapping(value = "/updateInventory", method = RequestMethod.POST)
 	public ModelAndView updateUser(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /updateInventory, method = RequestMethod.POST) "
+				+ "	public ModelAndView updateUser(HttpServletRequest request, Model model");
 		Inventory inventory = new Inventory();
 		inventory.setId(new Integer(request.getParameter("inventoryId")));
 		inventory.setProductName(request.getParameter("productName"));
@@ -87,6 +89,8 @@ public class InventoryManagementController {
 	 */
 	@RequestMapping(value = "/deleteInventory", method = RequestMethod.POST)
 	public ModelAndView deleteUser(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /deleteInventory, method = RequestMethod.POST) "
+				+ " public ModelAndView deleteUser(HttpServletRequest request, Model model)");
 		Inventory inventory = new Inventory();
 		inventory.setId(new Integer(request.getParameter("inventoryId")));
 		inventoryManagementService.deleteInventory(inventory);
@@ -103,6 +107,8 @@ public class InventoryManagementController {
 	@RequestMapping(value = "/listAllInventories")
 	@ResponseBody
 	public List<Inventory> listAllInventory(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /listAllInventories) "
+				+ " @ResponseBody 	public List<Inventory> listAllInventory(HttpServletRequest request, Model model)");
 		List<Inventory> inventoryList = inventoryManagementService.listAllInventory();
 		return inventoryList;
 	}
@@ -117,6 +123,8 @@ public class InventoryManagementController {
 	@RequestMapping(value = "/gotoComplete", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView gotoComplete(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /gotoComplete, method = RequestMethod.POST)	"
+				+ "@ResponseBody	public ModelAndView gotoComplete(HttpServletRequest request, Model model)");
 		Inventory inventory = new Inventory();
 		inventory.setId(new Integer(request.getParameter("id")));
 		inventory.setLocation(request.getParameter("location"));
@@ -135,9 +143,13 @@ public class InventoryManagementController {
 	@RequestMapping(value = "/listAllInventoriesPending")
 	@ResponseBody
 	public List<FamilyInventoryDisplayRequest> listAllInventoryPending(HttpServletRequest request, Model model) {
-		List<FamilyInventoryDisplayRequest> inventoryList = inventoryManagementService.listAllFamilyInventoryDataRequest();
-		if(logger.isDebugEnabled()) {
-			inventoryList.forEach(famInv -> logger.debug(String.format("item sent to requestor %s", famInv.toString())));
+		logger.info("	@RequestMapping(value = /listAllInventoriesPending)	@ResponseBody	"
+				+ "public List<FamilyInventoryDisplayRequest> listAllInventoryPending(HttpServletRequest request, Model model) ");
+		List<FamilyInventoryDisplayRequest> inventoryList = inventoryManagementService
+				.listAllFamilyInventoryDataRequest();
+		if (logger.isDebugEnabled()) {
+			inventoryList
+					.forEach(famInv -> logger.debug(String.format("item sent to requestor %s", famInv.toString())));
 		}
 		return inventoryList;
 	}

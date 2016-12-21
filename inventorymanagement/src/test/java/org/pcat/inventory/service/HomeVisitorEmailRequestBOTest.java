@@ -18,7 +18,7 @@ public class HomeVisitorEmailRequestBOTest {
 	@Test
 	public void messageBodyBuilderTest() {
 		String newline = System.getProperty("line.separator");
-		HomeVisitor homeVisitor = new HomeVisitor("testFirst", "testLast", "testEmail@mailinator.com",
+		HomeVisitor homeVisitor = new HomeVisitor(null, "testFirst", "testLast", "testEmail@mailinator.com",
 				null, "testSupervisorEmail@mailinator.com");
 		String testBody = "These items have been requested by testFirst testLast: " + newline + "Item 1" + newline
 				+ "Item 2" + newline + "Item 3" + newline + "Item 4" + newline + "Item 5" + newline + "Item 6";

@@ -87,58 +87,6 @@ public class RequestApprovalDAO {
 	}
 
 	/**
-	 * This method sends notification to homevisitor who made the request for
-	 * the inventory.
-	 *
-	 * @param userId
-	 * @param familyInventory
-	 * @return
-	 */
-	private boolean sendNotification(int userId, FamilyInventory familyInventory) {
-		boolean completedApproval = false;
-		Transaction tx = null;
-		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(User.class);
-			criteria.add(Restrictions.eq("id", userId));
-			PcatPerson user = (PcatPerson) criteria.list().get(0);
-
-			String email = user.getEmail();
-			completedApproval = true;
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return completedApproval;
-	}
-
-	/**
-	 * This method updates FamilyInventory with the "approved" status.
-	 *
-	 * @param familyInventory
-	 * @return
-	 */
-	private boolean updateFamilyInventory(FamilyInventory familyInventory) {
-		boolean isUpdated = false;
-		Transaction tx = null;
-		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(FamilyInventory.class);
-			criteria.add(Restrictions.eq("id", familyInventory.getId()));
-			FamilyInventory updateFamilyInventory = (FamilyInventory) criteria.list().get(0);
-			updateFamilyInventory.setStatus(familyInventory.getStatus());
-			session.update(updateFamilyInventory);
-			isUpdated = true;
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return isUpdated;
-	}
-
-	/**
 	 * This method allows homevisitor to submit the requests.
 	 *
 	 * @param userId

@@ -27,8 +27,6 @@ public class RequestApprovalController {
 	@Autowired
 	private UserService userService;
 
-
-
 	/**
 	 * This method approves requests and updates the database for approved
 	 * inventory.
@@ -39,6 +37,8 @@ public class RequestApprovalController {
 	 */
 	@RequestMapping(value = "/requestApproval", method = RequestMethod.POST)
 	public ModelAndView approveRequests(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /requestApproval, method = RequestMethod.POST)	"
+				+ "public ModelAndView approveRequests(HttpServletRequest request, Model model)");
 		int userId = Integer.valueOf(request.getParameter("userId"));
 		int familyInventoryRequestId = Integer.valueOf(request.getParameter("familyInventoryId"));
 		logger.debug(String.format("userId %d is approving request id %d", userId, familyInventoryRequestId));
@@ -58,20 +58,22 @@ public class RequestApprovalController {
 	 */
 	@RequestMapping(value = "/submitForRequestApproval", method = RequestMethod.POST)
 	public ModelAndView submitRequests(HttpServletRequest request, Model model) {
-
+		logger.info("@RequestMapping(value = /submitForRequestApproval, method = RequestMethod.POST)	"
+				+ "public ModelAndView submitRequests(HttpServletRequest request, Model model)");
 		int userId = Integer.valueOf(request.getParameter("userId"));
 		String familyId = request.getParameter("familyId");
 		int inventoryId = Integer.valueOf(request.getParameter("inventoryId"));
 		int quantity = 1;
 		String requestQty = request.getParameter("quantity");
-		
-		if(requestQty != null && !requestQty.trim().isEmpty()) {
+
+		if (requestQty != null && !requestQty.trim().isEmpty()) {
 			quantity = Integer.valueOf(request.getParameter("quantity"));
 		}
-//		requestApprovalService.submitRequests(userId, familyId, inventoryId, quantity);
 		List<RequestItem> requestItems = new ArrayList<>();
 		requestItems.add(new RequestItem(inventoryId, quantity, null));
+		logger.debug(String.format("getHomeVisitor(%d)", userId));
 		HomeVisitor homeVisitor = userService.getHomeVisitor(userId);
+		logger.debug(String.format("requestItems(%s, %s, %s)", familyId, requestItems.toString(), homeVisitor.getLastName()));
 		requestFamilyItemsService.requestItems(familyId, requestItems, homeVisitor);
 		return new ModelAndView("confirm-request.jsp");
 	}

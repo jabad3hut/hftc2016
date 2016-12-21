@@ -49,7 +49,7 @@ public class RequestFamilyItemsServiceTest {
 	@Test
 	public void requestItemsTest() {
 		final String familyNumber = "TEST-0001";
-		final HomeVisitor homeVisitor = new HomeVisitor("testFirstName", "testLastName", "testEmail",
+		final HomeVisitor homeVisitor = new HomeVisitor(null, "testFirstName", "testLastName", "testEmail",
 				"supervisorFirst supervisorLast", "testSupervisorEmail");
 		homeVisitor.setId(12);
 

@@ -17,8 +17,8 @@ public class UserService {
 	private UserDao userDao;
 
 	private HomeVisitor buildHomeVisitor(PcatPerson user) {
-		return new HomeVisitor(user.getFirstName(), user.getLastName(), user.getEmail(), user.getSupervisor(),
-				user.getSupervisorEmail());
+		HomeVisitor hm = new HomeVisitor(user);
+		return hm;
 	}
 
 	private Supervisor buildSupervisor(PcatPerson user) {

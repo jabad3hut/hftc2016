@@ -14,18 +14,17 @@ public abstract class BaseDao {
 	private SessionFactory sessionFactory;
 
 	protected Object getById(Class clazz, int id) {
-		Session session = null;
-		Transaction tx = null;
 		Object result = null;
+		Session session = null;
 		try {
 			session = getSession();
-			tx = getTransaction(session);
 			result = session.get(clazz, id);
-			tx.commit();
 		} catch (Exception e) {
-			handleException(e, tx);
+			handleException(e, null);
 		} finally {
-			session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 
 		return result;
@@ -46,22 +45,27 @@ public abstract class BaseDao {
 		} catch (Exception e) {
 			handleException(e, tx);
 		} finally {
-			session.close();
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return result;
 	}
 
-	public  List<?> findAll(Class<?> clazz) {
+	public List<?> findAll(Class<?> clazz) {
 		List<?> result = null;
+		Session session = null;
 		try {
-			Criteria criteria = getSession().createCriteria(clazz);
+			session = getSession();
+			Criteria criteria = session.createCriteria(clazz);
 			result = criteria.list();
 		} catch (Exception e) {
 			handleException(e, null);
 		} finally {
-			getSession().close();
+			if (session != null) {
+				session.close();
+			}
 		}
-
 		return result;
 	}
 
@@ -84,7 +88,6 @@ public abstract class BaseDao {
 	public void saveOrUpdate(Object obj) {
 		Session session = null;
 		Transaction tx = null;
-
 		try {
 			session = getSession();
 			tx = getTransaction(session);
@@ -93,7 +96,9 @@ public abstract class BaseDao {
 		} catch (Exception e) {
 			handleException(e, tx);
 		} finally {
-			session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 
 	}

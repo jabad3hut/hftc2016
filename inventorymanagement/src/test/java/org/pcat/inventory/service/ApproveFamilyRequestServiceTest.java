@@ -54,7 +54,7 @@ public class ApproveFamilyRequestServiceTest {
 		final Integer reservedInventory = 5;
 		final String location = "Nashville";
 		final int quantity = 1;
-		final HomeVisitor homeVisitor = new HomeVisitor("testFirstName", "testLastName",
+		final HomeVisitor homeVisitor = new HomeVisitor(null, "testFirstName", "testLastName",
 				"testEmail.pcat@mailinator.com", "supervisorFirst supervisorLast",
 				"testSupervisorEmail.pcat@mailinator.com");
 		homeVisitor.setId(homeVisitorId);

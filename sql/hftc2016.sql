@@ -3,6 +3,7 @@
 -- Host: localhost    Database: pcat
 -- ------------------------------------------------------
 -- Server version	5.7.16
+create schema pcat;
 use pcat;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

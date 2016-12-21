@@ -2,6 +2,7 @@ package org.pcat.inventory.service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.pcat.inventory.dao.FamilyInventoryDao;
@@ -70,9 +71,12 @@ public class RequestFamilyItemsService {
 	}
 
 	private void createFamilyInventory(final RequestItem requestItem, String familyNumber, HomeVisitor homeVisitor) {
+		final Timestamp now = new Timestamp(Instant.now().toEpochMilli());
+		final Integer inventoryIdToReserve = requestItem.getRequestInventory().getId();
+		final int reserveQuantity = requestItem.getQuantity();
 		FamilyInventory item = new FamilyInventoryImpl(null, familyNumber, homeVisitor.getId(), "Pending",
-				requestItem.getQuantity(), new Timestamp(Instant.now().getEpochSecond()),
-				requestItem.getRequestInventory().getId());
+				reserveQuantity, now,
+				inventoryIdToReserve);
 		familyInventoryDao.saveOrUpdate(item);
 	}
 

@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class HomeVisitor implements PcatPerson, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1835707270805611288L;
 	private PcatPerson pcatPerson;
 
 	public HomeVisitor() {
@@ -11,9 +15,15 @@ public class HomeVisitor implements PcatPerson, Serializable {
 		this.pcatPerson = new User();
 	}
 
-	public HomeVisitor(String firstName, String lastName, String email, String supervisor, String supervisorEmail) {
+	public HomeVisitor(Integer id, String firstName, String lastName, String email, String supervisor,
+			String supervisorEmail) {
 		super();
-		this.pcatPerson = new User(null, firstName, lastName, email, "Home Visitor", supervisor, supervisorEmail, true);
+		this.pcatPerson = new User(id, firstName, lastName, email, "Home Visitor", supervisor, supervisorEmail, true);
+	}
+
+	public HomeVisitor(PcatPerson user) {
+		super();
+		this.pcatPerson = user;
 	}
 
 	@Override
