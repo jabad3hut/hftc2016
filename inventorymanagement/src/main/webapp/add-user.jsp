@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>PCAT inventory | Request items</title>
+<title>Add a user | PCAT inventory</title>
 
 </head>
 <body>
@@ -22,7 +22,7 @@
 
 	<section>
 		<div class="section-body">
-			<h1>Add User</h1>
+			<h1>Add a user</h1>
 
           <div class="inline-directive">
                     Enter First Name:

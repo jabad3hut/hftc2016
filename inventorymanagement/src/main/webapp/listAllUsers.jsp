@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>PCAT inventory | Request items</title>
+<title>Manage users | PCAT inventory</title>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -68,7 +68,7 @@
 
 	<section>
 		<div class="section-body">
-			<h1>User Management</h1>
+			<h1>Manage users</h1>
 
 
 			<table id="dataTable" class="dummy-inventory">
@@ -86,7 +86,7 @@
 				</thead>
 			</table>
 
- 			<input type="button" name="submit" value="Add User" onclick="dothis('add')" class="button medium-button affirmative"/>
+ 			<input type="button" name="submit" value="Add a user" onclick="dothis('add')" class="button medium-button affirmative"/>
  			
 		</div>
 	</section>

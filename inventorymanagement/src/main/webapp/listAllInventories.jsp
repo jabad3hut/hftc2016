@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>PCAT inventory | Request items</title>
+<title>Manage items | PCAT inventory</title>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -59,7 +59,7 @@
 
 	<section>
 		<div class="section-body">
-			<h1>Inventory Management</h1>
+			<h1>Manage inventory</h1>
 
 
 			<table id="dataTable" class="dummy-inventory">
@@ -76,7 +76,7 @@
 			</table>
 
  			<button name="continue-request" class="button medium-button affirmative">
-                Add New Inventory
+                Add an item
             </button>
     
 		</div>

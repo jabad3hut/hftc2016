@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>PCAT inventory | Request approved</title>
+    <title>Confirm an approval | PCAT inventory</title>
 </head>
 <body>
 
@@ -32,10 +32,8 @@
             </button>
         </div>
     </section>
-<!--
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
--->
 </body>
 </html>

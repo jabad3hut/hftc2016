@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Confirm a request | PCAT inventory</title>
+    <title>Add an item | PCAT inventory</title>
 </head>
 <body>
 
@@ -13,31 +13,21 @@
         <a href="http://www.pcat.org/">
             <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
         </a>
-
-         <button name="logout" class="button logout-button neutral">
+        <button name="logout" class="button logout-button neutral">
             Log out
         </button>
     </nav>
 
     <section>
         <div class="section-body">
-            <h2>
-                Forwarded for approval.
-            </h2>
-
-            <h3>
-                You’ll receive an email confirming your request.
-            </h3>
-
-            <button name="inventory-return" class="button medium-button affirmative" onclick="history.back(1)">
-                Return to inventory list
-            </button>
+            <h1>
+                Add an inventory item
+            </h1>
         </div>
     </section>
 
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
-
 </body>
 </html>
