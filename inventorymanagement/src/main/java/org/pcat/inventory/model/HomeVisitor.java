@@ -2,66 +2,28 @@ package org.pcat.inventory.model;
 
 import java.io.Serializable;
 
-public class HomeVisitor implements Serializable {
+public class HomeVisitor implements PcatPerson, Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7654600580730325730L;
-	private String firstname;
-	private String lastname;
-	private String email;
-	private String supervisorEmail;
+	private static final long serialVersionUID = -1835707270805611288L;
+	private PcatPerson pcatPerson;
 
 	public HomeVisitor() {
 		super();
+		this.pcatPerson = new User();
 	}
 
-	public HomeVisitor(String firstname, String lastname, String email, String supervisorEmail) {
+	public HomeVisitor(Integer id, String firstName, String lastName, String email, String supervisor,
+			String supervisorEmail) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.supervisorEmail = supervisorEmail;
+		this.pcatPerson = new User(id, firstName, lastName, email, "Home Visitor", supervisor, supervisorEmail, true);
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public String getSupervisorEmail() {
-		return supervisorEmail;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public void setSupervisorEmail(String supervisorEmail) {
-		this.supervisorEmail = supervisorEmail;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		return result;
+	public HomeVisitor(PcatPerson user) {
+		super();
+		this.pcatPerson = user;
 	}
 
 	@Override
@@ -76,14 +38,82 @@ public class HomeVisitor implements Serializable {
 			return false;
 		}
 		HomeVisitor other = (HomeVisitor) obj;
-		if (email == null) {
-			if (other.email != null) {
+		if (pcatPerson == null) {
+			if (other.pcatPerson != null) {
 				return false;
 			}
-		} else if (!email.equals(other.email)) {
+		} else if (!pcatPerson.equals(other.pcatPerson)) {
 			return false;
 		}
 		return true;
+	}
+
+	public String getEmail() {
+		return pcatPerson.getEmail();
+	}
+
+	public String getFirstName() {
+		return pcatPerson.getFirstName();
+	}
+
+	public Integer getId() {
+		return pcatPerson.getId();
+	}
+
+	public String getLastName() {
+		return pcatPerson.getLastName();
+	}
+
+	public PcatPerson getPcatPerson() {
+		return pcatPerson;
+	}
+
+	public String getSupervisor() {
+		return pcatPerson.getSupervisor();
+	}
+
+	public String getSupervisorEmail() {
+		return pcatPerson.getSupervisorEmail();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pcatPerson == null) ? 0 : pcatPerson.hashCode());
+		return result;
+	}
+
+	public void setEmail(String email) {
+		pcatPerson.setEmail(email);
+	}
+
+	public void setFirstName(String firstName) {
+		pcatPerson.setFirstName(firstName);
+	}
+
+	public void setId(Integer id) {
+		pcatPerson.setId(id);
+	}
+
+	public void setLastName(String lastname) {
+		pcatPerson.setLastName(lastname);
+	}
+
+	public void setPcatPerson(PcatPerson pcatPerson) {
+		this.pcatPerson = pcatPerson;
+	}
+
+	public void setSupervisor(String supervisor) {
+		pcatPerson.setSupervisor(supervisor);
+	}
+
+	public void setSupervisorEmail(String supervisoremail) {
+		pcatPerson.setSupervisorEmail(supervisoremail);
+	}
+
+	public String toString() {
+		return pcatPerson.toString();
 	}
 
 }

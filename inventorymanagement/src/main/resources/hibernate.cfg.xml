@@ -12,5 +12,6 @@
 		<mapping resource="org/pcat/inventory/model/Inventory.hbm.xml" />
 		<mapping resource="org/pcat/inventory/model/User.hbm.xml" />
 		<mapping resource="org/pcat/inventory/model/FamilyInventory.hbm.xml" />
+		<mapping resource="org/pcat/inventory/model/FamilyInventoryDisplayRequest.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

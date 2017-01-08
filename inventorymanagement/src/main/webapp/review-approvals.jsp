@@ -23,12 +23,18 @@ var url = "listAllInventoriesPending"
 	        },
 	        "columnDefs": [
 	            { "targets": "_all", "className": "table-cell" },
-	            { "targets": 0, "data": "id" },
+	            { "targets": 0, "data": "requestor"},
 	            { "targets": 1, "data": "familyId" },
-	            { "targets": 2, "data": "quantity" },
-	            { "targets": 3, "data": "status" },
-	            { "targets": 4, "render":
+	            { "targets": 2, "data": "productName" },
+	            { "targets": 3, "data": "location" },
+	            { "targets": 4, "data": "quantity" },
+	            { "targets": 5, "data": "status" },
+	            { "targets": 7, "data": "id", "visible": true },
+	            { "targets": 6, "render":
 	              function(data, type, row, meta) {
+	            	  console.log(row);
+	            	  console.log(row.id);
+	            	  console.log(row.familyInventory.id);
 	                  return '<a onclick="approveRequest('+row.id+');">Approve</a>';
 	              }
 	            }
@@ -72,7 +78,7 @@ var url = "listAllInventoriesPending"
 
             <form action="foo" id="request-items" style="padding: 0 5rem;">
 
-                <input type="hidden" name="userId" value="1">
+                <input type="hidden" name="userId" value="${user.id}">
 
                   <h2 style="margin: -2rem 5rem 3rem 5rem">
                     Approve a request by clicking the Approve button for an item:
@@ -82,11 +88,14 @@ var url = "listAllInventoriesPending"
                     <table id="dataTable">
                         <thead>
                         <tr>
-                            <th>Inventory Id</th>
-                            <th>Family Name</th>
+                            <th>Requester</th>
+                            <th>Family</th>
+                            <th>Product</th>
+                            <th>Location</th>
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Action</th>
+                            <th>Inventory Id</th>
                         </tr>
                         </thead>
                     </table>

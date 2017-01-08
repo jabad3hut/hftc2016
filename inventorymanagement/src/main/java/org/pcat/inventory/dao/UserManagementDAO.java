@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -74,8 +75,8 @@ public class UserManagementDAO {
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("id", user.getId()));
 			User updateUser = (User) criteria.list().get(0);
-			updateUser.setFirstname(user.getFirstname());
-			updateUser.setLastname(user.getLastname());
+			updateUser.setFirstName(user.getFirstName());
+			updateUser.setLastName(user.getLastName());
 			updateUser.setRole(user.getRole());
 			updateUser.setSupervisor(user.getSupervisor());
 			session.update(updateUser);
@@ -93,7 +94,7 @@ public class UserManagementDAO {
 	 * @param user
 	 * @return
 	 */
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(PcatPerson user) {
 		boolean isDeleted = false;
 		Transaction tx = null;
 		try {

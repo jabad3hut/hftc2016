@@ -23,8 +23,8 @@
 	        },
 	        "columns": [            
 				{ "data": "id" },
-	            { "data": "firstname" },
-	            { "data": "lastname" },
+	            { "data": "firstName" },
+	            { "data": "lastName" },
 	            { "data": "email" },
 	            { "data": "role" },
 	            { "data": "supervisor" },

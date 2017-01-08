@@ -12,7 +12,6 @@ import org.pcat.inventory.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -47,7 +46,8 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 				"testFirstNameGetUserByEmailTest@mailinator.com", "Supervisor", "testSupervisor",
 				"testSupervisor@mailinator.com", true);
 		userDao.saveOrUpdate(user);
-		assertThat(userDao.getByEmailId("testFirstNameGetUserByEmailTest@mailinator.com").getFirstname(),
+		logger.debug(user.toString());
+		assertThat(userDao.getByEmailId("testFirstNameGetUserByEmailTest@mailinator.com").getFirstName(),
 				equalTo("testFirstNameGetUserByEmailTest"));
 		assertThat(userDao.delete(user), equalTo(true));
 	}

@@ -2,7 +2,6 @@ package org.pcat.inventory.dao;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -10,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.pcat.inventory.model.FamilyInventory;
+import org.pcat.inventory.model.FamilyInventoryImpl;
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -86,58 +87,6 @@ public class RequestApprovalDAO {
 	}
 
 	/**
-	 * This method sends notification to homevisitor who made the request for
-	 * the inventory.
-	 *
-	 * @param userId
-	 * @param familyInventory
-	 * @return
-	 */
-	private boolean sendNotification(int userId, FamilyInventory familyInventory) {
-		boolean completedApproval = false;
-		Transaction tx = null;
-		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(User.class);
-			criteria.add(Restrictions.eq("id", userId));
-			User user = (User) criteria.list().get(0);
-
-			String email = user.getEmail();
-			completedApproval = true;
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return completedApproval;
-	}
-
-	/**
-	 * This method updates FamilyInventory with the "approved" status.
-	 *
-	 * @param familyInventory
-	 * @return
-	 */
-	private boolean updateFamilyInventory(FamilyInventory familyInventory) {
-		boolean isUpdated = false;
-		Transaction tx = null;
-		try {
-			Session session = sessionFactory.openSession();
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(FamilyInventory.class);
-			criteria.add(Restrictions.eq("id", familyInventory.getId()));
-			FamilyInventory updateFamilyInventory = (FamilyInventory) criteria.list().get(0);
-			updateFamilyInventory.setStatus(familyInventory.getStatus());
-			session.update(updateFamilyInventory);
-			isUpdated = true;
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return isUpdated;
-	}
-
-	/**
 	 * This method allows homevisitor to submit the requests.
 	 *
 	 * @param userId
@@ -154,7 +103,7 @@ public class RequestApprovalDAO {
 			tx = session.beginTransaction();
 
 			// Add new FamilyInventory
-			FamilyInventory familyInventory = new FamilyInventory();
+			FamilyInventory familyInventory = new FamilyInventoryImpl();
 			familyInventory.setFamilyId(familyId);
 			familyInventory.setQuantity(quantity);
 			familyInventory.setStatus("pending");

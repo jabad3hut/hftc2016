@@ -30,5 +30,13 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<!-- AWS XRAY filter settings -->
+	<filter>
+		<filter-name>XRayServletFilter</filter-name>
+		<filter-class>com.amazonaws.xray.javax.servlet.AWSXRayServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XRayServletFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
 </web-app>

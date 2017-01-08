@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.pcat.inventory.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,10 +89,10 @@ public class UserManagementController {
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, Model model) {
 		User user = new User();
-		user.setFirstname(request.getParameter("firstName"));
-		user.setLastname(request.getParameter("lastName"));
+		user.setFirstName(request.getParameter("firstName"));
+		user.setLastName(request.getParameter("lastName"));
 		user.setSupervisor(request.getParameter("supervisor"));
-		user.setSupervisoremail(request.getParameter("supervisorEmail"));
+		user.setSupervisorEmail(request.getParameter("supervisorEmail"));
 		user.setEmail(request.getParameter("email"));
 		user.setRole(request.getParameter("role"));
 		userManagementService.saveUser(user);
@@ -116,10 +117,10 @@ public class UserManagementController {
 	public ModelAndView updateUser(HttpServletRequest request, Model model) {
 		User user = new User();
 		user.setId(new Integer(request.getParameter("userId")));
-		user.setFirstname(request.getParameter("firstName"));
-		user.setLastname(request.getParameter("lastName"));
+		user.setFirstName(request.getParameter("firstName"));
+		user.setLastName(request.getParameter("lastName"));
 		user.setSupervisor(request.getParameter("supervisor"));
-		user.setSupervisoremail(request.getParameter("supervisorEmail"));
+		user.setSupervisorEmail(request.getParameter("supervisorEmail"));
 		user.setEmail(request.getParameter("email"));
 		user.setRole(request.getParameter("role"));
 		userManagementService.updateUser(user);
@@ -142,7 +143,7 @@ public class UserManagementController {
 	 */
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
 	public ModelAndView deleteUser(HttpServletRequest request, Model model) {
-		User user = new User();
+		PcatPerson user = new User();
 		user.setId(new Integer(request.getParameter("userId")));
 		userManagementService.deleteUser(user);
 		// SimpleMailMessage mailMessage = new SimpleMailMessage();

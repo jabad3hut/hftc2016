@@ -1,5 +1,8 @@
 package org.pcat.inventory.dao;
 
+import java.util.List;
+
+import org.pcat.inventory.model.PcatPerson;
 import org.pcat.inventory.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +19,9 @@ public class UserDao extends BaseDao {
 		return (User) super.getSession().createQuery(hql).setString("emailAddress", emailAddress).uniqueResult();
 	}
 
+	public List<User> getBySupervisorEmail(final String supervisorEmail) {
+		final String hql = "select user from User user where user.supervisorEmail = :supervisorEmail";
+		return (List<User>) super.getSession().createQuery(hql).setString("emailAddress", supervisorEmail);
+	}
 
 }

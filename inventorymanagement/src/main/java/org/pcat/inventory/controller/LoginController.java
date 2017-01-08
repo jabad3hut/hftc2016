@@ -44,6 +44,8 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/loginPage")
 	public ModelAndView isUserLoggedIn(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /loginPage)	"
+				+ "public ModelAndView isUserLoggedIn(HttpServletRequest request, Model model)");
 		String email = request.getParameter("email");
 		logger.info("I am in login controller... {}", email);
 		User user = loginService.validateUserLogin(email);
@@ -58,7 +60,7 @@ public class LoginController {
 				forward = "request.jsp";
 			}
 		}
-		return new ModelAndView(forward,"user",user);
+		return new ModelAndView(forward, "user", user);
 	}
 
 	/**
@@ -71,6 +73,8 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/logout")
 	public ModelAndView logOut(HttpServletRequest request, Model model) {
+		logger.info("@RequestMapping(value = /logout)"
+				+ "	public ModelAndView logOut(HttpServletRequest request, Model model)");
 		return new ModelAndView("index.jsp");
 	}
 
