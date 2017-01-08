@@ -5,7 +5,7 @@ html {
 h1 {
     font-weight: normal;
     font-size: 3.5rem;
-    color: #8595a2;                 /* pcat medium gray */
+    color: #8595a2;                             /* pcat medium gray */
     text-align: center;
     padding: 0;
     margin: 2rem 2rem 5rem 2rem;
@@ -14,7 +14,7 @@ h1 {
 h2 {
     font-weight: normal;
     font-size: 2.25rem;
-    color: #5c707b;                 /* pcat dark gray */
+    color: #5c707b;                             /* pcat dark gray */
     text-align: center;
     line-height: 3rem;
     padding: 0;
@@ -24,7 +24,7 @@ h2 {
 h3 {
     font-weight: normal;
     font-size: 2rem;
-    color: #8595a2;                 /* pcat medium gray */
+    color: #8595a2;                             /* pcat medium gray */
     text-align: center;
     line-height: 2.5rem;
     padding: 0;
@@ -34,7 +34,7 @@ h3 {
 h4 {
     font-weight: normal;
     font-size: 2rem;
-    color: #5c707b;                 /* pcat dark gray */
+    color: #5c707b;                             /* pcat dark gray */
     text-align: center;
     line-height: 2.5rem;
     padding: 0;
@@ -62,12 +62,12 @@ nav {
 
 .nav-list li a {
     padding-right: 2rem;
-    color: #217ace;                 /* lighter than pcat dark blue */
+    color: #217ace;                             /* lighter than pcat dark blue */
     text-decoration: none;
 }
 
 .nav-list li a:hover {
-    color: #005dab;                 /* pcat dark blue */
+    color: #005dab;                             /* pcat dark blue */
 }
 
 .pcat-logo {

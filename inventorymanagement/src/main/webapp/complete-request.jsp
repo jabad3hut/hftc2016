@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>PCAT inventory | Complete request</title>
+    <title>Complete a request | PCAT inventory</title>
 </head>
 <body>
 
@@ -31,7 +31,7 @@
 
             <div class="inline-directive">
                 <h2>
-                    Enter the family number:
+                    Family number:
                 </h2>
 
                 <label><input type="text" class="family-number-input" name="familyId" id="familyId"></label>
@@ -39,7 +39,7 @@
 
             <div class="item-box">
                 <h4>
-                    Items youâre requesting:
+                    Items You’re requesting:
                 </h4>
 
                 <div class="dummy-inventory">
@@ -74,11 +74,11 @@
 
         </div>
     </section>
-<!--
+
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
--->
+
 </form>
 </body>
 </html>
