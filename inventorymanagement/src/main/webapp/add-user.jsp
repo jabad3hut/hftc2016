@@ -76,7 +76,7 @@
                             <!--<input type="email" id="supervisorEmail" name="supervisorEmail" class="input-field" style="width: 20rem;" />-->
                         <!--</div>-->
 
-                        <div style="margin-top: 2rem;">
+                        <div style="margin-top: 3rem; display: flex; justify-content: center;">
                             <button type="reset" name="cancel-request" class="button medium-button neutral">
                                 Cancel
                             </button>
