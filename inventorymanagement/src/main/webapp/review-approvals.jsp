@@ -59,52 +59,58 @@ var url = "listAllInventoriesPending"
 
 </head>
 <body>
-    <nav>
-        <a href="http://www.pcat.org/">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
 
-     <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+    <div class="content">
+        <nav>
+            <a href="http://www.pcat.org/">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
 
-     <section>
-        <div class="section-body">
-            <h1>
-                Review pending approvals
-            </h1>
+            <button name="logout" class="button logout-button neutral">
+                Log out
+            </button>
+        </nav>
 
-            <form action="foo" id="request-items" style="padding: 0 5rem;">
+        <section>
+            <div class="section-body">
+                <h1>
+                    Review pending approvals
+                </h1>
 
-                <input type="hidden" name="userId" value="${user.id}">
+                <form action="foo" id="request-items" style="padding: 0 5rem;">
 
-                  <h2 style="margin: -2rem 5rem 3rem 5rem">
-                    Approve a request by clicking the Approve button for an item:
-                </h2>
+                    <input type="hidden" name="userId" value="${user.id}">
 
-                <div style="padding: 0 5rem;">
-                    <table id="dataTable">
-                        <thead>
-                        <tr>
-                            <th>Requester</th>
-                            <th>Family</th>
-                            <th>Product</th>
-                            <th>Location</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                            <th>Inventory Id</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
+                    <h2 style="margin: -2rem 5rem 3rem 5rem">
+                        Approve a request by clicking the Approve button for an item:
+                    </h2>
 
-            </form>
+                    <div style="padding: 0 5rem;">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Requester</th>
+                                    <th>Family</th>
+                                    <th>Product</th>
+                                    <th>Location</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                    <th>Inventory Id</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
 
-        </div>
-    </section>
+                </form>
 
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        Prevent Child Abuse Tennessee
+    </footer>
 
 </body>
 </html>
