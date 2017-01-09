@@ -59,17 +59,19 @@ public class InventoryDao extends BaseDao {
 	public boolean saveInventory(Inventory inventory) {
 		boolean isSaved = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			tx = getSession().beginTransaction();
-			getSession().save(inventory);
+			session = getSession();
+			tx = session.beginTransaction();
+			session.save(inventory);
 			tx.commit();
 			isSaved = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		} finally {
-			if (getSession() != null && getSession().isOpen()) {
-				getSession().close();
+			if (session != null && session.isOpen()) {
+				session.close();
 			}
 		}
 		return isSaved;
@@ -89,9 +91,10 @@ public class InventoryDao extends BaseDao {
 	public boolean updateInventory(Inventory inventory) {
 		boolean isUpdated = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			tx = getSession().beginTransaction();
-			Criteria criteria = getSession().createCriteria(Inventory.class);
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Inventory.class);
 			criteria.add(Restrictions.eq("id", inventory.getId()));
 			Inventory updateInventory = (Inventory) criteria.list().get(0);
 			updateInventory.setProductName(inventory.getProductName());
@@ -104,8 +107,8 @@ public class InventoryDao extends BaseDao {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		} finally {
-			if (getSession() != null && getSession().isOpen()) {
-				getSession().close();
+			if (session != null && session.isOpen()) {
+				session.close();
 			}
 		}
 		return isUpdated;

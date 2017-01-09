@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class LoginDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	private User user;
@@ -31,31 +31,35 @@ public class LoginDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	
 	/**
-	 * This method validates the logged in user using the email and
-	 *  returns back the user or null if not valid.
-	 * @param email user email used to login
+	 * This method validates the logged in user using the email and returns back
+	 * the user or null if not valid.
+	 * 
+	 * @param email
+	 *            user email used to login
 	 * @return User if valid else null.
 	 */
 	public User validateUserLogin(String email) {
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("email", email));
-			if( criteria.list().isEmpty() == false)
-			{
+			if (criteria.list().isEmpty() == false) {
 				user = ((User) criteria.list().get(0));
 				return user;
 			}
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return null;
 	}
 
-	
 }

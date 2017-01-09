@@ -70,8 +70,9 @@ public class RequestApprovalDAO {
 	 */
 	public boolean approveRequests(int userId, int familyInventoryId) {
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(FamilyInventory.class);
 			criteria.add(Restrictions.eq("id", familyInventoryId));
@@ -82,6 +83,10 @@ public class RequestApprovalDAO {
 			// sendNotification(userId, familyInventory);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return false;
 	}
@@ -98,8 +103,9 @@ public class RequestApprovalDAO {
 	public boolean submitRequests(int userId, String familyId, int inventoryId, int quantity) {
 		boolean isSubmited = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
 			// Add new FamilyInventory
@@ -123,6 +129,10 @@ public class RequestApprovalDAO {
 			isSubmited = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return isSubmited;
 	}
@@ -136,14 +146,19 @@ public class RequestApprovalDAO {
 	public boolean saveFamilyInventory(FamilyInventory familyInventory) {
 		boolean isSaved = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			session.save(familyInventory);
 			tx.commit();
 			isSaved = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return isSaved;
 	}
