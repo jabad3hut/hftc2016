@@ -37,7 +37,7 @@
                         <label for="prodDescription">
                             Product Description:
                         </label>
-                        <input type="text" id="prodDescription" name="description" class="input-field" style="width: 20rem;" />
+                        <input type="text" id="prodDescription" name="prodDescription" class="input-field" style="width: 20rem;" />
                     </div>
 
                     <div class="add-form">
@@ -64,7 +64,7 @@
                         </button>
 
                         <button type="submit" name="submit-request" class="button medium-button affirmative">
-                            Add this user
+                            Add this item
                         </button>
                     </div>
                 </form>
