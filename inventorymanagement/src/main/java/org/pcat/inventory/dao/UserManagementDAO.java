@@ -48,14 +48,19 @@ public class UserManagementDAO {
 	public boolean saveUser(User user) {
 		boolean isSaved = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			session.save(user);
 			tx.commit();
 			isSaved = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return isSaved;
 	}
@@ -69,8 +74,9 @@ public class UserManagementDAO {
 	public boolean updateUser(User user) {
 		boolean isUpdated = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("id", user.getId()));
@@ -84,6 +90,10 @@ public class UserManagementDAO {
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return isUpdated;
 	}
@@ -97,8 +107,9 @@ public class UserManagementDAO {
 	public boolean deleteUser(PcatPerson user) {
 		boolean isDeleted = false;
 		Transaction tx = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(User.class);
 			criteria.add(Restrictions.eq("id", user.getId()));
@@ -108,6 +119,10 @@ public class UserManagementDAO {
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return isDeleted;
 	}
@@ -120,12 +135,17 @@ public class UserManagementDAO {
 	 */
 	public List<User> listAllUsers() {
 		List<User> users = null;
+		Session session = null;
 		try {
-			Session session = sessionFactory.openSession();
+			session = sessionFactory.openSession();
 			Criteria criteria = session.createCriteria(User.class);
 			users = criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
 		}
 		return users;
 	}
