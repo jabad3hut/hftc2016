@@ -76,7 +76,7 @@
 						</thead>
 					</table>
 
-					<button name="continue-request" class="button medium-button affirmative">
+					<button name="add-item" class="button medium-button affirmative">
 						Add an item
 					</button>
 

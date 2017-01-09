@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 function submitRequest(id)  {
     var qty = $('#qty'+id).val();
-    var familyId = $('#request-items .family-number-input').val();
+    var familyId = $('#request-items .input-field').val();
     userId = $('#request-items input[name=userId]').val();
     var payload = {
         "userId": userId,

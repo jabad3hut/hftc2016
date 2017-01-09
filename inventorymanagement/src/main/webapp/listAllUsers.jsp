@@ -87,8 +87,9 @@
 						</thead>
 					</table>
 
-					<input type="button" name="submit" value="Add a user" onclick="dothis('add')" class="button medium-button affirmative"/>
-
+                    <button name="add-user" class="button medium-button affirmative" onclick="dothis('add')">
+                        Add a user
+                    </button>
 				</div>
 			</section>
 		</form>

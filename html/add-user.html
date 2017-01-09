@@ -43,6 +43,67 @@
                 <h1>
                     Add a user
                 </h1>
+
+                <form style="margin: -3rem 5rem 3rem 5rem;">
+                    <div class="add-form">
+                        <label for="firstName">
+                            First name:
+                        </label>
+                        <input type="text" id="firstName" name="firstName" class="input-field" style="width: 15rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="lastName">
+                            Last name:
+                        </label>
+                        <input type="text" id="lastName" name="lastName" class="input-field" style="width: 15rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="userEmail">
+                            Email address:
+                        </label>
+                        <input type="email" id="userEmail" name="userEmail" class="input-field" style="width: 19rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="userRole">
+                            Role:
+                        </label>
+                        <select id="userRole" name="userRole" style="min-width: 14rem;" >
+                            <option value="visitor" selected>Home Visitor</option>
+                            <option value="supervisor">Supervisor</option>
+                            <option value="admin">User Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="add-form">
+                        <label for="supervisorName">
+                            Supervisor:
+                        </label>
+                        <select id="supervisorName" name="supervisorName" style="min-width: 18rem;" >
+                            <option value="value1" selected>Bonnie Fernandez</option>
+                            <option value="value2">Cindie Lou Hoo</option>
+                            <option value="value3">Jennifer Caudle</option>
+                        </select>
+                    </div>
+                    <!--<div class="add-form">-->
+                        <!--<label for="supervisorEmail">-->
+                            <!--Supervisor’s email address:-->
+                        <!--</label>-->
+                        <!--<input type="email" id="supervisorEmail" name="supervisorEmail" class="input-field" style="width: 20rem;" />-->
+                    <!--</div>-->
+
+                    <div>
+                        <button type="reset" name="cancel-request" class="button medium-button neutral">
+                            Cancel
+                        </button>
+
+                        <button type="submit" name="submit-request" class="button medium-button affirmative">
+                            Add this user
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
     </div>

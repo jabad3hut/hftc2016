@@ -35,7 +35,7 @@
                             Family number:
                         </h2>
 
-                        <label><input type="text" class="family-number-input" name="familyId" id="familyId"></label>
+                        <label><input type="text" class="input-field" name="familyId" id="familyId"></label>
                     </div>
 
                     <div class="item-box">
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="dummy-inventory-row">
-                                <div class="dummy-qty dummy-table-row confirm"><input type="text" class="family-number-input" name="quantity" id="quantity"></div>
+                                <div class="dummy-qty dummy-table-row confirm"><input type="text" class="input-field" name="quantity" id="quantity"></div>
                                 <div class="dummy-prod dummy-table-row">${inventory.productName}</div>
                                 <div class="dummy-desc dummy-table-row">${inventory.productDesc}</div>
                                 <div class="dummy-loc dummy-table-row">${inventory.location}</div>
