@@ -171,7 +171,15 @@ footer {
 }
 
 .button.neutral:hover {
-    background-color: gray;
+    background-color: #748491;                  /* darker than pcat medium gray */
+}
+
+.danger {
+    background-color: #313131;                  /* close to black */
+}
+
+.button.danger:hover {
+    background-color: #010101;                  /* very nearly black */
 }
 
 .big-button {

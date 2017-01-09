@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>Add a user | PCAT inventory</title>
-
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
+    <title>Add a user | PCAT inventory</title>
 </head>
 <body>
 
@@ -76,17 +75,17 @@
                             <!--</label>-->
                             <!--<input type="email" id="supervisorEmail" name="supervisorEmail" class="input-field" style="width: 20rem;" />-->
                         <!--</div>-->
+
+                        <div style="margin-top: 2rem;">
+                            <button type="reset" name="cancel-request" class="button medium-button neutral">
+                                Cancel
+                            </button>
+
+                            <button type="submit" name="submit-request" class="button medium-button affirmative">
+                                Add this user
+                            </button>
+                        </div>
                     </form>
-
-                    <div>
-                        <button type="reset" name="cancel-request" class="button medium-button neutral">
-                            Cancel
-                        </button>
-
-                        <button type="submit" name="submit-request" class="button medium-button affirmative">
-                            Add this user
-                        </button>
-                    </div>
                 </div>
             </section>
         </form>
