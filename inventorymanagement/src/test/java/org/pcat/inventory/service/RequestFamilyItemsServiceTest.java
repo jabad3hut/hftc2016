@@ -49,6 +49,7 @@ public class RequestFamilyItemsServiceTest {
 	@Test
 	public void requestItemsTest() {
 		final String familyNumber = "TEST-0001";
+		final String location = "Chattanooga";
 		final HomeVisitor homeVisitor = new HomeVisitor(null, "testFirstName", "testLastName", "testEmail",
 				"supervisorFirst supervisorLast", "testSupervisorEmail");
 		homeVisitor.setId(12);
@@ -101,10 +102,11 @@ public class RequestFamilyItemsServiceTest {
 		for (int x = 1; x < 7; x++) {
 			testMessage.append(String.format("%nItem %d", x));
 		}
-		when(emailUtility.getMessageBody("testFirstName", "testLastName", items)).thenReturn(testMessage.toString());
+		when(emailUtility.getMessageBody(location, "testFirstName", "testLastName", items))
+				.thenReturn(testMessage.toString());
 		logger.debug(String.format("body:  %s", testMessage));
 
-		requestFamilyItemsService.requestItems(familyNumber, requestItems, homeVisitor);
+		requestFamilyItemsService.requestItems(null, familyNumber, requestItems, homeVisitor);
 		/* Test that the inventory items were requested properly */
 		/* Test that the request to create the family inventory was correctly */
 		for (int x = 1; x < 7; x++) {
@@ -130,20 +132,4 @@ public class RequestFamilyItemsServiceTest {
 		return true;
 	}
 
-	/*
-	 * @Test public void approveFamilyItemRequest(){ final String testSubjectFmt
-	 * = "Approved Request:  %1s %2s items for family $3s have been approved";
-	 * final String testMessageFmt =
-	 * "%1s %2s has approved %3s's items which are:" + newline + "%4s";
-	 * Supervisor supervisor; HomeVisitor homeVisitor; MailService ms; String
-	 * approvedPrintList; RequestItemsForFamily requestItemsForFamily; Test that
-	 * the email for the approval was sent properly String testSubject =
-	 * String.format(testSubjectFmt, homeVisitor.getFirstName(),
-	 * homeVisitor.getLastName(), requestItemsForFamily.getFamilyId()); String
-	 * testMessage = String.format(testMessageFmt, supervisor.getFirstName(),
-	 * supervisor.getLastName(), requestItemsForFamily.getFamilyId(),
-	 * approvedPrintList); verify(ms).sendMail(supervisor.getEmail(),
-	 * homeVisitor.getEmail(), supervisor.getEmail(), testSubject, testMessage
-	 * ); }
-	 */
 }

@@ -74,7 +74,7 @@ public class RequestApprovalController {
 		logger.debug(String.format("getHomeVisitor(%d)", userId));
 		HomeVisitor homeVisitor = userService.getHomeVisitor(userId);
 		logger.debug(String.format("requestItems(%s, %s, %s)", familyId, requestItems.toString(), homeVisitor.getLastName()));
-		requestFamilyItemsService.requestItems(familyId, requestItems, homeVisitor);
+		requestFamilyItemsService.requestItems(null, familyId, requestItems, homeVisitor);
 		return new ModelAndView("confirm-request.jsp");
 	}
 }

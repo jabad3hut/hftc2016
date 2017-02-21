@@ -17,6 +17,7 @@ public class HomeVisitorEmailRequestBOTest {
 
 	@Test
 	public void messageBodyBuilderTest() {
+		final String location = "Chattanoga";
 		String newline = System.getProperty("line.separator");
 		HomeVisitor homeVisitor = new HomeVisitor(null, "testFirst", "testLast", "testEmail@mailinator.com",
 				null, "testSupervisorEmail@mailinator.com");
@@ -29,8 +30,8 @@ public class HomeVisitorEmailRequestBOTest {
 		items.add("Item 4");
 		items.add("Item 5");
 		items.add("Item 6");
-		String renderedString = emailUtility.getMessageBody(homeVisitor.getFirstName(), homeVisitor.getLastName(),
-				items);
+		String renderedString = emailUtility.getMessageBody(location, homeVisitor.getFirstName(),
+				homeVisitor.getLastName(), items);
 		logger.info(renderedString);
 		assertThat(renderedString, equalTo(testBody));
 	}

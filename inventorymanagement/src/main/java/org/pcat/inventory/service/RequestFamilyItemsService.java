@@ -89,15 +89,15 @@ public class RequestFamilyItemsService {
 	}
 
 	@Transactional
-	public RequestState requestItems(final String familyNumber, final List<RequestItem> requestItems,
-			final HomeVisitor homeVisitor) {
+	public RequestState requestItems(String location, final String familyNumber,
+			final List<RequestItem> requestItems, final HomeVisitor homeVisitor) {
 
 		/* get inventory, update inventory */
 		processRequestAndInventories(requestItems);
 		/* create family inventory records */
 		updateFamilyInventory(requestItems, familyNumber, homeVisitor);
 		/* send the email to the supervisor */
-		sendRequestEmail(familyNumber, requestItems, homeVisitor);
+		sendRequestEmail(location, familyNumber, requestItems, homeVisitor);
 		return RequestState.PENDING;
 	}
 
@@ -115,16 +115,16 @@ public class RequestFamilyItemsService {
 		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
 	}
 
-	private void sendRequestEmail(final String familyNumber, final List<RequestItem> requestItems,
-			final HomeVisitor homeVisitor) {
+	private void sendRequestEmail(String location, final String familyNumber,
+			final List<RequestItem> requestItems, final HomeVisitor homeVisitor) {
 		final List<String> itemDescriptions = inventoryBO.getItemDescriptions(requestItems);
 		final String fromEmail = homeVisitor.getEmail();
 		final String ccEmail = fromEmail;
 		final String supervisorEmail = homeVisitor.getSupervisorEmail();
-		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, familyNumber);
+		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, location, familyNumber);
 		final String firstName = homeVisitor.getFirstName();
 		final String lastname = homeVisitor.getLastName();
-		final String messageBody = requestBO.getMessageBody(firstName, lastname, itemDescriptions);
+		final String messageBody = requestBO.getMessageBody(location, firstName, lastname, itemDescriptions);
 		mailService.sendMail(fromEmail, supervisorEmail, ccEmail, subject, messageBody);
 	}
 
