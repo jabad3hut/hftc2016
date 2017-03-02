@@ -1,16 +1,16 @@
 import pymssql
 from StdSuites.Table_Suite import row
-user_insert_template = "insert into \"user\" (FIRSTNAME, lastname, supervisor, email, role, supervisor_email, isactive) values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6})"
+user_insert_template = "insert into \"user_info\" (FIRSTNAME, lastname, supervisor, email, role, supervisor_email, isactive) values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6})"
 server = 'pcat-stage-db-server.database.windows.net'
 password =  'Nashville-Nashville-Stage'
 user ='pcat-administrator@pcat-stage-db-server'
-database ='pcat-stage'
+database ='pcat_stage'
 autocommit=True
 cnx = pymssql.connect(server=server, user=user, password=password, database=database,autocommit=autocommit )
 
 cursor = cnx.cursor()
 
-cursor.execute('delete from "user"')
+cursor.execute('delete from "user_info"')
 
 import csv
 # con = pymssql.connect(server="pcat-stage-db-server.database.windows.net")

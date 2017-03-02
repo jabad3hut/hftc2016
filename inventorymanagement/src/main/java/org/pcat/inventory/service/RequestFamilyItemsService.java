@@ -75,8 +75,7 @@ public class RequestFamilyItemsService {
 		final Integer inventoryIdToReserve = requestItem.getRequestInventory().getId();
 		final int reserveQuantity = requestItem.getQuantity();
 		FamilyInventory item = new FamilyInventoryImpl(null, familyNumber, homeVisitor.getId(), "Pending",
-				reserveQuantity, now,
-				inventoryIdToReserve);
+				reserveQuantity, now, inventoryIdToReserve);
 		familyInventoryDao.saveOrUpdate(item);
 	}
 
@@ -89,8 +88,8 @@ public class RequestFamilyItemsService {
 	}
 
 	@Transactional
-	public RequestState requestItems(String location, final String familyNumber,
-			final List<RequestItem> requestItems, final HomeVisitor homeVisitor) {
+	public RequestState requestItems(String location, final String familyNumber, final List<RequestItem> requestItems,
+			final HomeVisitor homeVisitor) {
 
 		/* get inventory, update inventory */
 		processRequestAndInventories(requestItems);
@@ -115,13 +114,13 @@ public class RequestFamilyItemsService {
 		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
 	}
 
-	private void sendRequestEmail(String location, final String familyNumber,
-			final List<RequestItem> requestItems, final HomeVisitor homeVisitor) {
+	private void sendRequestEmail(String location, final String familyNumber, final List<RequestItem> requestItems,
+			final HomeVisitor homeVisitor) {
 		final List<String> itemDescriptions = inventoryBO.getItemDescriptions(requestItems);
 		final String fromEmail = homeVisitor.getEmail();
 		final String ccEmail = fromEmail;
 		final String supervisorEmail = homeVisitor.getSupervisorEmail();
-		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, location, familyNumber);
+		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, familyNumber, location);
 		final String firstName = homeVisitor.getFirstName();
 		final String lastname = homeVisitor.getLastName();
 		final String messageBody = requestBO.getMessageBody(location, firstName, lastname, itemDescriptions);

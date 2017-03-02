@@ -94,8 +94,7 @@ public class RequestFamilyItemsServiceTest {
 			items.add(String.format("Item %d", x));
 		}
 		when(invBizObj.getItemDescriptions(requestItems)).thenReturn(items);
-
-		final String testSubject = "Requesting supplies for family TEST-0001";
+		final String testSubject = "Requesting supplies for family TEST-0001 at Chattanooga";
 		logger.debug(String.format("subject: %s", testSubject));
 
 		StringBuffer testMessage = new StringBuffer("These items have been requested by testFirstName testLastName: ");
@@ -106,7 +105,7 @@ public class RequestFamilyItemsServiceTest {
 				.thenReturn(testMessage.toString());
 		logger.debug(String.format("body:  %s", testMessage));
 
-		requestFamilyItemsService.requestItems(null, familyNumber, requestItems, homeVisitor);
+		requestFamilyItemsService.requestItems(location, familyNumber, requestItems, homeVisitor);
 		/* Test that the inventory items were requested properly */
 		/* Test that the request to create the family inventory was correctly */
 		for (int x = 1; x < 7; x++) {

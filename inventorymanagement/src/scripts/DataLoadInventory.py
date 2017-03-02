@@ -4,7 +4,7 @@ inventory_insert_template = "insert into inventory (TOTAL_INVENTORY, PRODUCT_NAM
 server = 'pcat-stage-db-server.database.windows.net'
 password =  'Nashville-Nashville-Stage'
 user ='pcat-administrator@pcat-stage-db-server'
-database ='pcat-stage'
+database ='pcat_stage'
 autocommit=True
 cnx = pymssql.connect(server=server, user=user, password=password, database=database,autocommit=autocommit )
 
