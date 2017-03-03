@@ -52,6 +52,7 @@ var url = "listAllInventoriesPending"
 	    for (var key in payload) {
 	        $('<input>').attr('type','hidden').attr('name',key).attr('value',payload[key]).appendTo($form);
 	    }
+	    $(document.body).append($form)
 	    $form.submit();
 	}
 

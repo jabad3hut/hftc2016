@@ -30,6 +30,7 @@ import ch.qos.logback.classic.Level;
 
 public class RequestFamilyItemsServiceTest {
 
+	private static final String INVENTORY_PCAT_ORG = "inventory@pcat.org";
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsServiceTest.class);
 	private static TestHelper helper = new TestHelper();
 
@@ -93,19 +94,21 @@ public class RequestFamilyItemsServiceTest {
 		for (int x = 1; x < 7; x++) {
 			items.add(String.format("Item %d", x));
 		}
-		when(invBizObj.getItemDescriptions(requestItems)).thenReturn(items);
-		final String testSubject = "Requesting supplies for family TEST-0001 at Chattanooga";
+		when(invBizObj.getLineItemEmailDescriptions(requestItems)).thenReturn(items);
+		final String testSubject = "Requesting supplies for family TEST-0001";
 		logger.debug(String.format("subject: %s", testSubject));
 
-		StringBuffer testMessage = new StringBuffer("These items have been requested by testFirstName testLastName: ");
+		StringBuffer testMessage = new StringBuffer("Requestor:  testFirstName testLastname"
+				+ HomeVisitorEmailRequestBO.NEW_LINE + "Approver:  supervisorFirst supervisorLast"
+				+ HomeVisitorEmailRequestBO.NEW_LINE + "These items have been requested:");
 		for (int x = 1; x < 7; x++) {
 			testMessage.append(String.format("%nItem %d", x));
 		}
-		when(emailUtility.getMessageBody(location, "testFirstName", "testLastName", items))
+		when(emailUtility.getMessageBody("testFirstName", "testLastName", "supervisorFirst supervisorLast", items))
 				.thenReturn(testMessage.toString());
 		logger.debug(String.format("body:  %s", testMessage));
 
-		requestFamilyItemsService.requestItems(location, familyNumber, requestItems, homeVisitor);
+		requestFamilyItemsService.requestItems(familyNumber, requestItems, homeVisitor);
 		/* Test that the inventory items were requested properly */
 		/* Test that the request to create the family inventory was correctly */
 		for (int x = 1; x < 7; x++) {
@@ -116,8 +119,8 @@ public class RequestFamilyItemsServiceTest {
 		/* Test the requestItems have the right inventory attached */
 		requestItems.forEach(item -> assertThat(verifyInventoryItem(item, mockInventoryDao), equalTo(true)));
 		/* Test that the email was requested properly */
-		verify(ms).sendMail(homeVisitor.getEmail(), homeVisitor.getSupervisorEmail(), homeVisitor.getEmail(),
-				testSubject, testMessage.toString());
+		verify(ms).sendMail(INVENTORY_PCAT_ORG, homeVisitor.getSupervisorEmail(), homeVisitor.getEmail(), testSubject,
+				testMessage.toString());
 
 		/* Test that the inventory are updated correctly */
 	}

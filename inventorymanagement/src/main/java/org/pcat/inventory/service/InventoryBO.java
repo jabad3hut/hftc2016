@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InventoryBO {
-
+	final static String LINE_ITEM_EMAIL_DESCRIPTION_FMT = "Qty:  %d of %s from %s";
 	@Autowired
 	private InventoryDao inventoryDAO;
 
@@ -19,11 +19,12 @@ public class InventoryBO {
 		super();
 	}
 
-	public List<String> getItemDescriptions(List<RequestItem> requestItems) {
+	public List<String> getLineItemEmailDescriptions(List<RequestItem> requestItems) {
 		List<String> inventories = new ArrayList<String>();
 		requestItems.forEach(item -> {
 			Inventory inventory = inventoryDAO.getById(item.getId());
-			inventories.add(inventory.getProductName());
+			inventories.add(
+					String.format(LINE_ITEM_EMAIL_DESCRIPTION_FMT, item.getQuantity(), inventory.getProductName(), inventory.getLocation()));
 		});
 		return inventories;
 	}

@@ -1,0 +1,122 @@
+log.c:167:Starting log file for FreeTDS 1.00.26
+	on 2017-02-22 13:11:00 with debug flags 0x4fff.
+dblib.c:1175:tdsdbopen(0x7fefb8622710, stage-db-server.database.windows.net:1433, [microsoft])
+dblib.c:1201:tdsdbopen: dbproc->dbopts = 0x7fefb841de90
+dblib.c:1212:tdsdbopen: tds_set_server(0x7fefb860e3c0, "stage-db-server.database.windows.net:1433")
+dblib.c:256:dblib_get_tds_ctx(void)
+dblib.c:1229:tdsdbopen: About to call tds_read_config_info...
+log.c:167:Starting log file for FreeTDS 1.00.26
+	on 2017-02-22 13:11:00 with debug flags 0x4fff.
+config.c:168:Getting connection information for [stage-db-server.database.windows.net:1433].
+config.c:172:Attempting to read conf files.
+config.c:358:... $FREETDSCONF not set.  Trying $FREETDS/etc.
+config.c:371:... $FREETDS not set.  Trying $HOME.
+config.c:297:Could not open '/Users/jabadehut/.freetds.conf' ((.freetds.conf)).
+config.c:301:Found conf file '/usr/local/Cellar/freetds/1.00.26/etc/freetds.conf' (default).
+config.c:509:Looking for section global.
+config.c:568:	Found section global.
+config.c:571:Got a match.
+config.c:594:	tds version = 'auto'
+config.c:924:Setting tds version to auto (0x0).
+config.c:594:	text size = '64512'
+config.c:568:	Found section egserver50.
+config.c:568:	Found section egserver70.
+config.c:582:	Reached EOF
+config.c:509:Looking for section stage-db-server.database.windows.net:1433.
+config.c:568:	Found section global.
+config.c:568:	Found section egserver50.
+config.c:568:	Found section egserver70.
+config.c:582:	Reached EOF
+config.c:307:[stage-db-server.database.windows.net:1433] not found.
+config.c:358:... $FREETDSCONF not set.  Trying $FREETDS/etc.
+config.c:371:... $FREETDS not set.  Trying $HOME.
+config.c:297:Could not open '/Users/jabadehut/.freetds.conf' ((.freetds.conf)).
+config.c:301:Found conf file '/usr/local/Cellar/freetds/1.00.26/etc/freetds.conf' (default).
+config.c:509:Looking for section global.
+config.c:568:	Found section global.
+config.c:571:Got a match.
+config.c:594:	tds version = 'auto'
+config.c:924:Setting tds version to auto (0x0).
+config.c:594:	text size = '64512'
+config.c:568:	Found section egserver50.
+config.c:568:	Found section egserver70.
+config.c:582:	Reached EOF
+config.c:509:Looking for section stage-db-server.database.windows.net.
+config.c:568:	Found section global.
+config.c:568:	Found section egserver50.
+config.c:568:	Found section egserver70.
+config.c:582:	Reached EOF
+config.c:307:[stage-db-server.database.windows.net] not found.
+config.c:924:Setting tds version to 7.0 (0x700).
+config.c:825:TDS version set to 7.0 from $TDSVER.
+config.c:802:Setting 'dump_file' to 'stdout' from $TDSDUMP.
+config.c:712:tds_config_login: client_charset is UTF-8.
+config.c:213:Final connection parameters:
+config.c:214:	         server_name = stage-db-server.database.windows.net:1433
+config.c:215:	    server_host_name = stage-db-server.database.windows.net
+config.c:218:	             ip_addr = 123.456.7.89
+config.c:223:	       instance_name = 
+config.c:224:	                port = 1433
+config.c:225:	       major_version = 7
+config.c:226:	       minor_version = 0
+config.c:227:	          block_size = 0
+config.c:228:	            language = us_english
+config.c:229:	      server_charset = 
+config.c:230:	     connect_timeout = 0
+config.c:231:	    client_host_name = Jefferys-Air
+config.c:232:	      client_charset = UTF-8
+config.c:233:	           use_utf16 = 1
+config.c:234:	            app_name = pymssql=2.2.0.dev
+config.c:235:	           user_name = 
+config.c:238:	             library = DB-Library
+config.c:239:	           bulk_copy = 0
+config.c:240:	   suppress_language = 0
+config.c:241:	       encrypt level = 0
+config.c:242:	       query_timeout = 0
+config.c:245:	            database = 
+config.c:246:	           dump_file = stdout
+config.c:247:	         debug_flags = 0
+config.c:248:	           text_size = 64512
+config.c:249:	  emul_little_endian = 0
+config.c:250:	   server_realm_name = 
+config.c:251:	          server_spn = 
+config.c:252:	              cafile = 
+config.c:253:	             crlfile = 
+config.c:254:	  check_ssl_hostname = 1
+config.c:255:	         db_filename = 
+config.c:256:	     readonly_intent = 0
+config.c:258:	     openssl_ciphers = 
+log.c:167:Starting log file for FreeTDS 1.00.26
+	on 2017-02-22 13:11:01 with debug flags 0x4fff.
+config.c:924:Setting tds version to 7.0 (0x700).
+config.c:825:TDS version set to 7.0 from $TDSVER.
+config.c:802:Setting 'dump_file' to 'stdout' from $TDSDUMP.
+dblib.c:1256:tdsdbopen: Calling tds_connect_and_login(0x7fefb841d0d0, 0x7fefb841e1f0)
+iconv.c:325:tds_iconv_open(0x7fefb841d0d0, UTF-8)
+iconv.c:185:local name for ISO-8859-1 is ISO-8859-1
+iconv.c:185:local name for UTF-8 is UTF-8
+iconv.c:185:local name for UCS-2LE is UCS-2LE
+iconv.c:185:local name for UCS-2BE is UCS-2BE
+iconv.c:343:setting up conversions for client charset "UTF-8"
+iconv.c:345:preparing iconv for "UTF-8" <-> "UCS-2LE" conversion
+iconv.c:384:tds_iconv_open: done
+net.c:216:Connecting to 123.456.7.89 port 1433 (TDS version 7.0)
+net.c:242:tds_open_socket: connect(2) returned "Operation now in progress"
+net.c:343:tds_open_socket() succeeded
+login.c:862:requested GSS authentication but not compiled in
+login.c:530:login packet rejected
+query.c:3796:tds_disconnect() 
+util.c:165:Changed query state from IDLE to DEAD
+util.c:322:tdserror(0x7fefb84193f0, 0x7fefb841d0d0, 20002, 0)
+dblib.c:7964:dbperror(0x7fefb8419460, 20002, 0)
+dblib.c:8032:dbperror: Calling dblib_err_handler with msgno = 20002; msg->msgtext = "Adaptive Server connection failed (stage-db-server.database.windows.net:1433)"
+dblib.c:8054:dbperror: dblib_err_handler for msgno = 20002; msg->msgtext = "Adaptive Server connection failed (stage-db-server.database.windows.net:1433)" -- returns 2 (INT_CANCEL)
+util.c:352:tdserror: client library returned TDS_INT_CANCEL(2)
+util.c:375:tdserror: returning TDS_INT_CANCEL(2)
+dblib.c:1260:tdsdbopen: tds_connect_and_login failed for "stage-db-server.database.windows.net:1433"!
+dblib.c:1476:dbclose(0x7fefb8419460)
+dblib.c:241:dblib_del_connection(0x10e7730a0, 0x7fefb841d0d0)
+mem.c:644:tds_free_all_results()
+dblib.c:288:dblib_release_tds_ctx(1)
+dblib.c:5896:dbfreebuf(0x7fefb8419460)
+dblib.c:749:dbloginfree(0x7fefb8622710)

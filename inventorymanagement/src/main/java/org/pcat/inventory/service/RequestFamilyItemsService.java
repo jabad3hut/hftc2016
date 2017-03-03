@@ -2,7 +2,6 @@ package org.pcat.inventory.service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.pcat.inventory.dao.FamilyInventoryDao;
@@ -24,7 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class RequestFamilyItemsService {
 
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsService.class);
-	public static final String APPROVED_MESSAGE = "%s %s approved %d %s to deliver to family %s";
+	public static final String LINE_ITEM_FMT = "Qty:  %s %s from %s";
+	public static final String APPROVED_MESSAGE = "Requestor: %s %s" + HomeVisitorEmailRequestBO.NEW_LINE
+			+ "Approver:  %s %s" + HomeVisitorEmailRequestBO.NEW_LINE + "Family Number:  %s "
+			+ HomeVisitorEmailRequestBO.NEW_LINE + "Approved the following:" + HomeVisitorEmailRequestBO.NEW_LINE + "%s"
+			+ HomeVisitorEmailRequestBO.NEW_LINE;
+	public static final String APPROVED_SUBJECT = "Request approval for family %s";
 	public static final String FROM_EMAIL_ACCOUNT = "inventory@pcat.org";
 	@Autowired
 	private MailService mailService;
@@ -89,7 +93,7 @@ public class RequestFamilyItemsService {
 	}
 
 	@Transactional
-	public RequestState requestItems(String location, final String familyNumber, final List<RequestItem> requestItems,
+	public RequestState requestItems(final String familyNumber, final List<RequestItem> requestItems,
 			final HomeVisitor homeVisitor) {
 
 		/* get inventory, update inventory */
@@ -97,7 +101,7 @@ public class RequestFamilyItemsService {
 		/* create family inventory records */
 		updateFamilyInventory(requestItems, familyNumber, homeVisitor);
 		/* send the email to the supervisor */
-		sendRequestEmail(location, familyNumber, requestItems, homeVisitor);
+		sendRequestEmail(familyNumber, requestItems, homeVisitor);
 		return RequestState.PENDING;
 	}
 
@@ -105,24 +109,35 @@ public class RequestFamilyItemsService {
 			final Inventory inventory) {
 		HomeVisitor homeVisitor = userService.getHomeVisitor(familyInventory.getRequestorId());
 
-		final String messageBody = String.format(APPROVED_MESSAGE, approvingSupervisor.getFirstName(),
-				approvingSupervisor.getLastName(), familyInventory.getQuantity(), inventory.getProductDesc(),
-				familyInventory.getFamilyId());
+		final Integer quantity = familyInventory.getQuantity();
+		final String productDesc = inventory.getProductDesc();
+		final String location = inventory.getLocation();
+		final String lineItemDescription = String.format(LINE_ITEM_FMT, quantity, productDesc, location);
+
+		final String hvFirstName = homeVisitor.getFirstName();
+		final String hvLastName = homeVisitor.getLastName();
+		final String suFirstName = approvingSupervisor.getFirstName();
+		final String suLastName = approvingSupervisor.getLastName();
+		final String familyId = familyInventory.getFamilyId();
 		final String toEmail = homeVisitor.getEmail();
 		final String ccEmail = approvingSupervisor.getEmail();
-		final String subject = messageBody;
+
+		final String messageBody = String.format(APPROVED_MESSAGE, hvFirstName, hvLastName, suFirstName, suLastName,
+				familyId, lineItemDescription);
+		final String subject = String.format(APPROVED_SUBJECT, familyId);
 		mailService.sendMail(FROM_EMAIL_ACCOUNT, toEmail, ccEmail, subject, messageBody);
 	}
 
-	private void sendRequestEmail(String location, final String familyNumber, final List<RequestItem> requestItems,
+	private void sendRequestEmail(final String familyNumber, final List<RequestItem> requestItems,
 			final HomeVisitor homeVisitor) {
-		final List<String> itemDescriptions = inventoryBO.getItemDescriptions(requestItems);
+		final List<String> lineItemDescriptions = inventoryBO.getLineItemEmailDescriptions(requestItems);
 		final String ccEmail = homeVisitor.getEmail();
 		final String supervisorEmail = homeVisitor.getSupervisorEmail();
-		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, familyNumber, location);
+		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, familyNumber);
 		final String firstName = homeVisitor.getFirstName();
 		final String lastname = homeVisitor.getLastName();
-		final String messageBody = requestBO.getMessageBody(location, firstName, lastname, itemDescriptions);
+		final String supervisor = homeVisitor.getSupervisor();
+		final String messageBody = requestBO.getMessageBody(firstName, lastname, supervisor, lineItemDescriptions);
 		mailService.sendMail(FROM_EMAIL_ACCOUNT, supervisorEmail, ccEmail, subject, messageBody);
 	}
 
