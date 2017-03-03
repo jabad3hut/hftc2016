@@ -24,7 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class RequestFamilyItemsService {
 
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsService.class);
-	private static final String APPROVED_MESSAGE = "%s %s approved %d %s to deliver to family %s";
+	public static final String APPROVED_MESSAGE = "%s %s approved %d %s to deliver to family %s";
+	public static final String FROM_EMAIL_ACCOUNT = "inventory@pcat.org";
 	@Autowired
 	private MailService mailService;
 	@Autowired
@@ -108,23 +109,21 @@ public class RequestFamilyItemsService {
 				approvingSupervisor.getLastName(), familyInventory.getQuantity(), inventory.getProductDesc(),
 				familyInventory.getFamilyId());
 		final String toEmail = homeVisitor.getEmail();
-		final String fromEmail = approvingSupervisor.getEmail();
-		final String ccEmail = fromEmail;
+		final String ccEmail = approvingSupervisor.getEmail();
 		final String subject = messageBody;
-		mailService.sendMail(fromEmail, toEmail, ccEmail, subject, messageBody);
+		mailService.sendMail(FROM_EMAIL_ACCOUNT, toEmail, ccEmail, subject, messageBody);
 	}
 
 	private void sendRequestEmail(String location, final String familyNumber, final List<RequestItem> requestItems,
 			final HomeVisitor homeVisitor) {
 		final List<String> itemDescriptions = inventoryBO.getItemDescriptions(requestItems);
-		final String fromEmail = homeVisitor.getEmail();
-		final String ccEmail = fromEmail;
+		final String ccEmail = homeVisitor.getEmail();
 		final String supervisorEmail = homeVisitor.getSupervisorEmail();
 		final String subject = String.format(HomeVisitorEmailRequestBO.HOME_VISITOR_SUBJECT, familyNumber, location);
 		final String firstName = homeVisitor.getFirstName();
 		final String lastname = homeVisitor.getLastName();
 		final String messageBody = requestBO.getMessageBody(location, firstName, lastname, itemDescriptions);
-		mailService.sendMail(fromEmail, supervisorEmail, ccEmail, subject, messageBody);
+		mailService.sendMail(FROM_EMAIL_ACCOUNT, supervisorEmail, ccEmail, subject, messageBody);
 	}
 
 	public void setFamilyInventoryDao(FamilyInventoryDao familyInventoryDao) {
