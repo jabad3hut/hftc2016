@@ -24,10 +24,8 @@ public class RequestFamilyItemsService {
 
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsService.class);
 	public static final String LINE_ITEM_FMT = "Qty:  %s %s from %s";
-	public static final String APPROVED_MESSAGE = "Requestor: %s %s" + HomeVisitorEmailRequestBO.NEW_LINE
-			+ "Approver:  %s %s" + HomeVisitorEmailRequestBO.NEW_LINE + "Family Number:  %s "
-			+ HomeVisitorEmailRequestBO.NEW_LINE + "Approved the following:" + HomeVisitorEmailRequestBO.NEW_LINE + "%s"
-			+ HomeVisitorEmailRequestBO.NEW_LINE;
+	public static final String APPROVED_MESSAGE = "Requestor: %s %s%n"
+			+ "Approved the following:%n%s%n";
 	public static final String APPROVED_SUBJECT = "Request approval for family %s";
 	public static final String FROM_EMAIL_ACCOUNT = "inventory@pcat.org";
 	@Autowired

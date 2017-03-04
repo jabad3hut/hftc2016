@@ -47,10 +47,10 @@ public class LoginController {
 		logger.info("@RequestMapping(value = /loginPage)	"
 				+ "public ModelAndView isUserLoggedIn(HttpServletRequest request, Model model)");
 		String email = request.getParameter("email");
-		logger.info("I am in login controller... {}", email);
+		logger.debug("I am in login controller... {}", email);
 		User user = loginService.validateUserLogin(email);
-		logger.info("User is... {}", user);
-		String forward = null;
+		logger.debug("User is... {}", user);
+		String forward = "index.jsp";
 		if (user != null) {
 			if (user.getRole().toLowerCase().contains("admin")) {
 				forward = "listAllUsers.jsp";

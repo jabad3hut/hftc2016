@@ -99,8 +99,7 @@ public class RequestFamilyItemsServiceTest {
 		logger.debug(String.format("subject: %s", testSubject));
 
 		StringBuffer testMessage = new StringBuffer("Requestor:  testFirstName testLastname"
-				+ HomeVisitorEmailRequestBO.NEW_LINE + "Approver:  supervisorFirst supervisorLast"
-				+ HomeVisitorEmailRequestBO.NEW_LINE + "These items have been requested:");
+				+ "Approver:  supervisorFirst supervisorLast%nThese items have been requested:");
 		for (int x = 1; x < 7; x++) {
 			testMessage.append(String.format("%nItem %d", x));
 		}
