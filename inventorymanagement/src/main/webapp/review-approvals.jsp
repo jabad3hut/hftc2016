@@ -29,7 +29,7 @@ var url = "listAllInventoriesPending"
 	            { "targets": 3, "data": "location" },
 	            { "targets": 4, "data": "quantity" },
 	            { "targets": 5, "data": "status" },
-	            { "targets": 7, "data": "id", "visible": true },
+	            { "targets": 7, "data": "id", "visible": false },
 	            { "targets": 6, "render":
 	              function(data, type, row, meta) {
 	            	  console.log(row);
