@@ -16,3 +16,4 @@ buildtmp
 .classpath
 scratch/
 .pydevproject
+dev_config
