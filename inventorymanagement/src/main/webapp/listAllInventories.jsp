@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>Manage items | PCAT inventory</title>
+<title>Manage items | PCAT Inventory Management</title>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -49,10 +49,10 @@
 		<input type="hidden" name="totalInventory" id="totalInventory" value="3"/>
 		<input type="hidden" name="userId" id="userId" value="${user.id}"/>
 	<nav>
-		<a href="http://www.pcat.org/"> <img
+		<a href="http://www.pcat.org/inventorymanagement"> <img
 			src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
 		</a>
-
+		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
 		<button name="logout" class="button logout-button neutral">
 			Log out</button>
 	</nav>

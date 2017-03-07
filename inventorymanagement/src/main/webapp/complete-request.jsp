@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Complete a request | PCAT inventory</title>
+    <title>Complete a request | PCAT Inventory Management</title>
 </head>
 <body>
 
@@ -14,10 +14,10 @@
 	<input type="hidden" name="userId" id="userId" value="<%=request.getParameter("userId") %>"/>
 	<input type="hidden" name="inventoryId" id="inventoryId" value="${inventory.id}"/>
 	<nav>
-        <a href="http://www.pcat.org/">
+        <a href="http://www.pcat.org/inventorymanagement">
             <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
         </a>
-
+		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
         <button name="logout" class="button logout-button neutral">
             Log out
         </button>

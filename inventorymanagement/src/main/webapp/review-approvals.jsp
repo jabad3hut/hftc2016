@@ -4,13 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
     <script src="vendor/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vendor/datatables.min.css"/>
  
     <script type="text/javascript" src="vendor/datatables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Review approvals | PCAT inventory</title>
+    <title>Review approvals | PCAT Inventory Management</title>
 
 <script type="text/javascript"> 
 
@@ -62,10 +63,10 @@ var url = "listAllInventoriesPending"
 <body>
 
     <nav>
-        <a href="http://www.pcat.org/">
+        <a href="http://www.pcat.org/inventorymanagement">
             <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
         </a>
-
+	 <span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
      <button name="logout" class="button logout-button neutral">
             Log out
         </button>

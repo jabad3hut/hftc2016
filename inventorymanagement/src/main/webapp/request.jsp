@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
 <script src="vendor/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="vendor/jquery.validate.min.js"></script>
 <script type="text/javascript" src="vendor/additional-methods.min.js"></script>
@@ -14,40 +15,41 @@
 
 <script src="request.js"></script>
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>Request items | PCAT inventory</title>
+<title>Request items | PCAT Inventory Management</title>
 </head>
 <body>
 
 	<nav>
-		
-		<a href="http://www.pcat.org/"> <img
+
+		<a href="http://www.pcat.org/inventorymanagement"> <img
 			src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
 		</a>
-
+		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
 		<button name="logout" class="button logout-button neutral">
 			Log out</button>
 	</nav>
 
 	<section>
 		<div class="section-body">
-		<p> </p>
+			<p></p>
 			<h1>Request items from our inventory</h1>
 
 			<form action="foo" id="request-items" style="padding: 0 5rem;">
 
-				<input type="hidden" name="userId" value="${user.id}"/>
+				<input type="hidden" name="userId" value="${user.id}" />
 
 				<div class="inline-directive">
 					<h2>Enter the family number:</h2>
 
 					<label><input type="text" name="familyNumber"
 						class="family-number-input">&nbsp i.e. XXXX-9999</label>
-					 
+
 				</div>
 
 				<h2 style="margin: -2rem 5rem 3rem 5rem">
-					Request an item by entering a quantity <br>and clicking the
-					Request button for an item:
+					You can only request one item at a time<br>
+					You can change the quantity that you are requesting<br>
+					Clicking the item's request button requests the item<br>
 				</h2>
 
 				<div style="padding: 0 5rem;">

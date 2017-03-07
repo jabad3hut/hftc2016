@@ -47,7 +47,7 @@ public class LoginController {
 		logger.info("@RequestMapping(value = /loginPage)	"
 				+ "public ModelAndView isUserLoggedIn(HttpServletRequest request, Model model)");
 		String email = request.getParameter("email");
-		logger.debug("I am in login controller... {}", email);
+		logger.info("I am in login controller... {}", email);
 		User user = loginService.validateUserLogin(email);
 		logger.debug("User is... {}", user);
 		String forward = "index.jsp";
