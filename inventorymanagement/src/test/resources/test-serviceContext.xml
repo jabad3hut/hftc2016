@@ -14,32 +14,29 @@
 
 
 	<context:component-scan base-package="org.pcat.inventory" />
-
+	
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		location="file:${HOME}/Projects/hftc2016/dev_config/application.properties" />
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-		<property name="url" value="jdbc:sqlserver://pcat-stage-db-server.database.windows.net:1433;database=pcat_stage;user=pcat-administrator@pcat-stage-db-server;password=Nashville-Nashville-Stage;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;" 
-			/>
-		<property name="username" value="pcat-administrator@pcat-stage-db-server" />
-		<property name="password" value="Nashville-Nashville-Stage" />
+		<property name="url" value="${PCAT_DB_URL}" />
+		<!-- <property name="url" value="jdbc:sqlserver://pcat-stage-db-server.database.windows.net:1433;database=pcat_stage;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;" 
+			/> -->
+		<property name="username" value="${PCAT_DB_USER}" />
+		<property name="password" value="${PCAT_DB_USER_PWD}" />
 		<property name="initialSize" value="10" />
 	</bean>
 
-<!-- 
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	-->
-		<!-- <property name="url" value="jdbc:mysql://aakgwj8rgpuot0.cg1pejs3vq92.us-east-1.rds.amazonaws.com:3306/pcat?useSSL=false" 
-			/> -->
-		<!-- 
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/pcat?useSSL=false" />
-		<property name="username" value="root" />
-		<property name="password" value="masterUsername" />
-		<property name="initialSize" value="31" />
-	</bean>
- -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="com.mysql.jdbc.Driver" 
+		/> -->
+	<!-- <property name="url" value="jdbc:mysql://aakgwj8rgpuot0.cg1pejs3vq92.us-east-1.rds.amazonaws.com:3306/pcat?useSSL=false" 
+		/> -->
+	<!-- <property name="url" value="jdbc:mysql://localhost:3306/pcat?useSSL=false" 
+		/> <property name="username" value="root" /> <property name="password" value="masterUsername" 
+		/> <property name="initialSize" value="31" /> </bean> -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

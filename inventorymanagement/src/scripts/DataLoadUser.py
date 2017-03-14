@@ -1,10 +1,10 @@
 import pymssql
 from StdSuites.Table_Suite import row
 user_insert_template = "insert into \"user_info\" (FIRSTNAME, lastname, supervisor, email, role, supervisor_email, isactive) values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6})"
-server = 'pcat-stage-db-server.database.windows.net'
-password =  'Nashville-Nashville-Stage'
-user ='pcat-administrator@pcat-stage-db-server'
-database ='pcat_stage'
+server = 'pcat.database.windows.net'
+password =  'Nashville-Nashville-Production'
+user ='pcat-notorius@pcat'
+database ='pcat'
 autocommit=True
 cnx = pymssql.connect(server=server, user=user, password=password, database=database,autocommit=autocommit )
 

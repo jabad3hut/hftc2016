@@ -1,10 +1,10 @@
 import pymssql
 from StdSuites.Table_Suite import row
 inventory_insert_template = "insert into inventory (TOTAL_INVENTORY, PRODUCT_NAME, PRODUCT_DESC,LOCATION) values({0}, '{1}', '{2}', '{3}')"
-server = 'pcat-stage-db-server.database.windows.net'
-password =  'Nashville-Nashville-Stage'
-user ='pcat-administrator@pcat-stage-db-server'
-database ='pcat_stage'
+server = 'pcat.database.windows.net'
+password =  'Nashville-Nashville-Production'
+user ='pcat-notorius@pcat'
+database ='pcat'
 autocommit=True
 cnx = pymssql.connect(server=server, user=user, password=password, database=database,autocommit=autocommit )
 
