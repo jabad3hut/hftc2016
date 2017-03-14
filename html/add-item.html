@@ -7,43 +7,89 @@
 </head>
 <body>
 
-    <nav>
-        <a href="http://www.pcat.org/">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
+    <div class="content">
+        <nav>
+            <a href="http://www.pcat.org/">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
 
-        <!--<ul class="nav-list">-->
-        <!--<li><a href="request.html">Request items</a></li>-->
-        <!--<li><a href="review-approvals.html">Review pending approvals</a></li>-->
-        <!--</ul>-->
+            <!--<ul class="nav-list">-->
+            <!--<li><a href="request.html">Request items</a></li>-->
+            <!--<li><a href="review-approvals.html">Review pending approvals</a></li>-->
+            <!--</ul>-->
 
-        <ul class="nav-list">
-            <li><a href="index.html">A1</a></li>
-            <li><a href="request.html">B1</a></li>
-            <li><a href="complete-request.html" style="color: rgba(1,1,1,0.2)">B2</a></li>
-            <li><a href="confirm-request.html" style="color: rgba(1,1,1,0.2)">B3</a></li>
-            <li><a href="review-approvals.html">C1</a></li>
-            <li><a href="confirm-approvals.html" style="color: rgba(1,1,1,0.2)">C2</a></li>
-            <li><a href="manage-items.html">D1</a></li>
-            <li><a href="update-items.html" style="color: rgba(1,1,1,0.2)">D2</a></li>
-            <li><a href="add-item.html" style="color: rgba(1,1,1,0.2)">D3</a></li>
-            <li><a href="manage-users.html">D4</a></li>
-            <li><a href="update-users.html" style="color: rgba(1,1,1,0.2)">D5</a></li>
-            <li><a href="add-user.html" style="color: rgba(1,1,1,0.2)">D6</a></li>
-        </ul>
+            <ul class="nav-list">
+                <li><a href="index.html">A1</a></li>
+                <li><a href="request.html">B1</a></li>
+                <li><a href="complete-request.html" style="color: rgba(1,1,1,0.2)">B2</a></li>
+                <li><a href="confirm-request.html" style="color: rgba(1,1,1,0.2)">B3</a></li>
+                <li><a href="review-approvals.html">C1</a></li>
+                <li><a href="confirm-approvals.html" style="color: rgba(1,1,1,0.2)">C2</a></li>
+                <li><a href="manage-items.html">D1</a></li>
+                <li><a href="update-items.html" style="color: rgba(1,1,1,0.2)">D2</a></li>
+                <li><a href="add-item.html" style="color: rgba(1,1,1,0.2)">D3</a></li>
+                <li><a href="manage-users.html">D4</a></li>
+                <li><a href="update-users.html" style="color: rgba(1,1,1,0.2)">D5</a></li>
+                <li><a href="add-user.html" style="color: rgba(1,1,1,0.2)">D6</a></li>
+            </ul>
 
-        <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+            <button name="logout" class="button logout-button neutral">
+                Log out
+            </button>
+        </nav>
 
-    <section>
-        <div class="section-body">
-            <h1>
-                Add an inventory item
-            </h1>
-        </div>
-    </section>
+        <section>
+            <div class="section-body">
+                <h1>
+                    Add an inventory item
+                </h1>
+
+                <form style="margin: -3rem 5rem 3rem 5rem;">
+                    <div class="add-form">
+                        <label for="prodName">
+                            Product name:
+                        </label>
+                        <input type="text" id="prodName" name="prodName" class="input-field" style="width: 20rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="prodDescription">
+                            Product Description:
+                        </label>
+                        <input type="text" id="prodDescription" name="prodDescription" class="input-field" style="width: 20rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="prodQuantity">
+                            Quantity:
+                        </label>
+                        <input type="number" id="prodQuantity" name="prodQuantity" class="input-field" style="width: 5rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="prodLocation">
+                            Location:
+                        </label>
+                        <select id="prodLocation" name="prodLocation" style="min-width: 16rem;" >
+                            <option value="nashville" selected>Nashville</option>
+                            <option value="chattanooga">Chattanooga</option>
+                            <option value="oak-ridge">Oak Ridge</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top: 3rem; display: flex; justify-content: center;">
+                        <button type="reset" name="cancel-request" class="button medium-button neutral">
+                            Cancel
+                        </button>
+
+                        <button type="submit" name="submit-request" class="button medium-button affirmative">
+                            Add this item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 
     <footer>
         Prevent Child Abuse Tennessee

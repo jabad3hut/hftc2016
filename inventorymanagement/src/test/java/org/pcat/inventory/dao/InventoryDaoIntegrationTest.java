@@ -56,7 +56,7 @@ public class InventoryDaoIntegrationTest {
 			logger.debug(String.format("inventory created: %s", insertInv.toString()));
 			createdIds.add(insertInv.getId());
 		}
-		Collection<Inventory> inventory = inventoryDao.getCollectionById(createdIds.subList(12, 18));
+		Collection<Inventory> inventory = inventoryDao.getCollectionByIds(createdIds.subList(12, 18));
 
 		inventory.forEach(invent -> logger.debug(String.format("collection inventory : %s", invent.toString())));
 		List<String> prodNames = new ArrayList<>();

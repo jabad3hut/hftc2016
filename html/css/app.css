@@ -2,6 +2,14 @@ html {
     font: 12px "Helvetica", sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
+.content {
+    min-height: calc(100vh - 50px - 3rem);
+}
+
 h1 {
     font-weight: normal;
     font-size: 3.5rem;
@@ -106,10 +114,8 @@ footer {
     font-size: 1.5rem;
     background-color: #5c707b;                  /* pcat dark gray */
     color: white;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    height: 20px;
+    margin-top: 30px;
     padding: 1.5rem;
     text-align: center;
 }
@@ -165,7 +171,15 @@ footer {
 }
 
 .button.neutral:hover {
-    background-color: gray;
+    background-color: #748491;                  /* darker than pcat medium gray */
+}
+
+.danger {
+    background-color: #313131;                  /* close to black */
+}
+
+.button.danger:hover {
+    background-color: #010101;                  /* very nearly black */
 }
 
 .big-button {
@@ -177,7 +191,7 @@ footer {
 .medium-button {
     font-size: 1.25rem;
     padding: 1rem 2rem;
-    margin: 0 5rem 5rem 5rem;
+    margin: 0 3rem 5rem 3rem;
 }
 
 .inline-button {
@@ -192,7 +206,7 @@ footer {
 
 .confirm {
     background-color: white;
-    border: 1px solid #cdd6dd;                    /* pcat light gray */
+    border: 1px solid #cdd6dd;                  /* pcat light gray */
     margin: .175rem .5rem .175rem 0;
 }
 
@@ -210,15 +224,17 @@ footer {
     padding-left: 1rem;
     height: 2rem;
     margin: .25rem 0 0 0;
+    font-size: 1.25rem;
 }
 
-.family-number-input {
-    border: 1px solid #cdd6dd;                    /* pcat light gray */
+.input-field {
+    border: 1px solid #cdd6dd;                  /* pcat light gray */
+    border-radius: .25rem;
 }
 
 .item-box {
     padding: 1rem 2rem 2rem 2rem;
-    background-color: #f5f8fa;                    /* lighter than pcat light gray */
+    background-color: #f5f8fa;                  /* lighter than pcat light gray */
     border-radius: .5rem;
 }
 
@@ -233,7 +249,7 @@ footer {
 
 .review-table-row-label {
     font-size: 1.25rem;
-    color: #8595a2;                               /* pcat medium gray */
+    color: #8595a2;                             /* pcat medium gray */
     margin: 0 1rem;
 }
 
@@ -266,4 +282,29 @@ th {
 
 form h2 {
     font-size: 2rem;
+}
+
+form .error {
+    color: #ff0000;
+}
+
+.add-form {
+    padding: .75rem;
+}
+
+.add-form label {
+    font-size: 2rem;
+    color: #5c707b;                             /* pcat dark gray */
+    padding-right: .5rem;
+}
+
+.add-form input,
+select {
+    height: 2rem;
+    font-size: 1.25rem;
+}
+
+.add-form input {
+    padding-left: 1rem;
+    margin: .25rem 0 0 0;
 }
