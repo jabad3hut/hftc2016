@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <script src="vendor/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vendor/datatables.min.css"/>
- 
+
     <script type="text/javascript" src="vendor/datatables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
     <title>Review approvals | PCAT inventory</title>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 var url = "listAllInventoriesPending"
 	$(document).ready(function(){
@@ -61,7 +61,7 @@ var url = "listAllInventoriesPending"
 <body>
 
     <div class="content">
-        <nav>
+        <header>
             <a href="http://www.pcat.org/">
                 <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
             </a>
@@ -69,9 +69,18 @@ var url = "listAllInventoriesPending"
             <button name="logout" class="button logout-button neutral">
                 Log out
             </button>
-        </nav>
+        </header>
 
         <section>
+            <nav>
+                <ul>
+                    <li class="underlined"><a href="request.jsp">request an item</a></li>
+                    <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                    <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                    <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+                </ul>
+            </nav>
+
             <div class="section-body">
                 <h1>
                     Review pending approvals

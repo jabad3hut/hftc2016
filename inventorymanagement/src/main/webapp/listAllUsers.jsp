@@ -21,7 +21,7 @@
 	            "url": url,
 	            "dataSrc": ""
 	        },
-	        "columns": [            
+	        "columns": [
 				{ "data": "id" },
 	            { "data": "firstName" },
 	            { "data": "lastName" },
@@ -30,7 +30,7 @@
 	            { "data": "supervisor" },
 	            { "data": "supervisoremail" },
 	            { "render": function(data, type, row, meta) {
-	                
+
 	                  return '<input type="hidden" name="userId"><a href="gotoComplete?id=' + row.id + '">Update/Delete</a>';
 	              }
 	            }
@@ -38,14 +38,14 @@
 	        ]
 	    } );
 	});
-	
+
 	function dothis(parameter) {
 	 if(parameter == 'add') {
 		 window.location.href="addUserPage";
 	 }
-		
+
 	}
-	
+
 </script>
 </head>
 <body>
@@ -58,16 +58,26 @@
 				<input type="hidden" name="location" id="location" value="Nashville"/>
 				<input type="hidden" name="totalInventory" id="totalInventory" value="3"/>
 				<input type="hidden" name="userId" id="userId" value="${user.id}"/>
-			<nav>
-				<a href="http://www.pcat.org/"> <img
-					src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+			<header>
+				<a href="http://www.pcat.org/">
+					<img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
 				</a>
 
 				<button name="logout" class="button logout-button neutral">
-					Log out</button>
-			</nav>
+					Log out
+				</button>
+			</header>
 
 			<section>
+        <nav>
+            <ul>
+                <li class="underlined"><a href="request.jsp">request an item</a></li>
+                <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+            </ul>
+        </nav>
+
 				<div class="section-body">
 					<h1>Manage users</h1>
 
@@ -87,9 +97,9 @@
 						</thead>
 					</table>
 
-                    <button name="add-user" class="button medium-button affirmative" onclick="dothis('add')">
-                        Add a user
-                    </button>
+          <button name="add-user" class="button medium-button affirmative" onclick="dothis('add')">
+              Add a user
+          </button>
 				</div>
 			</section>
 		</form>

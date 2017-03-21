@@ -7,7 +7,7 @@ body {
 }
 
 .content {
-    min-height: calc(100vh - 50px - 3rem);
+    min-height: calc(100vh - 7rem);
 }
 
 h1 {
@@ -49,7 +49,7 @@ h4 {
     margin: 1rem 1rem 1rem 1rem;
 }
 
-nav {
+header {
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -59,23 +59,79 @@ nav {
     padding: 1rem 0;
     background-color: white;
     box-shadow: 0 .25rem .15rem 0 #d4d4d4;
-}
-
-.nav-list {
-    display: flex;
-    list-style-type: none;
-    align-self: center;
     z-index: 1;
 }
 
-.nav-list li a {
-    padding-right: 2rem;
-    color: #217ace;                             /* lighter than pcat dark blue */
-    text-decoration: none;
+nav {
+    height: 3.5rem;
+    background-color: #ededed;
+    margin-top: -2rem;
+    font-size: 1.25rem;
 }
 
-.nav-list li a:hover {
-    color: #005dab;                             /* pcat dark blue */
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    z-index: 1;
+    padding: 0;
+}
+
+nav li {
+    margin-top: 1.125rem;
+}
+
+nav li a {
+    padding: .875rem 2rem;
+    text-decoration: none;
+    color: #8595a2;                             /* pcat medium gray */
+    -webkit-transition: color .25s;
+    transition: color .25s;
+}
+
+nav ul:not(:hover) > li {
+    opacity: 1;
+    -webkit-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+nav ul:hover > li {
+    opacity: .5;
+    -webkit-transition: opacity .25s;
+    transition: opacity .25s;
+}
+
+nav ul:hover > li:hover {
+    opacity: 1;
+    -webkit-transition: opacity .25s;
+    transition: opacity .25s;
+}
+
+nav ul:hover > li:hover a {
+    color: #313131;                             /* close to black */
+    -webkit-transition: color .25s;
+    transition: color .25s;
+}
+
+.underlined {
+    display: inline-block;
+    position: relative;
+}
+
+.underlined:after {
+    content: '';
+    display: block;
+    margin: auto;
+    margin-top: .6rem;
+    height: .25rem;
+    width: 100%;
+    background: transparent;
+    -webkit-transition: background-color 1s ease;
+    transition: background-color 1s ease;
+}
+
+.underlined:hover:after {
+    background: #005dab;                        /* pcat dark blue */
 }
 
 .pcat-logo {
@@ -114,8 +170,8 @@ footer {
     font-size: 1.5rem;
     background-color: #5c707b;                  /* pcat dark gray */
     color: white;
-    height: 20px;
-    margin-top: 30px;
+    height: 1.5rem;
+    margin-top: 2.5rem;
     padding: 1.5rem;
     text-align: center;
 }
