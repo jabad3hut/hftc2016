@@ -5,7 +5,7 @@
 			<Pattern>%d [%thread] %-5level %logger{136} - %msg%n</Pattern>
 		</layout>
 	</appender>
-	<root level="${root-level:-INFO}">
+	<root level="${root-level:-TRACE}">
 		<appender-ref ref="CONSOLE" />
 	</root>
 </configuration>
