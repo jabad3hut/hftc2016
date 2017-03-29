@@ -21,14 +21,14 @@
 	            "url": url,
 	            "dataSrc": ""
 	        },
-	        "columns": [            
+	        "columns": [
 				{ "data": "id" },
 	            { "data": "productName" },
 	            { "data": "productDesc" },
 	            { "data": "totalInventory" },
 	            { "data": "location" },
 	            { "render": function(data, type, row, meta) {
-	                
+
 	                  return '<input type="hidden" name="inventoryId"><a href="gotoComplete?id=' + row.id + '">Update/Delete</a>';
 	              }
 	            }
@@ -36,53 +36,68 @@
 	        ]
 	    } );
 	});
-	
+
 </script>
 </head>
 <body>
 
-<form action="gotoComplete" method="get">
-		<input type="hidden" name="id" id="id" value="3"/>
-		<input type="hidden" name="productName" id="productName" value="Car Seat"/>
-		<input type="hidden" name="productDesc" id="productDesc" value="Infant"/>
-		<input type="hidden" name="location" id="location" value="Nashville"/>
-		<input type="hidden" name="totalInventory" id="totalInventory" value="3"/>
-		<input type="hidden" name="userId" id="userId" value="${user.id}"/>
-	<nav>
-		<a href="http://www.pcat.org/inventorymanagement"> <img
-			src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-		</a>
-		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-		<button name="logout" class="button logout-button neutral">
-			Log out</button>
-	</nav>
+	<div class="content">
+		<form action="gotoComplete" method="get">
+				<input type="hidden" name="id" id="id" value="3"/>
+				<input type="hidden" name="productName" id="productName" value="Car Seat"/>
+				<input type="hidden" name="productDesc" id="productDesc" value="Infant"/>
+				<input type="hidden" name="location" id="location" value="Nashville"/>
+				<input type="hidden" name="totalInventory" id="totalInventory" value="3"/>
+				<input type="hidden" name="userId" id="userId" value="${user.id}"/>
+			<header>
+				<a href="http://www.pcat.org/">
+					<img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+				</a>
 
-	<section>
-		<div class="section-body">
-			<h1>Manage inventory</h1>
+				<button name="logout" class="button logout-button neutral">
+					Log out
+				</button>
+			</header>
+
+			<section>
+        <nav>
+            <ul>
+                <li class="underlined"><a href="request.jsp">request an item</a></li>
+                <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+            </ul>
+        </nav>
+
+				<div class="section-body">
+					<h1>Manage inventory</h1>
 
 
-			<table id="dataTable" class="dummy-inventory">
-				<thead>
-					<tr>
-						<th >Inventory Id</th>
-						<th >Product Name</th>
-						<th >Product Description</th>
-						<th >Quantity</th>
-						<th >Location</th>
-						<th ></th>
-					</tr>
-				</thead>
-			</table>
+					<table id="dataTable" class="dummy-inventory">
+						<thead>
+							<tr>
+								<th >Inventory Id</th>
+								<th >Product Name</th>
+								<th >Product Description</th>
+								<th >Quantity</th>
+								<th >Location</th>
+								<th ></th>
+							</tr>
+						</thead>
+					</table>
 
- 			<button name="continue-request" class="button medium-button affirmative">
-                Add an item
-            </button>
-    
-		</div>
-	</section>
+					<button name="add-item" class="button medium-button affirmative">
+						Add an item
+					</button>
 
-	<footer> Prevent Child Abuse Tennessee </footer>
-</form>
+				</div>
+			</section>
+		</form>
+	</div>
+
+	<footer>
+		Prevent Child Abuse Tennessee
+	</footer>
+
 </body>
 </html>

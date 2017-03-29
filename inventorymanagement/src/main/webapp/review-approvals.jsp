@@ -7,13 +7,13 @@
     <link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
     <script src="vendor/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vendor/datatables.min.css"/>
- 
+
     <script type="text/javascript" src="vendor/datatables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
     <title>Review approvals | PCAT Inventory Management</title>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 var url = "listAllInventoriesPending"
 	$(document).ready(function(){
@@ -30,7 +30,7 @@ var url = "listAllInventoriesPending"
 	            { "targets": 3, "data": "location" },
 	            { "targets": 4, "data": "quantity" },
 	            { "targets": 5, "data": "status" },
-	            { "targets": 7, "data": "id", "visible": false },
+	            { "targets": 7, "data": "id", "visible": true },
 	            { "targets": 6, "render":
 	              function(data, type, row, meta) {
 	            	  console.log(row);
@@ -62,51 +62,66 @@ var url = "listAllInventoriesPending"
 </head>
 <body>
 
-    <nav>
-        <a href="http://www.pcat.org/inventorymanagement">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
-	 <span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-     <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+    <div class="content">
+        <header>
+            <a href="http://www.pcat.org/">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
 
-     <section>
-        <div class="section-body">
-            <h1>
-                Review pending approvals
-            </h1>
+            <button name="logout" class="button logout-button neutral">
+                Log out
+            </button>
+        </header>
 
-            <form action="foo" id="request-items" style="padding: 0 5rem;">
+        <section>
+            <nav>
+                <ul>
+                    <li class="underlined"><a href="request.jsp">request an item</a></li>
+                    <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                    <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                    <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+                </ul>
+            </nav>
 
-                <input type="hidden" name="userId" value="${user.id}">
+            <div class="section-body">
+                <h1>
+                    Review pending approvals
+                </h1>
 
-                  <h2 style="margin: -2rem 5rem 3rem 5rem">
-                    Approve a request by clicking the Approve button for an item:
-                </h2>
+                <form action="foo" id="request-items" style="padding: 0 5rem;">
 
-                <div style="padding: 0 5rem;">
-                    <table id="dataTable">
-                        <thead>
-                        <tr>
-                            <th>Requester</th>
-                            <th>Family</th>
-                            <th>Product</th>
-                            <th>Location</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                            <th>Inventory Id</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
+                    <input type="hidden" name="userId" value="${user.id}">
 
-            </form>
+                    <h2 style="margin: -2rem 5rem 3rem 5rem">
+                        Approve a request by clicking the Approve button for an item:
+                    </h2>
 
-        </div>
-    </section>
+                    <div style="padding: 0 5rem;">
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Requester</th>
+                                    <th>Family</th>
+                                    <th>Product</th>
+                                    <th>Location</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                    <th>Inventory Id</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        Prevent Child Abuse Tennessee
+    </footer>
 
 </body>
 </html>

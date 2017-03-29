@@ -10,75 +10,86 @@
 </head>
 <body>
 
-<form action="submitForRequestApproval" method="post">
-	<input type="hidden" name="userId" id="userId" value="<%=request.getParameter("userId") %>"/>
-	<input type="hidden" name="inventoryId" id="inventoryId" value="${inventory.id}"/>
-	<nav>
-        <a href="http://www.pcat.org/inventorymanagement">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
-		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-        <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+    <div class="content">
+        <form action="submitForRequestApproval" method="post">
+            <input type="hidden" name="userId" id="userId" value="<%=request.getParameter("userId") %>"/>
+            <input type="hidden" name="inventoryId" id="inventoryId" value="${inventory.id}"/>
+            <header>
+                <a href="http://www.pcat.org/">
+                    <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+                </a>
 
-    <section>
-        <div class="section-body">
-            <h1>
-                Complete your request
-            </h1>
+                <button name="logout" class="button logout-button neutral">
+                    Log out
+                </button>
+            </header>
 
-            <div class="inline-directive">
-                <h2>
-                    Family number:
-                </h2>
+            <section>
+                <nav>
+                    <ul>
+                        <li class="underlined"><a href="request.jsp">request an item</a></li>
+                        <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                        <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                        <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+                    </ul>
+                </nav>
 
-                <label><input type="text" class="family-number-input" name="familyId" id="familyId"></label>
-            </div>
+                <div class="section-body">
+                    <h1>
+                        Complete your request
+                    </h1>
 
-            <div class="item-box">
-                <h4>
-                    Items You’re requesting:
-                </h4>
+                    <div class="inline-directive">
+                        <h2>
+                            Family number:
+                        </h2>
 
-                <div class="dummy-inventory">
-                    <div class="dummy-inventory-label-row">
-                        <p style="padding-left: 0;">Qty</p>
-                        <p style="padding-left: 1.75rem;">Product #</p>
-                        <p style="padding-left: 2.75rem;">Description</p>
-                        <p style="padding-left: 14.25rem;">Location</p>
+                        <label><input type="text" class="input-field" name="familyId" id="familyId"></label>
                     </div>
 
-                    <div class="dummy-inventory-row">
-                        <div class="dummy-qty dummy-table-row confirm"><input type="text" class="family-number-input" name="quantity" id="quantity"></div>
-                        <div class="dummy-prod dummy-table-row">${inventory.productName}</div>
-                        <div class="dummy-desc dummy-table-row">${inventory.productDesc}</div>
-                        <div class="dummy-loc dummy-table-row">${inventory.location}</div>
+                    <div class="item-box">
+                        <h4>
+                            Items You’re requesting:
+                        </h4>
+
+                        <div class="dummy-inventory">
+                            <div class="dummy-inventory-label-row">
+                                <p style="padding-left: 0;">Qty</p>
+                                <p style="padding-left: 1.75rem;">Product #</p>
+                                <p style="padding-left: 2.75rem;">Description</p>
+                                <p style="padding-left: 14.25rem;">Location</p>
+                            </div>
+
+                            <div class="dummy-inventory-row">
+                                <div class="dummy-qty dummy-table-row confirm"><input type="text" class="input-field" name="quantity" id="quantity"></div>
+                                <div class="dummy-prod dummy-table-row">${inventory.productName}</div>
+                                <div class="dummy-desc dummy-table-row">${inventory.productDesc}</div>
+                                <div class="dummy-loc dummy-table-row">${inventory.location}</div>
+                            </div>
+                        </div>
                     </div>
+
+                    <h3 style="margin: 4rem 8rem 2rem 8rem;">
+                        To remove an item from the list, set quantity to 0 (zero) before submitting.
+                    </h3>
+
+                    <div>
+                        <button name="cancel-request" class="button medium-button neutral">
+                            Start over
+                        </button>
+                        <button name="submit-request" class="button medium-button affirmative">
+                            Submit for approval
+                        </button>
+                    </div>
+
                 </div>
-            </div>
-
-            <h3 style="margin: 4rem 8rem 2rem 8rem;">
-                To remove an item from the list, set quantity to 0 (zero) before submitting.
-            </h3>
-
-            <div>
-                <button name="cancel-request" class="button medium-button neutral">
-                    Start over
-                </button>
-                <button name="submit-request" class="button medium-button affirmative">
-                    Submit for approval
-                </button>
-            </div>
-
-        </div>
-    </section>
+            </section>
+        </form>
+    </div>
 
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
 
-</form>
 </body>
 </html>

@@ -9,32 +9,46 @@
 </head>
 <body>
 
-    <nav>
-        <a href="http://www.pcat.org/inventorymanagement">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
-        <span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-        <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+    <div class="content">
+        <header>
+            <a href="http://www.pcat.org/">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
 
-    <section>
-        <div class="section-body">
-            <h2>
-                Request approved.
-            </h2>
-            <h3>
-                You’ll receive an email confirming your approval of the request.
-            </h3>
-
-            <button name="approvals-return" class="button medium-button affirmative" onclick="history.back(1)">
-                Return to pending approvals list
+            <button name="logout" class="button logout-button neutral">
+                Log out
             </button>
-        </div>
-    </section>
+        </header>
+
+        <section>
+            <nav>
+                <ul>
+                    <li class="underlined"><a href="request.jsp">request an item</a></li>
+                    <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                    <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                    <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+                </ul>
+            </nav>
+
+            <div class="section-body">
+                <h2>
+                    Request approved.
+                </h2>
+
+                <h3>
+                    You’ll receive an email confirming your approval of the request.
+                </h3>
+
+                <button name="approvals-return" class="button medium-button affirmative" onclick="history.back(1)">
+                    Return to pending approvals list
+                </button>
+            </div>
+        </section>
+    </div>
+
     <footer>
         Prevent Child Abuse Tennessee
     </footer>
+
 </body>
 </html>

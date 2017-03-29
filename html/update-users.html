@@ -2,48 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../inventorymanagement/src/main/webapp/css/app.css" media="screen" />
     <title>Update a user | PCAT inventory</title>
 </head>
 <body>
 
-    <nav>
-        <a href="http://www.pcat.org/">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
+    <div class="content">
+        <header>
+            <a href="http://www.pcat.org/">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
 
-        <!--<ul class="nav-list">-->
-        <!--<li><a href="request.html">Request items</a></li>-->
-        <!--<li><a href="review-approvals.html">Review pending approvals</a></li>-->
-        <!--</ul>-->
+            <button name="logout" class="button logout-button neutral">
+                Log out
+            </button>
+        </header>
 
-        <ul class="nav-list">
-            <li><a href="index.html">A1</a></li>
-            <li><a href="request.html">B1</a></li>
-            <li><a href="complete-request.html" style="color: rgba(1,1,1,0.2)">B2</a></li>
-            <li><a href="confirm-request.html" style="color: rgba(1,1,1,0.2)">B3</a></li>
-            <li><a href="review-approvals.html">C1</a></li>
-            <li><a href="confirm-approvals.html" style="color: rgba(1,1,1,0.2)">C2</a></li>
-            <li><a href="manage-items.html">D1</a></li>
-            <li><a href="update-items.html" style="color: rgba(1,1,1,0.2)">D2</a></li>
-            <li><a href="add-item.html" style="color: rgba(1,1,1,0.2)">D3</a></li>
-            <li><a href="manage-users.html">D4</a></li>
-            <li><a href="update-users.html" style="color: rgba(1,1,1,0.2)">D5</a></li>
-            <li><a href="add-user.html" style="color: rgba(1,1,1,0.2)">D6</a></li>
-        </ul>
+        <section>
+            <nav>
+                <ul>
+                    <li class="underlined"><a href="request.html">request an item</a></li>
+                    <li class="underlined"><a href="review-approvals.html">review approvals</a></li>
+                    <li class="underlined"><a href="manage-items.html">manage items</a></li>
+                    <li class="underlined"><a href="manage-users.html">manage users</a></li>
+                </ul>
+            </nav>
 
-        <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
+            <div class="section-body">
+                <h1>
+                    Update a user
+                </h1>
 
-    <section>
-        <div class="section-body">
-            <h1>
-                Update a user
-            </h1>
-        </div>
-    </section>
+                <form style="margin: -3rem 5rem 3rem 5rem;">
+                    <div class="add-form">
+                        <label for="updateFirstName">
+                            First name:
+                        </label>
+                        <input type="text" id="updateFirstName" name="firstName" class="input-field" style="width: 15rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="updateLastName">
+                            Last name:
+                        </label>
+                        <input type="text" id="updateLastName" name="lastName" class="input-field" style="width: 15rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="updateUserEmail">
+                            Email address:
+                        </label>
+                        <input type="email" id="updateUserEmail" name="userEmail" class="input-field" style="width: 19rem;" />
+                    </div>
+
+                    <div class="add-form">
+                        <label for="updateUserRole">
+                            Role:
+                        </label>
+                        <select id="updateUserRole" name="userRole" style="min-width: 14rem;" >
+                            <option value="visitor" selected>Home Visitor</option>
+                            <option value="supervisor">Supervisor</option>
+                            <option value="admin">User Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="add-form">
+                        <label for="updateSupervisorName">
+                            Supervisor:
+                        </label>
+                        <select id="updateSupervisorName" name="supervisorName" style="min-width: 18rem;" >
+                            <option value="value1" selected>Bonnie Fernandez</option>
+                            <option value="value2">Cindie Lou Hoo</option>
+                            <option value="value3">Jennifer Caudle</option>
+                        </select>
+                    </div>
+                    <!--<div class="add-form">-->
+                        <!--<label for="updateSupervisorEmail">-->
+                            <!--Supervisor’s email address:-->
+                        <!--</label>-->
+                        <!--<input type="email" id="updateSupervisorEmail" name="supervisorEmail" class="input-field" style="width: 20rem;" />-->
+                    <!--</div>-->
+
+                    <div style="margin-top: 3rem; display: flex; justify-content: center;">
+                        <button type="reset" name="cancel-request" class="button medium-button neutral">
+                            Cancel
+                        </button>
+
+                        <button type="submit" name="delete-user" class="button medium-button danger">
+                            Delete this user
+                        </button>
+
+                        <button type="submit" name="submit-request" class="button medium-button affirmative">
+                            Update this user
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 
     <footer>
         Prevent Child Abuse Tennessee

@@ -10,59 +10,101 @@
 </head>
 <body>
 
-<form action="addUser">
-	<nav>
-		<a href="http://www.pcat.org/inventorymanagement"> <img
-			src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-		</a>
-		<span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-		<button name="logout" class="button logout-button neutral">
-			Log out</button>
-	</nav>
+    <div class="content">
+        <form action="addUser">
+            <header>
+                <a href="http://www.pcat.org/">
+                    <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+                </a>
 
-	<section>
-		<div class="section-body">
-			<h1>Add a user</h1>
+                <button name="logout" class="button logout-button neutral">
+                    Log out
+                </button>
+            </header>
 
-          <div class="inline-directive">
-                    Enter First Name:
-                <label><input type="text" name="firstName" id="firstName" /></label>
-            </div>
-            <br/>
-            <div class="inline-directive">
-                    Enter Last Name:
-                <label><input type="text" name="firstName" id="firstName" /></label>
-            </div>
-            
-            <div class="inline-directive">
-                    Enter Email:
-                <label><input type="text" name="email" id="email" /></label>
-            </div>
-            
-            <div class="inline-directive">
-                    Enter User Role:
-                <label><input type="text" name="role" id="role" /></label>
-            </div>
-            
-            <div class="inline-directive">
-                    Enter Supervisor Name:
-                <label><input type="text" name="supervisor" id="supervisor" /></label>
-            </div>
-            
-            <div class="inline-directive">
-                    Enter Supervisor Email:
-                <label><input type="text" name="supervisoremail" id="supervisoremail" /></label>
-            </div>
-            
-    <input type="submit" value="Add User" name="Submit" class="button medium-button affirmative"/>
-    
-    <input type="reset" value="reset" name="reset" class="button medium-button affirmative"/>
+            <section>
+                <nav>
+                    <ul>
+                        <li class="underlined"><a href="request.jsp">request an item</a></li>
+                        <li class="underlined"><a href="review-approvals.jsp">review approvals</a></li>
+                        <li class="underlined"><a href="listAllInventories.jsp">manage items</a></li>
+                        <li class="underlined"><a href="listAllUsers.jsp">manage users</a></li>
+                    </ul>
+                </nav>
 
- 			
-		</div>
-	</section>
+                <div class="section-body">
+                    <h1>
+                        Add a user
+                    </h1>
 
-	<footer> Prevent Child Abuse Tennessee </footer>
-</form>
+                    <form style="margin: -3rem 5rem 3rem 5rem;">
+                        <div class="add-form">
+                            <label for="firstName">
+                                First name:
+                            </label>
+                            <input type="text" id="firstName" name="firstName" class="input-field" style="width: 15rem;" />
+                        </div>
+
+                        <div class="add-form">
+                            <label for="lastName">
+                                Last name:
+                            </label>
+                            <input type="text" id="lastName" name="lastName" class="input-field" style="width: 15rem;" />
+                        </div>
+
+                        <div class="add-form">
+                            <label for="userEmail">
+                                Email address:
+                            </label>
+                            <input type="email" id="userEmail" name="userEmail" class="input-field" style="width: 19rem;" />
+                        </div>
+
+                        <div class="add-form">
+                            <label for="userRole">
+                                Role:
+                            </label>
+                            <select id="userRole" name="userRole" class="dropdown" style="min-width: 14rem;" >
+                                <option value="visitor" selected>Home Visitor</option>
+                                <option value="supervisor">Supervisor</option>
+                                <option value="admin">User Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="add-form">
+                            <label for="supervisorName">
+                                Supervisor:
+                            </label>
+                            <select id="supervisorName" name="supervisorName" class="dropdown" style="min-width: 18rem;" >
+                                <option value="value1" selected>Bonnie Fernandez</option>
+                                <option value="value2">Cindie Lou Hoo</option>
+                                <option value="value3">Jennifer Caudle</option>
+                            </select>
+                        </div>
+                        <!--<div class="add-form">-->
+                            <!--<label for="supervisorEmail">-->
+                                <!--Supervisor’s email address:-->
+                            <!--</label>-->
+                            <!--<input type="email" id="supervisorEmail" name="supervisorEmail" class="input-field" style="width: 20rem;" />-->
+                        <!--</div>-->
+
+                        <div style="margin-top: 3rem; display: flex; justify-content: center;">
+                            <button type="reset" name="cancel-request" class="button medium-button neutral">
+                                Cancel
+                            </button>
+
+                            <button type="submit" name="submit-request" class="button medium-button affirmative">
+                                Add this user
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <footer>
+        Prevent Child Abuse Tennessee
+    </footer>
+
 </body>
 </html>
