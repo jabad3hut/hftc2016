@@ -4,13 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
     <script src="vendor/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vendor/datatables.min.css"/>
 
     <script type="text/javascript" src="vendor/datatables.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Review approvals | PCAT inventory</title>
+    <title>Review approvals | PCAT Inventory Management</title>
 
 <script type="text/javascript">
 
@@ -52,6 +53,7 @@ var url = "listAllInventoriesPending"
 	    for (var key in payload) {
 	        $('<input>').attr('type','hidden').attr('name',key).attr('value',payload[key]).appendTo($form);
 	    }
+	    $(document.body).append($form)
 	    $form.submit();
 	}
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Complete a request | PCAT inventory</title>
+    <title>Complete a request | PCAT Inventory Management</title>
 </head>
 <body>
 

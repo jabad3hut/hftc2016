@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>PCAT inventory</title>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
+<link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
+<title>PCAT Inventory Management</title>
 </head>
 <body>
 
@@ -38,9 +39,7 @@
         </section>
     </div>
 
-    <footer>
-        Prevent Child Abuse Tennessee
-    </footer>
+	<footer> Prevent Child Abuse Tennessee </footer>
 
 </body>
 </html>

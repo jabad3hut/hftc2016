@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Confirm an approval | PCAT inventory</title>
+    <title>Confirm an approval | PCAT Inventory Management</title>
 </head>
 <body>
 

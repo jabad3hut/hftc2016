@@ -63,13 +63,13 @@ public class InventoryBOTest {
 			logger.debug(String.format("adding %s to items list ", item.toString()));
 			items.add(item);
 		}
-		List<String> inventoryDescriptions = inventoryBO.getItemDescriptions(items);
+		List<String> inventoryDescriptions = inventoryBO.getLineItemEmailDescriptions(items);
 		logger.debug("list is:" + inventoryDescriptions.toString());
 		for (int x = 1; x < 7; x++) {
 			logger.debug(String.format("inventoryDescriptions[%d] is: %s", x, inventoryDescriptions.get(x - 1)));
 			Inventory inv = dao.getById(x);
 			logger.debug(String.format("mock when given %d is returning %s", inv.getId(), inv.getProductDesc()));
-			assertThat(inventoryDescriptions, hasItem(String.format("Item %d", x)));
+			assertThat(inventoryDescriptions, hasItem(String.format("Qty:  1 of Item %d from null", x)));
 		}
 	}
 }

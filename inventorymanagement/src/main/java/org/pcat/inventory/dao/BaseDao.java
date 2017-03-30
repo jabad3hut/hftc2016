@@ -7,11 +7,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.pcat.inventory.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
+	private static final Logger logger = LoggerFactory.getLogger(BaseDao.class);
+
+	public BaseDao() {
+		logger.info("created a dao");
+	}
 
 	protected Object getById(Class clazz, int id) {
 		Object result = null;

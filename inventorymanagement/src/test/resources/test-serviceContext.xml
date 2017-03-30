@@ -12,21 +12,19 @@
     	http://www.springframework.org/schema/data/jpa
     	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	
+
 	<context:component-scan base-package="org.pcat.inventory" />
-
-
+	
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		location="file:${HOME}/Projects/hftc2016/dev_config/application.properties" />
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-
-<property name="url" value="jdbc:mysql://aakgwj8rgpuot0.cg1pejs3vq92.us-east-1.rds.amazonaws.com:3306/pcat?useSSL=false" />  
-<!-- 
-<property name="url" value="jdbc:mysql://localhost:3306/pcat?useSSL=false" /> 
--->
-		<property name="username" value="root" />
-		<property name="password" value="masterUsername" />
-		<property name="initialSize" value="31" /> 
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="${PCAT_DB_URL}" />
+		<property name="username" value="${PCAT_DB_USER}" />
+		<property name="password" value="${PCAT_DB_USER_PWD}" />
+		<property name="initialSize" value="10" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -38,7 +36,7 @@
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="showSql" value="true" />
-		<property name="generateDdl" value="true" />
+		<property name="generateDdl" value="false" />
 		<property name="database" value="MYSQL" />
 	</bean>
 
@@ -59,17 +57,17 @@
 
 	<!-- SET default mail properties -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="mail.smtp2go.com" />
-		<property name="port" value="2525" />
-		<property name="username" value="jeff@jefferyfinley.com" />
-		<property name="password" value="ZgUD34I1Y253Hrcb" />
+		<property name="host" value="smtp.office365.com" />
+		<property name="port" value="587" />
+		<property name="username" value="inventory@pcat.org" />
+		<property name="password" value="Pc@t9876" />
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.smtp.host">mail.smtp2go.com</prop>
+				<prop key="mail.smtp.host">smtp.office365.com</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.debug">true</prop>
-				<prop key="mail.smtp.port">2525</prop>
-				<prop key="mail.smtp.socketFactory.port">2525</prop>
+				<prop key="mail.smtp.port">587</prop>
+				<prop key="mail.smtp.socketFactory.port">587</prop>
 				<prop key="mail.transport.protocol">smtp</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>

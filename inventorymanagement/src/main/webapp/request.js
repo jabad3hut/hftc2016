@@ -5,19 +5,13 @@ $(document).ready(function(){
 		  debug: true,
 		  success: "valid"
 		});
-	/*
-	jQuery.validator.addMethod("familyNumber", function (value, element){
-			var familyNumber = $("#familyNumber").val();
-			var regex = /^\w{4}.*\d+/;
-			return regex.test(familyNumber);
-	});
-	*/
+
 	$("#request-items").validate({
 		rules: {
 			"familyNumber": {
 				required: true,
 				minlength: 5,
-				pattern: /^\w{4}.*\d+/
+				pattern: /^\w{4}.*\d{4}/
 			},
 			"quantity": {
 				required: true,
@@ -25,7 +19,7 @@ $(document).ready(function(){
 			}
 		},
 		messages: {
-			"familyNumber": "Please enter a 4 character county followed by at least one number",
+			"familyNumber": "&nbsp Please enter a 4 character county followed by 4 Numbers",
 			"quantity": "Quantity must be entered"
 		}
 		
@@ -79,6 +73,7 @@ function submitRequest(id)  {
     for (var key in payload) {
         $('<input>').attr('type','hidden').attr('name',key).attr('value',payload[key]).appendTo($form);
     }
+    $(document.body).append($form)
     $form.submit();
 }
 

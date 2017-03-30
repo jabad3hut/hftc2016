@@ -2,16 +2,19 @@ package org.pcat.inventory.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
 
 @Entity
+@Table(name="user_info")
 public class User implements Serializable, PcatPerson {
 
 	/**
@@ -20,10 +23,11 @@ public class User implements Serializable, PcatPerson {
 	private static final long serialVersionUID = 4241272990550941600L;
 	// Fields
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String firstName;
 	private String supervisor;
+	@Column(name = "supervisor_email")
 	private String supervisorEmail;
 	private String email;
 	private String role;

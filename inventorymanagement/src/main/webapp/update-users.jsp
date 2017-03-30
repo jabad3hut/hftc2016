@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-    <title>Update a user | PCAT inventory</title>
+    <title>Update a user | PCAT Inventory Management</title>
 </head>
 <body>
 

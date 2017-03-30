@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>Manage users | PCAT inventory</title>
+<title>Manage users | PCAT Inventory Management</title>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"

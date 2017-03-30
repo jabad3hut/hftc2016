@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: inventorymanagement
+Bundle-SymbolicName: inventorymanagement
+Bundle-Version: 1.0.0.qualifier
+Export-Package: org,
+ org.pcat,
+ org.pcat.inventory,
+ org.pcat.inventory.controller,
+ org.pcat.inventory.dao,
+ org.pcat.inventory.model,
+ org.pcat.inventory.service,
+ org.pcat.inventory.test

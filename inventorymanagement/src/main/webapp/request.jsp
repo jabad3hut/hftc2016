@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="img/PCA-Logo_TN_2C_sm_ico.png">
 <script src="vendor/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="vendor/jquery.validate.min.js"></script>
 <script type="text/javascript" src="vendor/additional-methods.min.js"></script>

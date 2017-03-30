@@ -30,6 +30,7 @@ import ch.qos.logback.classic.Level;
 
 public class RequestFamilyItemsServiceTest {
 
+	private static final String INVENTORY_PCAT_ORG = "inventory@pcat.org";
 	private static final Logger logger = LoggerFactory.getLogger(RequestFamilyItemsServiceTest.class);
 	private static TestHelper helper = new TestHelper();
 
@@ -49,6 +50,7 @@ public class RequestFamilyItemsServiceTest {
 	@Test
 	public void requestItemsTest() {
 		final String familyNumber = "TEST-0001";
+		final String location = "Chattanooga";
 		final HomeVisitor homeVisitor = new HomeVisitor(null, "testFirstName", "testLastName", "testEmail",
 				"supervisorFirst supervisorLast", "testSupervisorEmail");
 		homeVisitor.setId(12);
@@ -92,16 +94,17 @@ public class RequestFamilyItemsServiceTest {
 		for (int x = 1; x < 7; x++) {
 			items.add(String.format("Item %d", x));
 		}
-		when(invBizObj.getItemDescriptions(requestItems)).thenReturn(items);
-
+		when(invBizObj.getLineItemEmailDescriptions(requestItems)).thenReturn(items);
 		final String testSubject = "Requesting supplies for family TEST-0001";
 		logger.debug(String.format("subject: %s", testSubject));
 
-		StringBuffer testMessage = new StringBuffer("These items have been requested by testFirstName testLastName: ");
+		StringBuffer testMessage = new StringBuffer("Requestor:  testFirstName testLastname"
+				+ "Approver:  supervisorFirst supervisorLast%nThese items have been requested:");
 		for (int x = 1; x < 7; x++) {
 			testMessage.append(String.format("%nItem %d", x));
 		}
-		when(emailUtility.getMessageBody("testFirstName", "testLastName", items)).thenReturn(testMessage.toString());
+		when(emailUtility.getMessageBody("testFirstName", "testLastName", "supervisorFirst supervisorLast", items))
+				.thenReturn(testMessage.toString());
 		logger.debug(String.format("body:  %s", testMessage));
 
 		requestFamilyItemsService.requestItems(familyNumber, requestItems, homeVisitor);
@@ -115,8 +118,8 @@ public class RequestFamilyItemsServiceTest {
 		/* Test the requestItems have the right inventory attached */
 		requestItems.forEach(item -> assertThat(verifyInventoryItem(item, mockInventoryDao), equalTo(true)));
 		/* Test that the email was requested properly */
-		verify(ms).sendMail(homeVisitor.getEmail(), homeVisitor.getSupervisorEmail(), homeVisitor.getEmail(),
-				testSubject, testMessage.toString());
+		verify(ms).sendMail(INVENTORY_PCAT_ORG, homeVisitor.getSupervisorEmail(), homeVisitor.getEmail(), testSubject,
+				testMessage.toString());
 
 		/* Test that the inventory are updated correctly */
 	}
@@ -130,20 +133,4 @@ public class RequestFamilyItemsServiceTest {
 		return true;
 	}
 
-	/*
-	 * @Test public void approveFamilyItemRequest(){ final String testSubjectFmt
-	 * = "Approved Request:  %1s %2s items for family $3s have been approved";
-	 * final String testMessageFmt =
-	 * "%1s %2s has approved %3s's items which are:" + newline + "%4s";
-	 * Supervisor supervisor; HomeVisitor homeVisitor; MailService ms; String
-	 * approvedPrintList; RequestItemsForFamily requestItemsForFamily; Test that
-	 * the email for the approval was sent properly String testSubject =
-	 * String.format(testSubjectFmt, homeVisitor.getFirstName(),
-	 * homeVisitor.getLastName(), requestItemsForFamily.getFamilyId()); String
-	 * testMessage = String.format(testMessageFmt, supervisor.getFirstName(),
-	 * supervisor.getLastName(), requestItemsForFamily.getFamilyId(),
-	 * approvedPrintList); verify(ms).sendMail(supervisor.getEmail(),
-	 * homeVisitor.getEmail(), supervisor.getEmail(), testSubject, testMessage
-	 * ); }
-	 */
 }
