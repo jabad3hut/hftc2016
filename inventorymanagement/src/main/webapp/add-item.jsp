@@ -9,23 +9,16 @@
 </head>
 <body>
 
-    <nav>
-        <a href="http://www.pcat.org/inventorymanagement">
-            <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
-        </a>
-        <span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
-        <button name="logout" class="button logout-button neutral">
-            Log out
-        </button>
-    </nav>
-
-    <section>
-        <div class="section-body">
-            <h1>
-                Add an inventory item
-            </h1>
-        </div>
-    </section>
+    <div class="content">
+        <header>
+            <a href="http://www.pcat.org/inventorymanagement">
+                <img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+            </a>
+            <span><h2 style="margin: 0rem 5rem 3rem 5rem">${System.getenv("PCAT_ENVIRONTMENT_DISPLAY_TEXT")}</h2></span>
+            <button name="logout" class="button logout-button neutral">
+                Log out
+            </button>
+        </header>
 
         <section>
             <nav id="nav-bar">
