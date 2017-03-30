@@ -10,6 +10,10 @@ body {
     min-height: calc(100vh - 7rem);
 }
 
+.hidden {
+    display: none;
+}
+
 h1 {
     font-weight: normal;
     font-size: 3.5rem;
@@ -79,6 +83,24 @@ nav ul {
 
 nav li {
     margin-top: 1.125rem;
+    display: inline-block;
+    position: relative;
+}
+
+nav li:after {
+    content: '';
+    display: block;
+    margin: auto;
+    margin-top: .6rem;
+    height: .25rem;
+    width: 100%;
+    background: transparent;
+    -webkit-transition: background-color 1s ease;
+    transition: background-color 1s ease;
+}
+
+nav li:hover:after {
+    background: #005dab;                        /* pcat dark blue */
 }
 
 nav li a {
@@ -111,27 +133,6 @@ nav ul:hover > li:hover a {
     color: #313131;                             /* close to black */
     -webkit-transition: color .25s;
     transition: color .25s;
-}
-
-.underlined {
-    display: inline-block;
-    position: relative;
-}
-
-.underlined:after {
-    content: '';
-    display: block;
-    margin: auto;
-    margin-top: .6rem;
-    height: .25rem;
-    width: 100%;
-    background: transparent;
-    -webkit-transition: background-color 1s ease;
-    transition: background-color 1s ease;
-}
-
-.underlined:hover:after {
-    background: #005dab;                        /* pcat dark blue */
 }
 
 .pcat-logo {
