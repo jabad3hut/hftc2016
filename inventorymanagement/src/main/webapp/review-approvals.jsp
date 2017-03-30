@@ -74,8 +74,8 @@ var url = "listAllInventoriesPending"
         <section>
             <nav id="nav-bar">
                 <ul>
-                    <li>                    <a href="request.html">             request an item     </a>    </li>
-                    <li>                    <a href="review-approvals.html">    review approvals    </a>    </li>
+                    <li>                    <a href="request.jsp">              request an item     </a>    </li>
+                    <li>                    <a href="review-approvals.jsp">     review approvals    </a>    </li>
                     <li id="manage-items">  <a href="listAllInventories.jsp">   manage items        </a>    </li>
                     <li id="manage-users">  <a href="listAllUsers.jsp">         manage users        </a>    </li>
                 </ul>
