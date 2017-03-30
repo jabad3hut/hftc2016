@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "src/pymssql.pyx", line 642, in pymssql.connect (src/pymssql.c:11521)
+pymssql.OperationalError: (20002, 'DB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (pcat-stage-db-server.database.windows.net:1433)\n')

@@ -30,8 +30,7 @@ public class LoginService {
 	 * @param email
 	 * @return User : user if valid user
 	 */
-	public User validateUserLogin(String email)
-	{
+	public User validateUserLogin(String email) {
 		return loginDAO.validateUserLogin(email);
 	}
 

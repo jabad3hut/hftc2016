@@ -27,6 +27,7 @@ import ch.qos.logback.classic.Level;
 public class ApproveFamilyRequestServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(ApproveFamilyRequestServiceTest.class);
+
 	private static TestHelper helper = new TestHelper();
 
 	@BeforeClass

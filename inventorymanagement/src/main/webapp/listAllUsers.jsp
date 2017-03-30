@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/app.css" media="screen" />
-<title>Manage users | PCAT inventory</title>
+<title>Manage users | PCAT Inventory Management</title>
 
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -21,7 +21,7 @@
 	            "url": url,
 	            "dataSrc": ""
 	        },
-	        "columns": [            
+	        "columns": [
 				{ "data": "id" },
 	            { "data": "firstName" },
 	            { "data": "lastName" },
@@ -30,7 +30,7 @@
 	            { "data": "supervisor" },
 	            { "data": "supervisoremail" },
 	            { "render": function(data, type, row, meta) {
-	                
+
 	                  return '<input type="hidden" name="userId"><a href="gotoComplete?id=' + row.id + '">Update/Delete</a>';
 	              }
 	            }
@@ -38,14 +38,14 @@
 	        ]
 	    } );
 	});
-	
+
 	function dothis(parameter) {
 	 if(parameter == 'add') {
 		 window.location.href="addUserPage";
 	 }
-		
+
 	}
-	
+
 </script>
 </head>
 <body>
@@ -58,16 +58,41 @@
 				<input type="hidden" name="location" id="location" value="Nashville"/>
 				<input type="hidden" name="totalInventory" id="totalInventory" value="3"/>
 				<input type="hidden" name="userId" id="userId" value="${user.id}"/>
-			<nav>
-				<a href="http://www.pcat.org/"> <img
-					src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
+			<header>
+				<a href="http://www.pcat.org/">
+					<img src="img/PCA-Logo_TN_2C_sm.jpg" alt="PCAT logo" class="pcat-logo">
 				</a>
 
 				<button name="logout" class="button logout-button neutral">
-					Log out</button>
-			</nav>
+					Log out
+				</button>
+			</header>
 
 			<section>
+        <nav id="nav-bar">
+            <ul>
+                <li>                    <a href="request.html">             request an item     </a>    </li>
+                <li>                    <a href="review-approvals.html">    review approvals    </a>    </li>
+                <li id="manage-items">  <a href="listAllInventories.jsp">   manage items        </a>    </li>
+                <li id="manage-users">  <a href="listAllUsers.jsp">         manage users        </a>    </li>
+            </ul>
+        </nav>
+
+        <script type="text/javascript">
+          // when able to access user,
+          //   1. replace the condition (currently a string) in each if statement below with the logic it describes
+          //      (currently the conditions both evaluate to true since any string except "" evaluates to true)
+          //   2. uncomment the body of each if statement
+          //   3. feel free to delete this comment block
+
+          if ('user.role === homeVisitor') {
+            // document.getElementById("nav-bar").classList.add("hidden");
+          } else if ('user.role === supervisor') {
+            // document.getElementById("manage-items").classList.add("hidden");
+            // document.getElementById("manage-users").classList.add("hidden");
+          }
+        </script>
+
 				<div class="section-body">
 					<h1>Manage users</h1>
 
@@ -87,9 +112,9 @@
 						</thead>
 					</table>
 
-                    <button name="add-user" class="button medium-button affirmative" onclick="dothis('add')">
-                        Add a user
-                    </button>
+          <button name="add-user" class="button medium-button affirmative" onclick="dothis('add')">
+              Add a user
+          </button>
 				</div>
 			</section>
 		</form>

@@ -17,21 +17,24 @@ public class HomeVisitorEmailRequestBOTest {
 
 	@Test
 	public void messageBodyBuilderTest() {
-		String newline = System.getProperty("line.separator");
 		HomeVisitor homeVisitor = new HomeVisitor(null, "testFirst", "testLast", "testEmail@mailinator.com",
-				null, "testSupervisorEmail@mailinator.com");
-		String testBody = "These items have been requested by testFirst testLast: " + newline + "Item 1" + newline
-				+ "Item 2" + newline + "Item 3" + newline + "Item 4" + newline + "Item 5" + newline + "Item 6";
+				"testSupervisor", "testSupervisorEmail@mailinator.com");
+		String testBody = String.format("Requestor:  testFirst testLast%nApprover:  testSupervisor%n"
+				+ "These items have been requested:%nQty: 1 of Item 1 from Chattanooga%n"
+				+ "Qty: 1 of Item 2 from Chattanooga%nQty: 1 of Item 3 from Chattanooga%n"
+				+ "Qty: 1 of Item 4 from Chattanooga%nQty: 1 of Item 5 from Chattanooga%n"
+				+ "Qty: 1 of Item 6 from Chattanooga");
 		List<String> items = new ArrayList<String>();
-		items.add("Item 1");
-		items.add("Item 2");
-		items.add("Item 3");
-		items.add("Item 4");
-		items.add("Item 5");
-		items.add("Item 6");
+		items.add("Qty: 1 of Item 1 from Chattanooga");
+		items.add("Qty: 1 of Item 2 from Chattanooga");
+		items.add("Qty: 1 of Item 3 from Chattanooga");
+		items.add("Qty: 1 of Item 4 from Chattanooga");
+		items.add("Qty: 1 of Item 5 from Chattanooga");
+		items.add("Qty: 1 of Item 6 from Chattanooga");
 		String renderedString = emailUtility.getMessageBody(homeVisitor.getFirstName(), homeVisitor.getLastName(),
-				items);
-		logger.info(renderedString);
+				homeVisitor.getSupervisor(), items);
+		logger.info(String.format("%ntestBody%n%s", testBody));
+		logger.info(String.format("%nrenderedString%n%s", renderedString));
 		assertThat(renderedString, equalTo(testBody));
 	}
 }
